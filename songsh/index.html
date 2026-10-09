@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>송승훈 | T.M (Transition Makers)</title>
+<meta property="og:title" content="송승훈 | T.M (Transition Makers)">
+<meta property="og:description" content="디지털 비즈홈 DiCA · 카드북 CardBook · 번역 메신저 MANDU를 만듭니다. 지금 보고 계신 이 비즈홈이 제 제품입니다.">
+<meta property="og:image" content="https://bizhome.bizmy.net/songsh/og_v3.jpg">
+<meta property="og:url" content="https://bizhome.bizmy.net/songsh/">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Paperlogy';src:url('../fonts/Paperlogy-4Regular.woff2') format('woff2');font-weight:400;font-display:swap;}
+@font-face{font-family:'Paperlogy';src:url('../fonts/Paperlogy-7Bold.woff2') format('woff2');font-weight:700 900;font-display:swap;}
+
+:root{
+  --gold:#d4a537;
+  --gold-soft:#e8c877;
+  --dark:#276152;
+  --dark2:#1d4a3e;
+  --gray:#8a8a92;
+  --light:#f6f5f2;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{background:#153b31;}
+body{font-family:'Paperlogy','Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:#fff;}
+.card{max-width:430px;margin:0 auto;background:var(--dark);min-height:100vh;position:relative;overflow-x:hidden;}
+[data-lang]{display:none;}
+[data-lang].active{display:inline;}
+div[data-lang].active,p[data-lang].active{display:block;}
+[data-lang="hi"]{font-family:'Noto Sans Devanagari',sans-serif;}
+
+/* ===== 언어 스위치 ===== */
+.lang-bar{position:fixed;top:14px;right:max(14px, calc((100vw - 430px)/2 + 14px));z-index:30;display:flex;gap:4px;background:rgba(0,0,0,0.45);backdrop-filter:blur(6px);border-radius:20px;padding:4px;}
+.lang-btn{border:none;background:transparent;color:rgba(255,255,255,0.55);font-size:10.5px;font-weight:700;padding:5px 9px;border-radius:14px;cursor:pointer;font-family:inherit;}
+.lang-btn.on{background:var(--gold);color:#143c31;}
+
+/* ===== HERO ===== */
+.hero{position:relative;}
+.hero img{width:100%;display:block;}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.15) 0%,rgba(0,0,0,0) 35%,rgba(39,97,82,0.55) 78%,var(--dark) 100%);}
+.hero-txt{position:absolute;left:0;right:0;bottom:18px;padding:0 24px;z-index:2;}
+.hero-co{font-size:11px;letter-spacing:0.22em;color:var(--gold-soft);font-weight:700;margin-bottom:7px;}
+.hero-name{font-size:34px;font-weight:900;line-height:1.1;text-shadow:0 2px 14px rgba(0,0,0,0.6);}
+.hero-role{font-size:13px;color:rgba(255,255,255,0.85);margin-top:6px;font-weight:400;}
+
+/* ===== 프로필 ===== */
+.profile-sec{padding:26px 24px 8px;text-align:center;}
+.profile-img{width:104px;height:104px;border-radius:50%;object-fit:cover;object-position:top;border:3px solid var(--gold);display:block;margin:0 auto 14px;position:relative;z-index:3;box-shadow:0 6px 24px rgba(0,0,0,0.45);}
+.profile-tag{display:inline-block;background:rgba(212,165,55,0.14);border:1px solid rgba(212,165,55,0.45);color:var(--gold-soft);font-size:11.5px;font-weight:700;padding:7px 16px;border-radius:20px;margin-bottom:14px;}
+.slogan{font-size:20px;font-weight:900;line-height:1.35;letter-spacing:0.01em;}
+.slogan em{font-style:normal;color:var(--gold);}
+.slogan-sub{font-size:12.5px;color:var(--gray);margin-top:8px;line-height:1.6;}
+.slogan-sub b{color:var(--gold-soft);font-weight:700;}
+
+/* ===== 섹션 공통 ===== */
+.sec{padding:44px 24px;}
+.sec-label{font-size:10.5px;letter-spacing:0.24em;color:var(--gold);font-weight:700;margin-bottom:8px;}
+.sec-title{font-size:23px;font-weight:900;line-height:1.3;margin-bottom:22px;}
+.sec-title .thin{font-weight:400;color:var(--gray);font-size:14px;display:block;margin-top:6px;line-height:1.55;}
+
+/* ===== ABOUT ===== */
+.about{background:var(--dark2);}
+.about-txt{font-size:14.5px;line-height:1.85;color:rgba(255,255,255,0.88);}
+.kw-wrap{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px;}
+.kw-tag{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);color:rgba(255,255,255,0.8);font-size:11px;font-weight:700;padding:6px 12px;border-radius:16px;}
+.kw-tag.hot{background:rgba(212,165,55,0.13);border-color:rgba(212,165,55,0.5);color:var(--gold-soft);}
+
+
+/* ===== BG 섹션 (v7) ===== */
+.bg-section{position:relative;overflow:hidden;}
+.bg-img{position:absolute;inset:0;background-size:cover;background-position:center;}
+.bg-ov{position:absolute;inset:0;}
+.bg-section .sec{position:relative;z-index:1;}
+.why-bg{background-image:url('bg_space.jpg');}
+.why-ov{background:rgba(21,59,49,0.30);}
+.svc-bg{background-image:url('bg_space.jpg');background-position:center bottom;}
+.svc-ov{background:linear-gradient(to bottom,rgba(21,59,49,0.45) 0%,rgba(21,59,49,0.25) 100%);}
+
+/* ===== WHY ===== */
+.why-card{background:rgba(21,59,49,0.42);backdrop-filter:blur(3px);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:22px 20px;margin-bottom:12px;}
+.why-num{font-size:11px;color:var(--gold);font-weight:700;letter-spacing:0.16em;margin-bottom:8px;}
+.why-t{font-size:16.5px;font-weight:900;margin-bottom:9px;line-height:1.35;}
+.why-d{font-size:13px;line-height:1.75;color:rgba(255,255,255,0.72);}
+
+/* ===== DIFFERENCE ===== */
+.diff{background:transparent;}
+.diff-item{display:flex;gap:14px;padding:20px 18px;margin-bottom:12px;background:rgba(21,59,49,0.42);backdrop-filter:blur(3px);border:1px solid rgba(255,255,255,0.12);border-radius:14px;}
+.diff-item:last-child{margin-bottom:0;}
+.diff-num{font-size:20px;font-weight:900;color:var(--gold);min-width:34px;line-height:1.2;text-shadow:0 1px 8px rgba(0,0,0,0.7);}
+.diff-t{font-size:14.5px;font-weight:900;margin-bottom:6px;line-height:1.4;text-shadow:0 1px 8px rgba(0,0,0,0.7);}
+.diff-d{font-size:12.5px;line-height:1.7;color:rgba(255,255,255,0.82);text-shadow:0 1px 6px rgba(0,0,0,0.75);}
+
+/* ===== REFERRAL 슬라이더 ===== */
+.ref-track-wrap{overflow:hidden;border-radius:14px;}
+.ref-track{display:flex;transition:transform 0.35s ease;}
+.ref-card{min-width:100%;}
+.ref-inner{background:var(--dark2);border:1px solid rgba(212,165,55,0.25);border-radius:14px;padding:24px 20px;min-height:280px;}
+.ref-num{font-size:10.5px;letter-spacing:0.2em;color:var(--gold);font-weight:700;margin-bottom:10px;}
+.ref-title{font-size:17px;font-weight:900;margin-bottom:16px;line-height:1.4;}
+.ref-item{display:flex;gap:9px;margin-bottom:9px;font-size:12.5px;line-height:1.6;color:rgba(255,255,255,0.8);}
+.ref-check{color:var(--gold);font-size:11px;margin-top:2px;}
+.ref-nav{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:16px;}
+.ref-btn{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,0.22);background:transparent;color:#fff;font-size:17px;cursor:pointer;line-height:1;}
+.ref-dots{display:flex;gap:6px;}
+.ref-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.22);cursor:pointer;}
+.ref-dot.active{background:var(--gold);width:18px;border-radius:4px;}
+.ref-counter{text-align:center;font-size:11px;color:var(--gray);margin-top:8px;}
+
+/* ===== PORTFOLIO ===== */
+.port{background:var(--dark2);}
+.port-track-wrap{overflow:hidden;border-radius:14px;}
+.port-track{display:flex;transition:transform 0.5s ease;}
+.port-slide{min-width:100%;}
+.port-slide img{width:100%;display:block;border-radius:14px;aspect-ratio:4/5;object-fit:cover;background:#000;}
+.port-cap{font-size:12px;color:var(--gray);text-align:center;margin-top:10px;line-height:1.6;}
+.cta-order{display:block;margin-top:24px;background:var(--gold);color:#143c31;text-align:center;text-decoration:none;font-weight:900;font-size:15px;padding:17px;border-radius:12px;box-shadow:0 6px 20px rgba(212,165,55,0.3);}
+.cta-order span{display:none;}
+.cta-order span.active{display:inline;}
+
+/* ===== CAREER ===== */
+.career-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.08);}
+.career-item:last-child{border-bottom:none;}
+.career-ico{font-size:20px;min-width:30px;}
+.career-t{font-size:14px;font-weight:900;margin-bottom:5px;}
+.career-d{font-size:12px;line-height:1.7;color:rgba(255,255,255,0.65);}
+
+/* ===== CONTACT ===== */
+.contact{background:var(--light);color:var(--dark);}
+.contact .sec-label{color:#a07c1e;}
+.contact .sec-title{color:var(--dark);}
+.con-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.con-item{display:flex;flex-direction:column;gap:3px;background:#fff;border-radius:10px;padding:13px 14px;text-decoration:none;color:var(--dark);box-shadow:0 1px 8px rgba(0,0,0,0.06);}
+.con-item-top{display:flex;align-items:center;gap:7px;}
+.con-icon{font-size:14px;}
+.con-label{font-size:9px;color:#888;font-weight:700;letter-spacing:0.05em;}
+.con-value{font-size:11.5px;font-weight:700;word-break:break-all;}
+
+/* ===== 액션버튼 ===== */
+.actions-wrap{padding:26px 24px 10px;background:var(--light);display:flex;flex-direction:column;gap:10px;}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:16px;border-radius:12px;font-size:14.5px;font-weight:900;cursor:pointer;font-family:inherit;text-decoration:none;border:none;}
+.btn-red{background:var(--dark);color:#fff;}
+.btn-out{background:#fff;color:var(--dark);border:1.5px solid rgba(0,0,0,0.16);}
+
+/* ===== 푸터 ===== */
+footer{background:var(--light);text-align:center;padding:28px 24px 40px;}
+.footer-logo{font-size:15px;font-weight:900;color:var(--dark);letter-spacing:0.06em;}
+.footer-sub{font-size:10.5px;color:#999;margin-top:6px;}
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- 언어 스위치 -->
+  <div class="lang-bar">
+    <button class="lang-btn on" onclick="switchLang('kr',this)">KR</button>
+    <button class="lang-btn" onclick="switchLang('en',this)">EN</button>
+    <button class="lang-btn" onclick="switchLang('jp',this)">JP</button>
+    <button class="lang-btn" onclick="switchLang('cn',this)">CN</button>
+    <button class="lang-btn" onclick="switchLang('hi',this)">HI</button>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <img src="hero.png" alt="송승훈">
+    <div class="hero-grad"></div>
+    <div class="hero-txt">
+      <div class="hero-co">T.M — TRANSITION MAKERS</div>
+      <div class="hero-name">
+        <span data-lang="kr" class="active">송승훈</span>
+        <span data-lang="en">Song Seunghoon</span>
+        <span data-lang="jp">ソン・スンフン</span>
+        <span data-lang="cn">宋昇勳</span>
+        <span data-lang="hi">सोंग सुंगहुन</span>
+      </div>
+      <div class="hero-role">
+        <span data-lang="kr" class="active">비즈홈 · 앱 개발사 대표</span>
+        <span data-lang="en">BizHome · App Developer CEO</span>
+        <span data-lang="jp">BizHome・アプリ開発社 代表</span>
+        <span data-lang="cn">BizHome · 应用开发商代表</span>
+        <span data-lang="hi">BizHome · ऐप डेवलपर संस्थापक</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 프로필 + 슬로건 -->
+  <div class="profile-sec">
+    <img src="profil.jpg" alt="송승훈 프로필" class="profile-img">
+    <div class="profile-tag">
+      <span data-lang="kr" class="active">⚡ One Size Never Fits All</span>
+      <span data-lang="en">⚡ One Size Never Fits All</span>
+      <span data-lang="jp">⚡ One Size Never Fits All</span>
+      <span data-lang="cn">⚡ One Size Never Fits All</span>
+        <span data-lang="hi">⚡ One Size Never Fits All</span>
+    </div>
+    <div class="slogan">
+      <span data-lang="kr" class="active">"모든 사람에게<br><em>같은 답</em>은 통하지 않는다."</span>
+      <span data-lang="en">"The same answer<br>never works for <em>everyone</em>."</span>
+      <span data-lang="jp">"すべての人に<br><em>同じ答え</em>は通用しない。"</span>
+      <span data-lang="cn">"同一个答案<br>不可能适用于<em>所有人</em>。"</span>
+        <span data-lang="hi">"हर किसी के लिए<br><em>एक जैसा जवाब</em> काम नहीं करता।"</span>
+    </div>
+    <p class="slogan-sub">
+      <span data-lang="kr" class="active">비즈홈 <b>BizHome</b> · 카드북 <b>CardBook</b> · 번역 메신저 <b>MANDU</b>를 만듭니다.<br>지금 보고 계신 것이 비즈홈입니다.</span>
+      <span data-lang="en">BizHome <b>BizHome</b> · Business Card Book <b>CardBook</b> · Translation Messenger <b>MANDU</b>.<br>You're looking at BizHome right now.</span>
+      <span data-lang="jp">BizHome <b>BizHome</b>・名刺帳 <b>CardBook</b>・翻訳メッセンジャー <b>MANDU</b>を開発しています。<br>今ご覧になっているのがBizHomeです。</span>
+      <span data-lang="cn">我们开发 BizHome <b>BizHome</b> · 名片集 <b>CardBook</b> · 翻译通讯 <b>MANDU</b>。<br>您现在看到的就是 BizHome。</span>
+        <span data-lang="hi">BizHome <b>BizHome</b> · नामपत्र संग्रह <b>CardBook</b> · अनुवाद दूत <b>MANDU</b> बनाते हैं।<br>आप अभी BizHome देख रहे हैं।</span>
+    </p>
+  </div>
+
+  <!-- 내 소식판 배너 (슬로건 아래) — 글은 news.json -->
+  <div id="news-board"></div>
+
+  <!-- ABOUT -->
+  <div class="sec about">
+    <div class="sec-label">ABOUT</div>
+    <div class="sec-title">
+      <span data-lang="kr" class="active">전환을 만드는 사람,<br>Transition Maker</span>
+      <span data-lang="en">The One Who Makes<br>Transitions Happen</span>
+      <span data-lang="jp">転換をつくる人、<br>Transition Maker</span>
+      <span data-lang="cn">创造转变的人，<br>Transition Maker</span>
+        <span data-lang="hi">बदलाव लाने वाला व्यक्ति,<br>Transition Maker</span>
+    </div>
+    <p class="about-txt">
+      <span data-lang="kr" class="active">비즈홈으로, 스쳐 가는 인연이 관리되는 자산으로, 언어의 장벽이 비즈니스 기회로. T.M은 아날로그에서 디지털로 넘어가는 그 '전환'을 설계합니다. BizHome(비즈홈)ㅡAutoDiCA(디지털 명함) — CardBook(카드북) — MANDU(번역 메신저)로 이어지는 하나의 연결 생태계를 만듭니다.</span>
+      <span data-lang="en">With BizHome, fleeting connections become managed assets, and language barriers become business opportunities. T.M designs that 'transition' from analog to digital. We create a connected ecosystem: BizHome—AutoDiCA (Digital Business Card)—CardBook (Business Card Book)—MANDU (Translation Messenger).</span>
+      <span data-lang="jp">BizHomeで、一瞬の縁が管理できる資産に、言語の壁がビジネスチャンスに。T.Mはアナログからデジタルへの『転換』を設計します。BizHome(ビズホーム)ーAutoDiCA(デジタル名刺)ーCardBook(名刺帳)ーMANDU(翻訳メッセンジャー)へと続く、ひとつの連結エコシステムを構築します。</span>
+      <span data-lang="cn">通过 BizHome，转瞬即逝的缘分变成可管理的资产，语言障碍转化为商机。T.M 设计从模拟向数字转变的那一刻。BizHome(비즈홈)ㅡAutoDiCA(数字名片) — CardBook(名片集) — MANDU(翻译通讯)形成一个连接的生态系统。</span>
+        <span data-lang="hi">BizHome के साथ, क्षणिक संबंध प्रबंधित संपत्ति में बदल जाते हैं, भाषा की बाधा व्यावसायिक अवसर में। T.M एनालॉग से डिजिटल में वह 'रूपांतरण' डिजाइन करता है। BizHome(बिजहोम)ㅡAutoDiCA(डिजिटल नामपत्र) — CardBook(नामपत्र संग्रह) — MANDU(अनुवाद दूत) से जुड़ा एक संपूर्ण कनेक्टेड इकोसिस्टम बनाता है।</span>
+    </p>
+    <div class="kw-wrap">
+      <span class="kw-tag hot"><span data-lang="kr" class="active">비즈홈 , Auto DiCA</span><span data-lang="en">BizHome, Auto DiCA</span><span data-lang="jp">BizHome、Auto DiCA</span><span data-lang="cn">BizHome，Auto DiCA</span>
+        <span data-lang="hi">BizHome , Auto DiCA</span></span>
+      <span class="kw-tag"><span data-lang="kr" class="active">카드북 CardBook</span><span data-lang="en">Card Wallet CardBook</span><span data-lang="jp">名刺帳 CardBook</span><span data-lang="cn">名片夹 CardBook</span>
+        <span data-lang="hi">कार्ड कलेक्शन CardBook</span></span>
+      <span class="kw-tag"><span data-lang="kr" class="active">번역 메신저 MANDU</span><span data-lang="en">Translation Messenger MANDU</span><span data-lang="jp">翻訳メッセンジャー MANDU</span><span data-lang="cn">翻译通讯 MANDU</span>
+        <span data-lang="hi">अनुवाद मैसेंजर MANDU</span></span>
+      <span class="kw-tag"><span data-lang="kr" class="active">퍼스널 브랜딩</span><span data-lang="en">Personal Branding</span><span data-lang="jp">パーソナルブランディング</span><span data-lang="cn">个人品牌</span>
+        <span data-lang="hi">पर्सनल ब्रांडिंग</span></span>
+      <span class="kw-tag"><span data-lang="kr" class="active">5개국어 지원</span><span data-lang="en">5 Languages</span><span data-lang="jp">5か国語対応</span><span data-lang="cn">支持5国语言</span>
+        <span data-lang="hi">5 भाषाओं में उपलब्ध</span></span>
+    </div>
+  </div>
+
+  <!-- WHY -->
+  <div class="bg-section">
+  <div class="bg-img why-bg"></div>
+  <div class="bg-ov why-ov"></div>
+  <div class="sec">
+    <div class="sec-label">WHY T.M</div>
+    <div class="sec-title">
+      <span data-lang="kr" class="active">왜 T.M이어야 하는가</span>
+      <span data-lang="en">Why It Has to Be T.M</span>
+      <span data-lang="jp">なぜT.Mなのか</span>
+      <span data-lang="cn">为什么选择T.M</span>
+        <span data-lang="hi">T.M ही क्यों चुनें</span>
+    </div>
+
+    <div class="why-card">
+      <div class="why-num">WHY 01</div>
+      <div class="why-t">
+        <span data-lang="kr" class="active">아이덴티티 커스텀</span>
+        <span data-lang="en">Identity Custom</span>
+        <span data-lang="jp">アイデンティティ・カスタム</span>
+        <span data-lang="cn">身份定制</span>
+        <span data-lang="hi">कस्टम पहचान</span>
+      </div>
+      <div class="why-d">
+        <span data-lang="kr" class="active">흔한 템플릿에 끼워 맞추는 공장형 개발이 아닙니다. 클라이언트 고유의 철학과 가치관을 온전히 담아낸, 세상에 단 하나뿐인 디지털 브랜딩을 실현합니다.</span>
+        <span data-lang="en">This is not factory-style development that forces you into common templates. I create one-of-a-kind digital branding that fully embodies each client's philosophy and values.</span>
+        <span data-lang="jp">ありふれたテンプレートに押し込む工場型開発ではありません。クライアント固有の哲学と価値観を丸ごと込めた、世界に一つだけのデジタルブランディングを実現します。</span>
+        <span data-lang="cn">这不是把客户塞进普通模板的工厂式开发。我们打造完整承载客户独有哲学与价值观的、世上独一无二的数字品牌。</span>
+        <span data-lang="hi">यह आम टेम्पलेट में फिट किया गया फैक्ट्री-स्टाइल काम नहीं है। हर क्लाइंट के अपने दर्शन और मूल्यों को पूरी तरह समेटकर, दुनिया में बस एक ऐसी डिजिटल ब्रांडिंग बनाई जाती है।</span>
+      </div>
+    </div>
+
+    <div class="why-card">
+      <div class="why-num">WHY 02</div>
+      <div class="why-t">
+        <span data-lang="kr" class="active">도메인 크로스오버</span>
+        <span data-lang="en">Domain Crossover</span>
+        <span data-lang="jp">ドメイン・クロスオーバー</span>
+        <span data-lang="cn">跨领域融合</span>
+        <span data-lang="hi">क्षेत्रों का मेल</span>
+      </div>
+      <div class="why-d">
+        <span data-lang="kr" class="active">비즈니스 생태계를 입체적으로 이해하기에, 단순 코딩을 넘어 실제 '돈이 되는 기획'을 제안합니다.</span>
+        <span data-lang="en">Understanding the business ecosystem holistically, we propose 'profitable planning' beyond simple coding.</span>
+        <span data-lang="jp">ビジネスエコシステムを立体的に理解するからこそ、単なるコーディングを超えた実際に『利益を生む企画』を提案します。</span>
+        <span data-lang="cn">深入理解商业生态，超越单纯编码，提出真正"能赚钱的规划"。</span>
+        <span data-lang="hi">व्यावसायिक इकोसिस्टम को समग्र रूप से समझते हैं, इसलिए सरल कोडिंग से परे वास्तविक 'लाभदायक योजना' प्रस्तावित करते हैं।</span>
+      </div>
+    </div>
+
+    <div class="why-card">
+      <div class="why-num">WHY 03</div>
+      <div class="why-t">
+        <span data-lang="kr" class="active">미니멀 스타트</span>
+        <span data-lang="en">Minimal Start</span>
+        <span data-lang="jp">ミニマル・スタート</span>
+        <span data-lang="cn">轻量起步</span>
+        <span data-lang="hi">न्यूनतम लागत से शुरुआत</span>
+      </div>
+      <div class="why-d">
+        <span data-lang="kr" class="active">고비용 부담 때문에 시작조차 못 하는 일이 없도록 합니다. 아이디어의 본질만 정확히 추려내어, 가장 합리적인 비용으로 빠르게 시장에 진입할 수 있는 최적의 스케일업 라인을 설계합니다.</span>
+        <span data-lang="en">No idea should die because of high costs. I distill your idea to its essence and design the optimal scale-up path to enter the market fast, at the most reasonable cost.</span>
+        <span data-lang="jp">高コストの負担で始めることすらできない、ということがないように。アイデアの本質だけを正確に抽出し、最も合理的なコストで素早く市場参入できる最適なスケールアップラインを設計します。</span>
+        <span data-lang="cn">不让任何想法因高成本而无法起步。精准提炼创意的本质，以最合理的成本设计快速进入市场的最优扩展路线。</span>
+        <span data-lang="hi">ज़्यादा लागत के डर से शुरुआत ही न कर पाना, ऐसा नहीं होने दिया जाता। विचार के मूल तत्व को सटीक रूप से पहचानकर, सबसे उचित लागत में तेज़ी से बाज़ार में उतरने का सबसे अच्छा रास्ता तैयार किया जाता है।</span>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <!-- DIFFERENCE -->
+  <div class="bg-section">
+  <div class="bg-img svc-bg"></div>
+  <div class="bg-ov svc-ov"></div>
+  <div class="sec diff">
+    <div class="sec-label">DIFFERENCE</div>
+    <div class="sec-title">
+      <span data-lang="kr" class="active">무엇이 다른가</span>
+      <span data-lang="en">What Makes the Difference</span>
+      <span data-lang="jp">何が違うのか</span>
+      <span data-lang="cn">有何不同</span>
+        <span data-lang="hi">क्या अलग है</span>
+    </div>
+
+    <div class="diff-item">
+      <div class="diff-num">01</div>
+      <div>
+        <div class="diff-t">
+          <span data-lang="kr" class="active">니즈 디코딩</span>
+          <span data-lang="en">Needs Decoding</span>
+          <span data-lang="jp">ニーズ・デコーディング</span>
+          <span data-lang="cn">需求解码</span>
+        <span data-lang="hi">ज़रूरत को समझना</span>
+        </div>
+        <div class="diff-d">
+          <span data-lang="kr" class="active">기술만 아는 개발자가 아닌 기획자! 클라이언트의 언어를 이해하고 정형화된 질문을 넘어, 사업가가 가진 진짜 니즈와 가치관을 정확하게 해석하여 시스템으로 구현합니다.</span>
+          <span data-lang="en">Not just a developer, but a strategist! We understand our clients' language, move beyond standard questions, and accurately interpret entrepreneurs' real needs and values to implement them as systems.</span>
+          <span data-lang="jp">技術だけ知る開発者ではなく企画者!クライアントの言語を理解し、形式化された質問を超えて、起業家が持つ真のニーズと価値観を正確に解釈し、システムで実装します。</span>
+          <span data-lang="cn">不仅是懂技术的开发者，更是规划师！理解客户的语言，超越标准化问题，精准解读企业家的真实需求和价值观，转化为系统实现。</span>
+        <span data-lang="hi">केवल तकनीक जानने वाला डेवलपर नहीं! योजनाकार! क्लाइंट की भाषा समझते हैं और मानकीकृत प्रश्नों से परे, व्यावसायी की वास्तविक आवश्यकता और मूल्यों को सटीक रूप से व्याख्या करके सिस्टम में लागू करते हैं।</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="diff-item">
+      <div class="diff-num">02</div>
+      <div>
+        <div class="diff-t">
+          <span data-lang="kr" class="active">카드북까지 제공</span>
+          <span data-lang="en">Card Wallet Included</span>
+          <span data-lang="jp">名刺帳まで提供</span>
+          <span data-lang="cn">连名片夹一起提供</span>
+        <span data-lang="hi">कार्ड कलेक्शन भी साथ में</span>
+        </div>
+        <div class="diff-d">
+          <span data-lang="kr" class="active">"비즈홈을 건네받으면 저장은 어떻게 하죠?" 받은 비즈홈이나 명함을 모으고 관리하는 카드북(CardBook)까지 함께 제공합니다. 명함은 주는 것에서 끝나지 않습니다.</span>
+          <span data-lang="en">"How do I save the BizHome I received?" We provide CardBook, a business card holder that collects and manages received business cards. Business cards don't end at exchange.</span>
+          <span data-lang="jp">「BizHomeをもらったら保存はどうするんですか?」受け取ったBizHomeや名刺をまとめて管理する名刺帳(CardBook)まで一緒に提供します。名刺は渡すことで終わりではありません。</span>
+          <span data-lang="cn">"收到 BizHome 后怎么保存？"我们还提供名片集(CardBook)来收集和管理收到的 BizHome 和名片。名片的作用不止于递出。</span>
+        <span data-lang="hi">"BizHome मिलने पर सहेजना कैसे करें?" प्राप्त BizHome या नामपत्र एकत्र और प्रबंधित करने के लिए नामपत्र संग्रह(CardBook) भी प्रदान करते हैं। नामपत्र देने पर समाप्त नहीं होता।</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="diff-item">
+      <div class="diff-num">03</div>
+      <div>
+        <div class="diff-t">
+          <span data-lang="kr" class="active">오너의 관점</span>
+          <span data-lang="en">An Owner's Perspective</span>
+          <span data-lang="jp">オーナーの視点</span>
+          <span data-lang="cn">经营者视角</span>
+        <span data-lang="hi">मालिक जैसा नज़रिया</span>
+        </div>
+        <div class="diff-d">
+          <span data-lang="kr" class="active">단순히 외주 작업을 납품하고 끝내지 않습니다. '오너의 관점'에서 클라이언트의 사업을 내 사업처럼 함께 고민하는 페이스메이커가 되어 드립니다.</span>
+          <span data-lang="en">I don't just deliver outsourced work and walk away. From an owner's perspective, I become your pacemaker — thinking about your business as if it were my own.</span>
+          <span data-lang="jp">単に外注作業を納品して終わりにしません。「オーナーの視点」でクライアントの事業を自分の事業のように一緒に悩むペースメーカーになります。</span>
+          <span data-lang="cn">不是交付外包工作就了事。以"经营者的视角"，像对待自己的事业一样与客户共同思考，成为您的领跑伙伴。</span>
+        <span data-lang="hi">सिर्फ़ बाहरी काम पूरा करके नहीं छोड़ा जाता। "मालिक जैसे नज़रिए" से क्लाइंट के बिज़नेस को अपने बिज़नेस की तरह सोचकर साथ चलने वाला साथी बना जाता है।</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="diff-item">
+      <div class="diff-num">04</div>
+      <div>
+        <div class="diff-t">
+          <span data-lang="kr" class="active">한 장에 4개국어, 수정은 실시간</span>
+          <span data-lang="en">4 Languages on One Card, Real-time Updates</span>
+          <span data-lang="jp">1枚で4言語、編集はリアルタイム</span>
+          <span data-lang="cn">一张卡片四种语言，实时修改</span>
+        <span data-lang="hi">एक कार्ड में 4 भाषाएं, रीयल-टाइम संपादन</span>
+        </div>
+        <div class="diff-d">
+          <span data-lang="kr" class="active">한 장의 비즈홈에 4개국어를 담고, 내용이 바뀌어도 다시 인쇄해서 나눠줄 필요가 없습니다. 링크는 그대로, 내용만 갱신됩니다.</span>
+          <span data-lang="en">Put 4 languages on a single business card. No need to reprint and redistribute when content changes. Links stay the same—only content updates.</span>
+          <span data-lang="jp">1枚の名刺に4言語を収め、内容が変わっても再度印刷して配る必要がありません。リンクはそのまま、内容のみ更新されます。</span>
+          <span data-lang="cn">一张名片包含四种语言，内容更改时无需重新打印分发。链接保持不变，仅更新内容。</span>
+        <span data-lang="hi">एक बिज़नेस कार्ड में 4 भाषाएं शामिल करें। सामग्री बदलने पर दोबारा प्रिंट करने की कोई जरूरत नहीं। लिंक समान रहता है, केवल सामग्री अपडेट होती है।</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <!-- REFERRAL -->
+  <div class="sec">
+    <div class="sec-label">REFERRAL</div>
+    <div class="sec-title">
+      <span data-lang="kr" class="active">이런 분을 소개해 주세요</span>
+      <span data-lang="en">Please Introduce Me To</span>
+      <span data-lang="jp">こんな方をご紹介ください</span>
+      <span data-lang="cn">请为我介绍这样的人</span>
+        <span data-lang="hi">ऐसे लोगों को ज़रूर मिलवाएँ</span>
+    </div>
+
+    <div class="ref-track-wrap">
+      <div class="ref-track" id="ref-track">
+
+        <div class="ref-card"><div class="ref-inner">
+          <div class="ref-num">REFERRAL 01</div>
+          <div class="ref-title">
+            <span data-lang="kr" class="active">🏢 중소·중견기업 CEO / 대표</span>
+            <span data-lang="en">🏢 SME & Mid-Size Company CEOs</span>
+            <span data-lang="jp">🏢 中小・中堅企業のCEO / 代表</span>
+            <span data-lang="cn">🏢 中小·中坚企业CEO / 代表</span>
+        <span data-lang="hi">🏢 छोटी-मंझोली कंपनियों के CEO / निदेशक</span>
+          </div>
+          <div class="ref-items">
+            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">회사의 첫인상을 중요하게 생각하는 대표님</span><span data-lang="en">CEOs who value their company's first impression</span><span data-lang="jp">会社の第一印象を大切にする代表</span><span data-lang="cn">重视公司第一印象的代表</span>
+        <span data-lang="hi">जो कंपनी की पहली छाप को अहमियत देते हैं</span></div>
+            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">박람회 · 투자(IR) · 정부사업 · 미팅이 많은 분</span><span data-lang="en">Frequent expos, IR, government projects, meetings</span><span data-lang="jp">展示会・投資（IR）・政府事業・ミーティングが多い方</span><span data-lang="cn">经常参加博览会·投资(IR)·政府项目·会议的人</span>
+        <span data-lang="hi">प्रदर्शनी · निवेश (IR) · सरकारी परियोजना · मीटिंग ज़्यादा करने वाले</span></div>
+            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">홈페이지는 있지만 대표 개인 브랜딩이 약한 회사</span><span data-lang="en">Has a website but weak personal branding for the CEO</span><span data-lang="jp">ホームページはあるが代表個人のブランディングが弱い会社</span><span data-lang="cn">有官网但代表个人品牌薄弱的公司</span>
+        <span data-lang="hi">जिनकी वेबसाइट तो है पर निजी ब्रांडिंग कमज़ोर है</span></div>
+            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">비즈홈보다 '브랜드'를 보여주고 싶은 분</span><span data-lang="en">Wants to show a brand, not just a card</span><span data-lang="jp">名刺より「ブランド」を見せたい方</span><span data-lang="cn">想展示"品牌"而非名片的人</span>
+        <span data-lang="hi">जो कार्ड से ज़्यादा अपना "ब्रांड" दिखाना चाहते हैं</span></div>
+          </div>
+        </div></div>
+
+        <div class="ref-card"><div class="ref-inner">
+          <div class="ref-num">REFERRAL 02</div>
+          <div class="ref-title">
+            <span data-lang="kr" class="active">🌏 해외 거래가 있는 기업</span>
+            <span data-lang="en">🌏 Companies with Overseas Business</span>
+            <span data-lang="jp">🌏 海外取引のある企業</span>
+            <span data-lang="cn">🌏 有海外业务的企业</span>
+        <span data-lang="hi">🌏 विदेशी व्यापार वाली कंपनियाँ</span>
+          </div>
+          <div class="ref-items">
+            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">무역 · 제조 · 수출 기업</span><span data-lang="en">Trading, manufacturing, export companies</span><span data-lang="jp">貿易・製造・輸出企業</span><span data-lang="cn">贸易·制造·出口企业</span>
+        <span data-lang="hi">व्यापार · उत्पादन · निर्यात कंपनियाँ</span></div>
+            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">해외 구매대행 · 해외 바이어 상담</span><span data-lang="en">Overseas purchasing agents, buyer consultations</span><span data-lang="jp">海外購入代行・海外バイヤー商談</span><span data-lang="cn">海外代购·海外买家洽谈</span>
+        <span data-lang="hi">विदेशी खरीद एजेंट · विदेशी खरीदारों से बातचीत</span></div>
+            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">외국인 고객을 대상으로 하는 사업</span><span data-lang="en">Businesses serving foreign customers</span><span data-lang="jp">外国人顧客を対象とする事業</span><span data-lang="cn">面向外国客户的业务</span>
+        <span data-lang="hi">विदेशी ग्राहकों को लक्षित व्यवसाय</span></div>
+            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">4개국어 비즈홈 + 번역 메신저 MANDU가 무기가 됩니다</span><span data-lang="en">4-Language Business Card + Translation Messenger MANDU is your weapon</span><span data-lang="jp">4言語名刺＋翻訳メッセンジャー MANDUが武器になります</span><span data-lang="cn">四种语言名片 + 翻译信使 MANDU 成为您的利器</span>
+        <span data-lang="hi">4 भाषा कार्ड + अनुवाद मैसेंजर MANDU आपका हथियार है</span></div>
+          </div>
+        </div></div>
+
+        <div class="ref-card"><div class="ref-inner">
+          <div class="ref-num">REFERRAL 03</div>
+          <div class="ref-title">
+            <span data-lang="kr" class="active">⚖️ 전문직 대표님</span>
+            <span data-lang="en">⚖️ Professional Practice Owners</span>
+            <span data-lang="jp">⚖️ 専門職の代表</span>
+            <span data-lang="cn">⚖️ 专业人士代表</span>
+        <span data-lang="hi">⚖️ पेशेवर सेवा प्रदाता</span>
+          </div>
+          <div class="ref-items">
+            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">변호사 · 세무사 · 회계사 · 법무사 · 노무사</span><span data-lang="en">Lawyers, tax accountants, CPAs, judicial scriveners, labor attorneys</span><span data-lang="jp">弁護士・税理士・会計士・司法書士・労務士</span><span data-lang="cn">律师·税务师·会计师·法务师·劳务师</span>
+        <span data-lang="hi">वकील · टैक्स सलाहकार · अकाउंटेंट · लीगल सलाहकार · लेबर सलाहकार</span></div>
+            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">병원장 · 건축사</span><span data-lang="en">Hospital directors, architects</span><span data-lang="jp">病院長・建築士</span><span data-lang="cn">医院院长·建筑师</span>
+        <span data-lang="hi">अस्पताल निदेशक · आर्किटेक्ट</span></div>
+            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">보험설계사 · 헬스 · 뷰티 · 네트워크 사업자</span><span data-lang="en">Insurance planners, health, beauty, network business owners</span><span data-lang="jp">保険設計士・ヘルス・ビューティー・ネットワーク事業者</span><span data-lang="cn">保险规划师·健康·美容·网络事业者</span>
+        <span data-lang="hi">इंश्योरेंस एजेंट · हेल्थ · ब्यूटी · नेटवर्क बिज़नेस</span></div>
+            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">신뢰가 곧 매출인 분들에게 브랜딩은 필수입니다</span><span data-lang="en">When trust equals revenue, branding is essential</span><span data-lang="jp">信頼がそのまま売上になる方にブランディングは必須です</span><span data-lang="cn">对于信任即营收的人，品牌打造必不可少</span>
+        <span data-lang="hi">जहाँ भरोसा ही बिक्री है, वहाँ ब्रांडिंग ज़रूरी है</span></div>
+          </div>
+        </div></div>
+
+        <div class="ref-card"><div class="ref-inner">
+          <div class="ref-num">REFERRAL 04</div>
+          <div class="ref-title">
+            <span data-lang="kr" class="active">🎤 강사 · 컨설턴트</span>
+            <span data-lang="en">🎤 Lecturers & Consultants</span>
+            <span data-lang="jp">🎤 講師・コンサルタント</span>
+            <span data-lang="cn">🎤 讲师·顾问</span>
+        <span data-lang="hi">🎤 वक्ता · कंसल्टेंट</span>
+          </div>
+          <div class="ref-items">
+            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">퍼스널 브랜딩의 ROI가 가장 높은 직군</span><span data-lang="en">The profession with the highest personal-branding ROI</span><span data-lang="jp">パーソナルブランディングのROIが最も高い職種</span><span data-lang="cn">个人品牌投资回报率最高的职业</span>
+        <span data-lang="hi">पर्सनल ब्रांडिंग का सबसे ज़्यादा फ़ायदा पाने वाला पेशा</span></div>
+            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">강의 영상 · 유튜브 · 블로그를 운영하는 분</span><span data-lang="en">Running lecture videos, YouTube, or blogs</span><span data-lang="jp">講義動画・YouTube・ブログを運営する方</span><span data-lang="cn">运营讲课视频·YouTube·博客的人</span>
+        <span data-lang="hi">जो लेक्चर वीडियो · यूट्यूब · ब्लॉग चलाते हैं</span></div>
+            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">책 · 후기 등 쌓아온 콘텐츠가 많은 분</span><span data-lang="en">With accumulated content — books, reviews, and more</span><span data-lang="jp">本・レビューなど積み上げたコンテンツが多い方</span><span data-lang="cn">拥有书籍·评价等大量积累内容的人</span>
+        <span data-lang="hi">जिनके पास किताबें · रिव्यू जैसा भरपूर कंटेंट है</span></div>
+            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">흩어진 콘텐츠를 비즈홈 한 장에 모아 드립니다</span><span data-lang="en">I gather scattered content into one single card</span><span data-lang="jp">散らばったコンテンツを名刺1枚にまとめます</span><span data-lang="cn">把分散的内容汇集到一张名片里</span>
+        <span data-lang="hi">बिखरे हुए कंटेंट को एक कार्ड में समेट दिया जाता है</span></div>
+          </div>
+        </div></div>
+
+        <div class="ref-card"><div class="ref-inner">
+          <div class="ref-num">REFERRAL 05</div>
+          <div class="ref-title">
+            <span data-lang="kr" class="active">🍽️ 프랜차이즈 · 외식업 대표</span>
+            <span data-lang="en">🍽️ Franchise & F&B Owners</span>
+            <span data-lang="jp">🍽️ フランチャイズ・外食業の代表</span>
+            <span data-lang="cn">🍽️ 连锁·餐饮业代表</span>
+        <span data-lang="hi">🍽️ फ़्रैंचाइज़ी · रेस्टोरेंट बिज़नेस के मालिक</span>
+          </div>
+          <div class="ref-items">
+            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">메뉴 · 예약 · 길찾기를 한 번에 담고 싶은 매장</span><span data-lang="en">Stores wanting menu, reservations, directions in one place</span><span data-lang="jp">メニュー・予約・道案内を一度に収めたい店舗</span><span data-lang="cn">想把菜单·预约·导航整合在一起的店铺</span>
+        <span data-lang="hi">मेन्यू · बुकिंग · रास्ता एक साथ दिखाना चाहने वाली दुकान</span></div>
+            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">리뷰 · SNS 채널을 키우고 싶은 대표님</span><span data-lang="en">Owners growing reviews and SNS channels</span><span data-lang="jp">レビュー・SNSチャンネルを育てたい代表</span><span data-lang="cn">想壮大评价·社交媒体渠道的代表</span>
+        <span data-lang="hi">रिव्यू · सोशल मीडिया चैनल बढ़ाना चाहने वाले मालिक</span></div>
+            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">10년 요식업 경영자였던 제가 그 마음을 가장 잘 압니다</span><span data-lang="en">As a 10-year F&B operator myself, I know exactly how you feel</span><span data-lang="jp">10年外食業を経営した私が、その気持ちを一番よく分かります</span><span data-lang="cn">经营餐饮业10年的我，最懂您的心情</span>
+        <span data-lang="hi">10 साल रेस्टोरेंट बिज़नेस चलाने वाला मैं, यह भावना सबसे अच्छे से समझता हूँ</span></div>
+          </div>
+        </div></div>
+
+      </div>
+    </div>
+    <div class="ref-nav">
+      <button class="ref-btn" onclick="refSlide(-1)">‹</button>
+      <div class="ref-dots" id="ref-dots"></div>
+      <button class="ref-btn" onclick="refSlide(1)">›</button>
+    </div>
+    <div class="ref-counter" id="ref-counter"></div>
+  </div>
+
+  <!-- PORTFOLIO -->
+  <div class="sec port">
+    <div class="sec-label">PORTFOLIO</div>
+    <div class="sec-title">
+      <span data-lang="kr" class="active">당신의 사진이<br>이렇게 바뀝니다</span>
+      <span data-lang="en">Your Photo,<br>Transformed Like This</span>
+      <span data-lang="jp">あなたの写真が<br>こう変わります</span>
+      <span data-lang="cn">您的照片<br>将这样蜕变</span>
+        <span data-lang="hi">आपकी तस्वीर<br>ऐसे बदल जाएगी</span>
+      <span class="thin">
+        <span data-lang="kr" class="active">평범한 사진 한 장이면 충분합니다. AI로 재해석한 프로필과 브랜드 이미지를 만들어 드립니다.</span>
+        <span data-lang="en">One ordinary photo is all it takes. I create AI-reinterpreted profiles and brand images for you.</span>
+        <span data-lang="jp">普通の写真1枚で十分です。AIで再解釈したプロフィールとブランドイメージをお作りします。</span>
+        <span data-lang="cn">一张普通照片就足够。为您打造AI重新演绎的形象照与品牌图片。</span>
+        <span data-lang="hi">बस एक साधारण तस्वीर काफ़ी है। AI से नया रूप दी गई प्रोफ़ाइल और ब्रांड इमेज बनाई जाती है।</span>
+      </span>
+    </div>
+
+    <div class="port-track-wrap">
+      <div class="port-track" id="port-track">
+        <div class="port-slide"><img src="portfolio1.jpg" alt="portfolio 1" loading="lazy"></div>
+        <div class="port-slide"><img src="portfolio2.jpg" alt="portfolio 2" loading="lazy"></div>
+        <div class="port-slide"><img src="portfolio3.jpg" alt="portfolio 3" loading="lazy"></div>
+        <div class="port-slide"><img src="portfolio5.jpg" alt="portfolio 5" loading="lazy"></div>
+        <div class="port-slide"><img src="portfolio6.jpg" alt="portfolio 6" loading="lazy"></div>
+        <div class="port-slide"><img src="portfolio7.jpg" alt="portfolio 7" loading="lazy"></div>
+      </div>
+    </div>
+    <div class="ref-nav">
+      <button class="ref-btn" onclick="portSlide(-1)">‹</button>
+      <div class="ref-dots" id="port-dots"></div>
+      <button class="ref-btn" onclick="portSlide(1)">›</button>
+    </div>
+    <div class="ref-counter" id="port-counter"></div>
+    <p class="port-cap">
+      <span data-lang="kr" class="active">위 이미지는 모두 실제 사진 한 장에서 만들어졌습니다.</span>
+      <span data-lang="en">All images above were created from a single real photo.</span>
+      <span data-lang="jp">上の画像はすべて実際の写真1枚から作られました。</span>
+      <span data-lang="cn">以上图片均由一张真实照片生成。</span>
+        <span data-lang="hi">ऊपर की सभी तस्वीरें एक असली फ़ोटो से ही बनाई गई हैं।</span>
+    </p>
+
+    <a href="https://jinjjabg-hub.github.io/T.M-LINK/" target="_blank" class="cta-order">
+      <span data-lang="kr" class="active">🚀 나만의 디지털 비즈홈 주문하기</span>
+      <span data-lang="en">🚀 Order My Own Digital Card</span>
+      <span data-lang="jp">🚀 自分だけのデジタル名刺を注文する</span>
+      <span data-lang="cn">🚀 订购我的专属数字名片</span>
+        <span data-lang="hi">🚀 अपना डिजिटल कार्ड ऑर्डर करें</span>
+    </a>
+  </div>
+
+  <!-- CAREER -->
+  <div class="sec">
+    <div class="sec-label">CAREER & NETWORK</div>
+    <div class="sec-title">
+      <span data-lang="kr" class="active">걸어온 길</span>
+      <span data-lang="en">The Path So Far</span>
+      <span data-lang="jp">歩んできた道</span>
+      <span data-lang="cn">走过的路</span>
+        <span data-lang="hi">चला हुआ रास्ता</span>
+    </div>
+
+    <div class="career-item">
+      <div class="career-ico">🤝</div>
+      <div>
+        <div class="career-t">BNI</div>
+        <div class="career-d">
+          <span data-lang="kr" class="active">파이오니어 챕터 5년차 — 의장 1년 · 멘토링 코디네이터 · 비지터호스트 리더 · ST · 멤버십위원 ·121마스터. 3스타 그린클럽<br>자이언츠 챕터 — 앰버서더 2년차</span>
+          <span data-lang="en">Pioneer Chapter 5 Years — Chair 1 Year · Mentoring Coordinator · Visitor Host Leader · ST · Membership Committee · 121 Master. 3-Star Green Club<br>Giants Chapter — Ambassador 2 Years</span>
+          <span data-lang="jp">パイオニア チャプター5年目 — 議長1年・メンタリングコーディネーター・ビジターホストリーダー・ST・メンバーシップ委員・121マスター。3スタージーンクラブ<br>ジャイアンツ チャプター — アンバサダー2年目</span>
+          <span data-lang="cn">Pioneer 分会五年资深 — 主席一年·辅导协调员·访客接待领导·ST·会员委员·121大师。三星绿卡俱乐部<br>Giants 分会 — 大使二年</span>
+        <span data-lang="hi">Pioneer अध्याय 5वें वर्ष — अध्यक्ष 1 वर्ष · मेंटरिंग समन्वयक · विज़िटर होस्ट लीडर · ST · सदस्यता समिति · 121 मास्टर। 3 स्टार ग्रीन क्लब<br>Giants अध्याय — राजदूत 2वें वर्ष</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="career-item">
+      <div class="career-ico">🩺</div>
+      <div>
+        <div class="career-t">
+          <span data-lang="kr" class="active">물리치료사 15년</span>
+          <span data-lang="en">Physical Therapist, 15 Years</span>
+          <span data-lang="jp">理学療法士 15年</span>
+          <span data-lang="cn">物理治疗师 15年</span>
+        <span data-lang="hi">फिज़ियोथेरेपिस्ट, 15 साल</span>
+        </div>
+        <div class="career-d">
+          <span data-lang="kr" class="active">15년의 메디컬 데이터 분석 경험 — 사람의 몸을 읽던 눈으로 비즈니스 데이터를 읽습니다.</span>
+          <span data-lang="en">15 years of medical data analysis — reading business data with the same eyes that read the human body.</span>
+          <span data-lang="jp">15年のメディカルデータ分析経験 — 人の体を読んでいた目でビジネスデータを読みます。</span>
+          <span data-lang="cn">15年医疗数据分析经验 — 用解读人体的眼光解读商业数据。</span>
+        <span data-lang="hi">15 साल का मेडिकल डेटा विश्लेषण अनुभव — जिस नज़र से शरीर पढ़ा, उसी नज़र से बिज़नेस डेटा पढ़ता हूँ।</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="career-item">
+      <div class="career-ico">🍳</div>
+      <div>
+        <div class="career-t">
+          <span data-lang="kr" class="active">F&B 경영 10년</span>
+          <span data-lang="en">F&B Management, 10 Years</span>
+          <span data-lang="jp">F&B経営 10年</span>
+          <span data-lang="cn">餐饮经营 10年</span>
+        <span data-lang="hi">F&B प्रबंधन, 10 साल</span>
+        </div>
+        <div class="career-d">
+          <span data-lang="kr" class="active">10년의 실전 F&B 브랜드 경영 및 사운드 브랜딩 — 현장에서 검증된 경영 감각.</span>
+          <span data-lang="en">10 years of hands-on F&B brand management and sound branding — business instincts proven in the field.</span>
+          <span data-lang="jp">10年の実戦F&Bブランド経営およびサウンドブランディング — 現場で検証された経営感覚。</span>
+          <span data-lang="cn">10年餐饮品牌实战经营及声音品牌塑造 — 经现场验证的经营直觉。</span>
+        <span data-lang="hi">10 साल का असली F&B ब्रांड मैनेजमेंट और साउंड ब्रांडिंग — मैदान में परखी गई मैनेजमेंट सूझबूझ।</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="career-item">
+      <div class="career-ico">🍷</div>
+      <div>
+        <div class="career-t">
+          <span data-lang="kr" class="active">네트워크</span>
+          <span data-lang="en">Network</span>
+          <span data-lang="jp">ネットワーク</span>
+          <span data-lang="cn">人脉网络</span>
+        <span data-lang="hi">नेटवर्क</span>
+        </div>
+        <div class="career-d">
+          <span data-lang="kr" class="active">부산 와인스쿨 52기</span>
+          <span data-lang="en">Busan Wine School, 52nd Class</span>
+          <span data-lang="jp">釜山ワインスクール 52期</span>
+          <span data-lang="cn">釜山葡萄酒学校 第52期</span>
+        <span data-lang="hi">बुसान वाइन स्कूल, 52वाँ बैच</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="sec contact">
+    <div class="sec-label">CONTACT</div>
+    <div class="sec-title">
+      <span data-lang="kr" class="active">연결되어 있겠습니다</span>
+      <span data-lang="en">Let's Stay Connected</span>
+      <span data-lang="jp">つながっていましょう</span>
+      <span data-lang="cn">保持联系</span>
+        <span data-lang="hi">जुड़े रहेंगे</span>
+    </div>
+    <div class="con-grid">
+      <a href="tel:010-5334-2544" class="con-item">
+        <div class="con-item-top"><span class="con-icon">📞</span><span class="con-label">PHONE</span></div>
+        <div class="con-value">010-5334-2544</div>
+      </a>
+      <a href="https://jinjjabg-hub.github.io/T.M-LINK/" target="_blank" class="con-item">
+        <div class="con-item-top"><span class="con-icon">🌐</span><span class="con-label">WEBSITE</span></div>
+        <div class="con-value">T.M LINK</div>
+      </a>
+      <a href="https://jinjjabg-hub.github.io/MANDU/?u=jinjjabg" target="_blank" class="con-item">
+        <div class="con-item-top"><span class="con-icon">💬</span><span class="con-label">MESSENGER</span></div>
+        <div class="con-value">MANDU</div>
+      </a>
+      <a href="https://www.instagram.com/t.m_link/" target="_blank" class="con-item">
+        <div class="con-item-top"><span class="con-icon">📸</span><span class="con-label">INSTAGRAM</span></div>
+        <div class="con-value">@t.m_link</div>
+      </a>
+      <a href="https://www.threads.com/@pioneer_bni" target="_blank" class="con-item" style="grid-column:1/-1">
+        <div class="con-item-top"><span class="con-icon">🧵</span><span class="con-label">THREADS</span></div>
+        <div class="con-value">@pioneer_bni</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- 액션버튼 -->
+  <div class="actions-wrap">
+    <button class="btn btn-red" onclick="shareCard()">📤
+      <span data-lang="kr" class="active">비즈홈 공유</span>
+      <span data-lang="en">Share This Card</span>
+      <span data-lang="jp">名刺をシェアする</span>
+      <span data-lang="cn">分享名片</span>
+        <span data-lang="hi">कार्ड शेयर करें</span>
+    </button>
+    <button class="btn btn-out" onclick="saveContact()">📞
+      <span data-lang="kr" class="active">연락처 저장</span>
+      <span data-lang="en">Save Contact</span>
+      <span data-lang="jp">連絡先を保存</span>
+      <span data-lang="cn">保存联系方式</span>
+        <span data-lang="hi">संपर्क सेव करें</span>
+    </button>
+    <button class="btn btn-out" onclick="saveToCardbook({name:'송승훈',company:'T.M (Transition Makers)',title:'대표·CEO',phone:'010-5334-2544',url:'https://bizhome.bizmy.net/songsh/'})">🗂️
+      <span data-lang="kr" class="active">카드북에 저장</span>
+      <span data-lang="en">Save to CardBook</span>
+      <span data-lang="jp">名刺帳に保存</span>
+      <span data-lang="cn">保存到名片夹</span>
+        <span data-lang="hi">कार्ड कलेक्शन में सेव करें</span>
+    </button>
+  </div>
+
+  
+  <div style="padding:14px 20px 4px;text-align:center;">
+    <button id="mandu-activate-btn" onclick="activateMandu()" style="background:none;border:1px solid rgba(0,0,0,0.15);color:#888;font-size:10.5px;padding:7px 14px;border-radius:20px;cursor:pointer;">
+      💬 본인 비즈홈이신가요? 만두 연결하기 (1회)
+    </button>
+    <div id="mandu-activate-done" style="display:none;font-size:10.5px;color:#888;padding:7px 0;">
+      ✅ 만두 연결 완료 — 이제 이 카드로 DM을 받을 수 있어요
+    </div>
+  </div>
+
+
+  <!-- 푸터 -->
+
+  <footer>
+    <div class="footer-logo">T.M — TRANSITION MAKERS</div>
+    <div class="footer-sub">© 2026 T.M LINK. All rights reserved.</div>
+  </footer>
+
+</div>
+
+<script>
+/* ===== 언어 전환 ===== */
+function switchLang(lang, btn){
+  document.querySelectorAll('[data-lang]').forEach(el=>{
+    el.classList.toggle('active', el.getAttribute('data-lang')===lang);
+  });
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+}
+
+/* ===== 리퍼럴 슬라이더 ===== */
+let refIdx=0; const refTotal=document.querySelectorAll('#ref-track .ref-card').length;
+function initSlider(dotsId, total, goFn){
+  const d=document.getElementById(dotsId); d.innerHTML='';
+  for(let i=0;i<total;i++){
+    const dot=document.createElement('div');
+    dot.className='ref-dot'+(i===0?' active':'');
+    dot.onclick=()=>goFn(i); d.appendChild(dot);
+  }
+}
+function goRef(i){
+  refIdx=(i+refTotal)%refTotal;
+  document.getElementById('ref-track').style.transform=`translateX(-${refIdx*100}%)`;
+  document.querySelectorAll('#ref-dots .ref-dot').forEach((d,j)=>d.classList.toggle('active',j===refIdx));
+  document.getElementById('ref-counter').textContent=`${refIdx+1} / ${refTotal}`;
+}
+function refSlide(dir){goRef(refIdx+dir);}
+
+/* ===== 포트폴리오 슬라이더 (자동재생) ===== */
+let portIdx=0; const portTotal=document.querySelectorAll('#port-track .port-slide').length;
+let portTimer=null, portPause=null;
+function goPort(i){
+  portIdx=(i+portTotal)%portTotal;
+  document.getElementById('port-track').style.transform=`translateX(-${portIdx*100}%)`;
+  document.querySelectorAll('#port-dots .ref-dot').forEach((d,j)=>d.classList.toggle('active',j===portIdx));
+  document.getElementById('port-counter').textContent=`${portIdx+1} / ${portTotal}`;
+}
+function portSlide(dir){goPort(portIdx+dir); pauseAuto();}
+function startAuto(){
+  clearInterval(portTimer);
+  portTimer=setInterval(()=>goPort(portIdx+1), 3500);
+}
+function pauseAuto(){
+  clearInterval(portTimer);
+  clearTimeout(portPause);
+  portPause=setTimeout(startAuto, 6000); // 6초 후 자동재생 재개
+}
+
+/* ===== 터치 스와이프 ===== */
+function bindSwipe(trackId, slideFn){
+  let sx=0; const t=document.getElementById(trackId);
+  t.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;},{passive:true});
+  t.addEventListener('touchend',e=>{
+    const dx=e.changedTouches[0].clientX-sx;
+    if(Math.abs(dx)>40) slideFn(dx<0?1:-1);
+  },{passive:true});
+}
+
+/* ===== 공유 ===== */
+function shareCard(){
+  if(navigator.share){ navigator.share({title:document.title, text:'송승훈 대표 | T.M (Transition Makers)', url:window.location.href}); }
+  else{ navigator.clipboard.writeText(window.location.href).then(()=>alert('링크가 복사되었습니다!')); }
+}
+
+/* ===== 연락처 저장 (vCard) ===== */
+function saveContact(){
+  const v=`BEGIN:VCARD
+VERSION:3.0
+FN:송승훈
+N:송;승훈;;;
+ORG:T.M (Transition Makers)
+TITLE:대표·CEO
+TEL;TYPE=CELL:010-5334-2544
+URL:https://bizhome.bizmy.net/songsh/
+END:VCARD`;
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([v],{type:'text/vcard'})); a.download='SongSeunghoon.vcf'; a.click();
+}
+
+
+/* ===== 초기화 ===== */
+initSlider('ref-dots', refTotal, goRef); goRef(0); goPort(0);
+initSlider('port-dots', portTotal, goPort);
+bindSwipe('ref-track', refSlide);
+bindSwipe('port-track', d=>{portSlide(d);});
+startAuto();
+</script>
+<script src="https://jinjjabg-hub.github.io/cardbook/save-to-cardbook.js"></script>
+
+<script>
+/* ── 만두 원클릭 연결 (카드 주인 전용) ────────────────────────── */
+async function _manduWaitFirebase(maxTries) {
+  let tries = 0;
+  while ((typeof firebase === 'undefined' || !firebase.apps || !firebase.apps.length) && tries < (maxTries || 50)) {
+    await new Promise(r => setTimeout(r, 100));
+    tries++;
+  }
+  return typeof firebase !== 'undefined' && firebase.apps && firebase.apps.length > 0;
+}
+async function _manduFinishActivate(user) {
+  const slug = 'song-seunghoon';
+  const db = firebase.firestore();
+  const existing = await db.collection('manduid_index').doc(slug).get();
+  if (existing.exists && existing.data().uid !== user.uid) {
+    const btn = document.getElementById('mandu-activate-btn');
+    if (btn) btn.style.display = 'none';
+    const done = document.getElementById('mandu-activate-done');
+    if (done) { done.textContent = 'ℹ️ 이미 연결된 비즈홈이에요'; done.style.display = 'block'; }
+    return;
+  }
+  await db.collection('users').doc(user.uid).set({
+    uid: user.uid, displayName: user.displayName || '', photoURL: user.photoURL || '',
+    email: user.email || '', manduid: slug
+  }, { merge: true });
+  await db.collection('manduid_index').doc(slug).set({
+    uid: user.uid, createdAt: firebase.firestore.FieldValue.serverTimestamp()
+  }, { merge: true });
+  const btn = document.getElementById('mandu-activate-btn');
+  const done = document.getElementById('mandu-activate-done');
+  if (btn) btn.style.display = 'none';
+  if (done) done.style.display = 'block';
+}
+async function activateMandu() {
+  if (!confirm('본인 비즈홈이 맞나요?\n구글 로그인하면 이 비즈홈으로 만두 DM을 받을 수 있게 연결돼요.')) return;
+  const btn = document.getElementById('mandu-activate-btn');
+  if (btn) { btn.disabled = true; btn.textContent = '연결 중...'; }
+  const ready = await _manduWaitFirebase();
+  if (!ready) {
+    if (btn) { btn.disabled = false; btn.textContent = '💬 본인 비즈홈이신가요? 만두 연결하기 (1회)'; }
+    alert('연결 실패. 잠시 후 다시 시도해주세요.');
+    return;
+  }
+  try {
+    const auth = firebase.auth();
+    await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+    const provider = new firebase.auth.GoogleAuthProvider();
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (isMobile) {
+      sessionStorage.setItem('_manduPendingSlug', 'song-seunghoon');
+      await auth.signInWithRedirect(provider);
+      return;
+    }
+    const result = await auth.signInWithPopup(provider);
+    await _manduFinishActivate(result.user);
+  } catch (e) {
+    console.error('만두 연결 실패:', e);
+    if (btn) { btn.disabled = false; btn.textContent = '💬 본인 비즈홈이신가요? 만두 연결하기 (1회)'; }
+    alert('연결 중 오류가 발생했어요.');
+  }
+}
+(async function () {
+  if (!sessionStorage.getItem('_manduPendingSlug')) return;
+  const ready = await _manduWaitFirebase();
+  sessionStorage.removeItem('_manduPendingSlug');
+  if (!ready) return;
+  try {
+    const res = await firebase.auth().getRedirectResult();
+    if (res && res.user) await _manduFinishActivate(res.user);
+  } catch (e) { console.error(e); }
+})();
+</script>
+<script>
+(function(){
+  var LOG_URL = "https://script.google.com/macros/s/AKfycbz5VDYuWaAQiE9jxZ9r4dew_DgOyMuB_lj1P0K9YCtY1APweG-iKg7T5IZHqylLojbE/exec";
+  var SLUG = document.title;
+  function dicaLog(type){
+    try { fetch(LOG_URL + "?slug=" + encodeURIComponent(SLUG) + "&event=" + type, {mode:"no-cors"}); } catch(e){}
+  }
+  dicaLog('view');
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var saveBtn = document.querySelector('.btn-primary');
+    var cardBtn = document.querySelector('.btn-secondary');
+    if (saveBtn) saveBtn.addEventListener('click', function(){ dicaLog('save_vcard'); });
+    if (cardBtn) cardBtn.addEventListener('click', function(){ dicaLog('save_cardbook'); });
+
+    var statBtn = document.createElement('div');
+    statBtn.textContent = '📊 카드 현황 보기';
+    statBtn.style.cssText = 'position:fixed;bottom:16px;right:16px;background:rgba(0,0,0,0.65);color:#fff;padding:8px 14px;border-radius:20px;font-size:12px;cursor:pointer;z-index:9999;font-family:sans-serif;box-shadow:0 2px 10px rgba(0,0,0,0.3);';
+    statBtn.onclick = function(){
+      statBtn.style.cursor = 'default';
+      statBtn.textContent = '불러오는 중...';
+      fetch(LOG_URL + "?action=stats&slug=" + encodeURIComponent(SLUG))
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          statBtn.textContent = '조회 ' + d.view + '회 · 저장 ' + d.save + '회';
+        });
+    };
+    document.body.appendChild(statBtn);
+  });
+})();
+</script>
+<script src="../news-board.js" data-src="news.json" data-log="https://script.google.com/macros/s/AKfycbz5VDYuWaAQiE9jxZ9r4dew_DgOyMuB_lj1P0K9YCtY1APweG-iKg7T5IZHqylLojbE/exec" defer></script>
+<script src="https://jinjjabg-hub.github.io/NAMECARD/dica-edit.js" data-repo="bizhome" data-slug="songsh" defer></script>
+</body>
+</html>

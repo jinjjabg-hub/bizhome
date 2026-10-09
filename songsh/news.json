@@ -1,0 +1,160 @@
+{
+  "version": 1,
+  "maxVisible": 10,
+  "items": [
+    {
+      "id": "autocard-launch",
+      "type": "product",
+      "date": "2026-10-03",
+      "pinned": true,
+      "images": [
+        "news/autocard.webp"
+      ],
+      "price": {
+        "kr": "5,900원부터 · 월 요금 없음",
+        "en": "From ₩5,900 · no monthly fee",
+        "jp": "5,900ウォンから · 月額料金なし",
+        "cn": "5,900韩元起 · 无月费",
+        "hi": "₩5,900 से · कोई मासिक शुल्क नहीं"
+      },
+      "title": {
+        "kr": "명함 사진 한 장, 5분이면 완성 — 오토명함",
+        "en": "One card photo, done in 5 minutes — AutoCard",
+        "jp": "名刺写真 1 枚、5 分で完成 — オート名刺",
+        "cn": "一张名片照片，5 分钟完成 — 自动名片",
+        "hi": "एक कार्ड फ़ोटो, 5 मिनट में तैयार — AutoCard"
+      },
+      "desc": {
+        "kr": "종이 명함 사진만 올리면 AI가 초안을 만들어 드립니다. 템플릿 6종 중 골라 바로 발행하고, 받은 사람은 카드북에 바로 저장해요.\n\"주고 끝나는 명함 말고, 저장되는 명함.\"",
+        "en": "Upload a photo of your paper card and AI drafts it for you. Pick from 6 templates and publish — recipients save it straight to CardBook.\n\"Not a card that's forgotten — a card that gets saved.\"",
+        "jp": "紙の名刺の写真を上げるだけで AI が下書きを作成。6 種のテンプレートから選んですぐ発行、受け取った人はカードブックにすぐ保存できます。\n「渡して終わる名刺ではなく、保存される名刺。」",
+        "cn": "只需上传纸质名片照片，AI 即可生成初稿。从 6 种模板中选择即刻发布，对方可直接存入名片册。\n“不是递出就结束的名片，而是会被保存的名片。”",
+        "hi": "अपने पेपर कार्ड की फ़ोटो अपलोड करें और AI ड्राफ़्ट बना देगा। 6 टेम्पलेट में से चुनें और तुरंत प्रकाशित करें — प्राप्तकर्ता इसे सीधे CardBook में सेव कर सकते हैं।"
+      },
+      "button": {
+        "url": "https://jinjjabg-hub.github.io/autocard/",
+        "label": {
+          "kr": "오토명함 만들기",
+          "en": "Make an AutoCard",
+          "jp": "オート名刺を作る",
+          "cn": "制作自动名片",
+          "hi": "AutoCard बनाएं"
+        }
+      },
+      "links": [
+        {
+          "url": "https://jinjjabg-hub.github.io/T.M-LINK/#app-autocard",
+          "label": {
+            "kr": "오토명함 자세히 보기 (TM LINK)",
+            "en": "More about AutoCard (TM LINK)",
+            "jp": "オート名刺の詳細（TM LINK）",
+            "cn": "了解自动名片（TM LINK）",
+            "hi": "AutoCard के बारे में (TM LINK)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "mandu-messenger",
+      "type": "product",
+      "date": "2026-10-02",
+      "images": [
+        "news/mandu.webp"
+      ],
+      "price": {
+        "kr": "무료로 시작",
+        "en": "Free to start",
+        "jp": "無料で開始",
+        "cn": "免费开始",
+        "hi": "मुफ़्त शुरुआत"
+      },
+      "title": {
+        "kr": "언어가 달라도 대화는 하나로 — 만두 메신저",
+        "en": "Different languages, one conversation — MANDU",
+        "jp": "言葉が違っても会話は一つに — MANDU",
+        "cn": "语言不同，对话如一 — MANDU",
+        "hi": "भाषाएं अलग, बातचीत एक — MANDU"
+      },
+      "desc": {
+        "kr": "상대가 외국어로 써도 내 언어로 읽고, 내가 쓰면 상대 언어로 전달됩니다. 14개 언어 실시간 자동 번역.\n해외 바이어 상담, 외국인 직원·고객과의 연락에 바로 써보세요.",
+        "en": "Read their messages in your language; they read yours in theirs. Real-time translation in 14 languages.\nGreat for overseas buyers, foreign staff and customers.",
+        "jp": "相手の外国語は自分の言語で読め、自分の言葉は相手の言語で届きます。14 言語リアルタイム自動翻訳。\n海外バイヤーや外国人スタッフ・顧客との連絡に。",
+        "cn": "对方用外语写，您用母语读；您写的内容以对方的语言送达。支持 14 种语言实时自动翻译。\n适合与海外买家、外籍员工和客户沟通。",
+        "hi": "उनके संदेश अपनी भाषा में पढ़ें; वे आपके संदेश अपनी भाषा में पढ़ें। 14 भाषाओं में रियल-टाइम अनुवाद।"
+      },
+      "button": {
+        "url": "https://jinjjabg-hub.github.io/MANDU/",
+        "label": {
+          "kr": "만두 시작하기",
+          "en": "Start MANDU",
+          "jp": "MANDU を始める",
+          "cn": "开始使用 MANDU",
+          "hi": "MANDU शुरू करें"
+        }
+      },
+      "links": [
+        {
+          "url": "https://jinjjabg-hub.github.io/T.M-LINK/#app-mandu",
+          "label": {
+            "kr": "만두 자세히 보기 (TM LINK)",
+            "en": "More about MANDU (TM LINK)",
+            "jp": "MANDU の詳細（TM LINK）",
+            "cn": "了解 MANDU（TM LINK）",
+            "hi": "MANDU के बारे में (TM LINK)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cardbook-app",
+      "type": "news",
+      "date": "2026-10-01",
+      "images": [
+        "news/cardbook.webp"
+      ],
+      "price": {
+        "kr": "무료",
+        "en": "Free",
+        "jp": "無料",
+        "cn": "免费",
+        "hi": "मुफ़्त"
+      },
+      "title": {
+        "kr": "받은 비즈홈, 이제 한곳에 — 카드북",
+        "en": "All the cards you receive, in one place — CardBook",
+        "jp": "もらった名刺を一か所に — カードブック",
+        "cn": "收到的名片，集中一处 — 名片册",
+        "hi": "मिले सभी कार्ड एक जगह — CardBook"
+      },
+      "desc": {
+        "kr": "명함 이미지를 올리면 이름·연락처를 자동으로 뽑아 저장합니다. \"그 세무사님 누구였지?\" 기억나는 조각만으로 바로 찾아요.\n지금 보고 계신 이 비즈홈도 아래 '카드북에 저장' 버튼으로 카드북에 담을 수 있습니다.",
+        "en": "Upload a card image and names and numbers are extracted automatically. Find people by whatever you remember.\nYou can save this BizHome to CardBook with the “Save to CardBook” button below.",
+        "jp": "名刺画像を上げると名前・連絡先を自動で抽出して保存。覚えている断片だけですぐ探せます。\nこの BizHome も下の「名刺帳に保存」ボタンでカードブックに保存できます。",
+        "cn": "上传名片图片即可自动提取姓名和联系方式。凭记忆片段即可快速找到。\n您也可以用下方的“存入名片册”按钮保存这个 BizHome。",
+        "hi": "कार्ड की इमेज अपलोड करें और नाम-नंबर अपने आप सेव हो जाएंगे। जो याद हो उसी से ढूंढें।"
+      },
+      "button": {
+        "url": "https://jinjjabg-hub.github.io/cardbook/",
+        "label": {
+          "kr": "카드북 열기",
+          "en": "Open CardBook",
+          "jp": "カードブックを開く",
+          "cn": "打开名片册",
+          "hi": "CardBook खोलें"
+        }
+      },
+      "links": [
+        {
+          "url": "https://jinjjabg-hub.github.io/T.M-LINK/#app-cardbook",
+          "label": {
+            "kr": "카드북 자세히 보기 (TM LINK)",
+            "en": "More about CardBook (TM LINK)",
+            "jp": "カードブックの詳細（TM LINK）",
+            "cn": "了解名片册（TM LINK）",
+            "hi": "CardBook के बारे में (TM LINK)"
+          }
+        }
+      ]
+    }
+  ]
+}

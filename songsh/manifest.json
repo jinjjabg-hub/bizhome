@@ -1,0 +1,21 @@
+{
+  "name": "토마랩 | 송승훈",
+  "short_name": "토마랩",
+  "description": "숯불 토마호크 그릴링 컨설팅 · 송승훈 대표",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#1a1209",
+  "theme_color": "#1a1209",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
