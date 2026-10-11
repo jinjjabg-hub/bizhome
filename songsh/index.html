@@ -836,6 +836,7 @@ TITLE:대표·CEO
 TEL;TYPE=CELL:010-5334-2544
 URL:https://bizhome.bizmy.net/songsh/
 END:VCARD`;
+  if (window.cbSaveContact) return cbSaveContact(v);
   const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([v],{type:'text/vcard'})); a.download='SongSeunghoon.vcf'; a.click();
 }
 
@@ -847,7 +848,7 @@ bindSwipe('ref-track', refSlide);
 bindSwipe('port-track', d=>{portSlide(d);});
 startAuto();
 </script>
-<script src="https://jinjjabg-hub.github.io/cardbook/save-to-cardbook.js"></script>
+<script src="https://cardbook.bizmy.net/save-to-cardbook.js?v=20261011b"></script>
 
 <script>
 /* ── 만두 원클릭 연결 (카드 주인 전용) ────────────────────────── */
@@ -934,7 +935,8 @@ async function activateMandu() {
     var saveBtn = document.querySelector('.btn-primary');
     var cardBtn = document.querySelector('.btn-secondary');
     if (saveBtn) saveBtn.addEventListener('click', function(){ dicaLog('save_vcard'); });
-    if (cardBtn) cardBtn.addEventListener('click', function(){ dicaLog('save_cardbook'); });
+    // 카드북 저장은 누른 순간이 아니라 실제로 저장에 성공했을 때만 센다
+    window.addEventListener('cardbook:saved', function(){ dicaLog('save_cardbook'); });
 
     var statBtn = document.createElement('div');
     statBtn.textContent = '📊 카드 현황 보기';
