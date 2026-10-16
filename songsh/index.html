@@ -820,18 +820,26 @@ function bindSwipe(trackId, slideFn){
 }
 
 /* ===== 공유 ===== */
+/* 카카오 공식 공유: 주소 글자 없이 카드(이미지+제목+설명)만 전송.
+   카카오 개발자 사이트의 JavaScript 키를 아래에 넣으면 켜집니다. (비어 있으면 기존 링크 공유) */
+var KAKAO_JS_KEY='';
+var KAKAO_SDK='https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js';
+function loadKakao(){
+  return new Promise(function(ok,fail){
+    if(window.Kakao) return ok();
+    var s=document.createElement('script'); s.src=KAKAO_SDK; s.onload=ok; s.onerror=fail;
+    document.head.appendChild(s);
+  });
+}
 async function shareCard(){
-  /* 1순위: 주소 없이 카드 이미지(QR 포함)만 공유 */
-  try{
-    var res=await fetch('og_v3.jpg');
-    var blob=await res.blob();
-    var file=new File([blob],'bizhome.jpg',{type:'image/jpeg'});
-    if(navigator.canShare && navigator.canShare({files:[file]})){
-      await navigator.share({files:[file]});
+  if(KAKAO_JS_KEY){
+    try{
+      await loadKakao();
+      if(!Kakao.isInitialized()) Kakao.init(KAKAO_JS_KEY);
+      Kakao.Share.sendScrap({requestUrl:window.location.href});
       return;
-    }
-  }catch(e){ if(e && e.name==='AbortError') return; }
-  /* 2순위(이미지 공유 미지원 기기): 기존 링크 공유 */
+    }catch(e){}
+  }
   if(navigator.share){ navigator.share({title:document.title, text:'송승훈 대표 | T.M (Transition Makers)', url:window.location.href}); }
   else{ navigator.clipboard.writeText(window.location.href).then(()=>alert('링크가 복사되었습니다!')); }
 }
