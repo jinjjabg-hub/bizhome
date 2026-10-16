@@ -820,7 +820,18 @@ function bindSwipe(trackId, slideFn){
 }
 
 /* ===== 공유 ===== */
-function shareCard(){
+async function shareCard(){
+  /* 1순위: 주소 없이 카드 이미지(QR 포함)만 공유 */
+  try{
+    var res=await fetch('og_v3.jpg');
+    var blob=await res.blob();
+    var file=new File([blob],'bizhome.jpg',{type:'image/jpeg'});
+    if(navigator.canShare && navigator.canShare({files:[file]})){
+      await navigator.share({files:[file]});
+      return;
+    }
+  }catch(e){ if(e && e.name==='AbortError') return; }
+  /* 2순위(이미지 공유 미지원 기기): 기존 링크 공유 */
   if(navigator.share){ navigator.share({title:document.title, text:'송승훈 대표 | T.M (Transition Makers)', url:window.location.href}); }
   else{ navigator.clipboard.writeText(window.location.href).then(()=>alert('링크가 복사되었습니다!')); }
 }
