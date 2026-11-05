@@ -153,6 +153,16 @@ div[data-lang].active,p[data-lang].active{display:block;}
 footer{background:var(--light);text-align:center;padding:28px 24px 40px;}
 .footer-logo{font-size:15px;font-weight:900;color:var(--dark);letter-spacing:0.06em;}
 .footer-sub{font-size:10.5px;color:#999;margin-top:6px;}
+
+/* ── 링크 로고 줄 / 주소 한 줄 (dica-namecard 2026-11-04 표준) ── */
+.link-row { display:flex; justify-content:center; flex-wrap:wrap; gap:16px; margin:16px 0; }
+.link-tile { display:block; line-height:0; border-radius:16px; overflow:hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.12); }
+.link-tile img, .link-tile svg { width:56px; height:56px; display:block; background:#fff; }
+.link-tile:active { transform: scale(0.94); }
+.addr-line { display:flex; align-items:center; gap:10px; background:#fff; border-radius:12px; padding:12px 14px; text-decoration:none; border:1px solid rgba(0,0,0,0.05); }
+.addr-pin { font-size:18px; }
+.addr-text { flex:1; font-size:12.5px; font-weight:600; color: var(--text-light,#1a1a2e); line-height:1.5; }
+.addr-map { font-size:12px; font-weight:700; color: var(--gold,#c9a84c); white-space:nowrap; }
 </style>
 </head>
 <body>
@@ -693,27 +703,25 @@ footer{background:var(--light);text-align:center;padding:28px 24px 40px;}
         <span data-lang="hi">जुड़े रहेंगे</span>
     </div>
     <div class="con-grid">
-      <a href="tel:010-5334-2544" class="con-item">
+    <a href="tel:010-5334-2544" class="con-item" style="grid-column:1/-1;">
         <div class="con-item-top"><span class="con-icon">📞</span><span class="con-label">PHONE</span></div>
         <div class="con-value">010-5334-2544</div>
       </a>
-      <a href="https://jinjjabg-hub.github.io/T.M-LINK/" target="_blank" class="con-item">
-        <div class="con-item-top"><span class="con-icon">🌐</span><span class="con-label">WEBSITE</span></div>
-        <div class="con-value">T.M LINK</div>
-      </a>
-      <a href="https://jinjjabg-hub.github.io/MANDU/?u=jinjjabg" target="_blank" class="con-item">
-        <div class="con-item-top"><span class="con-icon">💬</span><span class="con-label">MESSENGER</span></div>
-        <div class="con-value">MANDU</div>
-      </a>
-      <a href="https://www.instagram.com/t.m_link/" target="_blank" class="con-item">
-        <div class="con-item-top"><span class="con-icon">📸</span><span class="con-label">INSTAGRAM</span></div>
-        <div class="con-value">@t.m_link</div>
-      </a>
-      <a href="https://www.threads.com/@pioneer_bni" target="_blank" class="con-item" style="grid-column:1/-1">
-        <div class="con-item-top"><span class="con-icon">🧵</span><span class="con-label">THREADS</span></div>
-        <div class="con-value">@pioneer_bni</div>
-      </a>
-    </div>
+  </div>
+  <div class="link-row">
+    <a class="link-tile" href="https://jinjjabg-hub.github.io/MANDU/?u=jinjjabg" target="_blank" rel="noopener" aria-label="MANDU">
+      <img src="https://cardbook.bizmy.net/mandu-icon.png" alt="MANDU" width="56" height="56">
+    </a>
+    <a class="link-tile" href="https://www.instagram.com/t.m_link/" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><defs><radialGradient id="igGrad" cx="0.3" cy="1.07" r="1.2"><stop offset="0" stop-color="#FFD776"/><stop offset="0.25" stop-color="#F3A554"/><stop offset="0.45" stop-color="#E1306C"/><stop offset="0.75" stop-color="#C13584"/><stop offset="1" stop-color="#5851DB"/></radialGradient></defs><rect width="64" height="64" rx="16" fill="url(#igGrad)"/><rect x="14" y="14" width="36" height="36" rx="11" fill="none" stroke="#fff" stroke-width="4.5"/><circle cx="32" cy="32" r="8.5" fill="none" stroke="#fff" stroke-width="4.5"/><circle cx="43" cy="21" r="2.8" fill="#fff"/></svg>
+    </a>
+    <a class="link-tile" href="https://www.threads.com/@pioneer_bni" target="_blank" rel="noopener" aria-label="Threads">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#000"/><text x="32" y="44" text-anchor="middle" font-family="Arial,sans-serif" font-size="36" font-weight="700" fill="#fff">@</text></svg>
+    </a>
+    <a class="link-tile" href="https://jinjjabg-hub.github.io/T.M-LINK/" target="_blank" rel="noopener" aria-label="Homepage">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#0d1b3e"/><path d="M32 15 13 31h5.5v17h10V37h7v11h10V31H51z" fill="#fff"/></svg>
+    </a>
+  </div>
   </div>
 
   <!-- 액션버튼 -->
