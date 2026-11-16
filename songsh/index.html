@@ -6,19 +6,20 @@
 <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>송승훈 | T.M (Transition Makers)</title>
 <meta property="og:title" content="송승훈 | T.M (Transition Makers)">
 <meta property="og:description" content="디지털 비즈홈 DiCA · 카드북 CardBook · 번역 메신저 MANDU를 만듭니다. 지금 보고 계신 이 비즈홈이 제 제품입니다.">
 <meta property="og:image" content="https://bizhome.bizmy.net/songsh/og_v3.jpg">
 <meta property="og:url" content="https://bizhome.bizmy.net/songsh/">
 <meta property="og:type" content="website">
+<link rel="preload" as="image" href="hero.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-@font-face{font-family:'Paperlogy';src:url('../fonts/Paperlogy-4Regular.woff2') format('woff2');font-weight:400;font-display:swap;}
-@font-face{font-family:'Paperlogy';src:url('../fonts/Paperlogy-7Bold.woff2') format('woff2');font-weight:700 900;font-display:swap;}
+@font-face{font-family:'Paperlogy';src:url('Paperlogy-4Regular.woff2') format('woff2');font-weight:400;font-display:swap;}
+@font-face{font-family:'Paperlogy';src:url('Paperlogy-7Bold.woff2') format('woff2');font-weight:700 900;font-display:swap;}
 
 :root{
   --gold:#d4a537;
@@ -36,6 +37,13 @@ body{font-family:'Paperlogy','Apple SD Gothic Neo','Noto Sans KR',sans-serif;col
 [data-lang].active{display:inline;}
 div[data-lang].active,p[data-lang].active{display:block;}
 [data-lang="hi"]{font-family:'Noto Sans Devanagari',sans-serif;}
+/* 한국어는 단어 중간에서 줄이 끊기지 않게 (중국어·일본어에는 적용 금지: 줄바꿈이 사라짐) */
+[data-lang="kr"]{word-break:keep-all;overflow-wrap:break-word;}
+
+/* ===== 아이콘 (이모지 금지 — 스프라이트 #i-* 라인 아이콘) ===== */
+.ico{width:1.2em;height:1.2em;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;vertical-align:-0.22em;}
+.ico-chip{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:38px;height:38px;border-radius:11px;background:rgba(212,165,55,0.12);border:1px solid rgba(212,165,55,0.38);color:var(--gold-soft);}
+.ico-chip .ico{width:19px;height:19px;}
 
 /* ===== 언어 스위치 ===== */
 .lang-bar{position:fixed;top:14px;right:max(14px, calc((100vw - 430px)/2 + 14px));z-index:30;display:flex;gap:4px;background:rgba(0,0,0,0.45);backdrop-filter:blur(6px);border-radius:20px;padding:4px;}
@@ -43,8 +51,24 @@ div[data-lang].active,p[data-lang].active{display:block;}
 .lang-btn.on{background:var(--gold);color:#143c31;}
 
 /* ===== HERO ===== */
-.hero{position:relative;}
-.hero img{width:100%;display:block;}
+.hero{position:relative;overflow:hidden;background:#33423b;}
+.hero img{width:100%;height:auto;display:block;}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease;}
+.hero video.on{opacity:1;}
+/* 히어로 등장 모션: 사진이 번지듯 나타나고 이름이 차례로 올라옴 (1회) */
+@media (prefers-reduced-motion:no-preference){
+  .hero img{animation:heroIn 2.4s cubic-bezier(.2,.7,.2,1) both;}
+  .hero-txt>*{animation:heroRise .9s cubic-bezier(.2,.7,.2,1) both;}
+  .hero-co{animation-delay:1.0s;}
+  .hero-name{animation-delay:1.15s;}
+  .hero-role{animation-delay:1.3s;}
+  .hero.has-motion img{animation:none;}
+  .hero.has-motion .hero-co{animation-delay:.3s;}
+  .hero.has-motion .hero-name{animation-delay:.45s;}
+  .hero.has-motion .hero-role{animation-delay:.6s;}
+}
+@keyframes heroIn{from{opacity:0;transform:scale(1.09);filter:blur(10px);}to{opacity:1;transform:none;filter:none;}}
+@keyframes heroRise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
 .hero-grad{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.15) 0%,rgba(0,0,0,0) 35%,rgba(39,97,82,0.55) 78%,var(--dark) 100%);}
 .hero-txt{position:absolute;left:0;right:0;bottom:18px;padding:0 24px;z-index:2;}
 .hero-co{font-size:11px;letter-spacing:0.22em;color:var(--gold-soft);font-weight:700;margin-bottom:7px;}
@@ -54,7 +78,7 @@ div[data-lang].active,p[data-lang].active{display:block;}
 /* ===== 프로필 ===== */
 .profile-sec{padding:26px 24px 8px;text-align:center;}
 .profile-img{width:104px;height:104px;border-radius:50%;object-fit:cover;object-position:top;border:3px solid var(--gold);display:block;margin:0 auto 14px;position:relative;z-index:3;box-shadow:0 6px 24px rgba(0,0,0,0.45);}
-.profile-tag{display:inline-block;background:rgba(212,165,55,0.14);border:1px solid rgba(212,165,55,0.45);color:var(--gold-soft);font-size:11.5px;font-weight:700;padding:7px 16px;border-radius:20px;margin-bottom:14px;}
+.profile-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(212,165,55,0.14);border:1px solid rgba(212,165,55,0.45);color:var(--gold-soft);font-size:11.5px;font-weight:700;padding:7px 16px;border-radius:20px;margin-bottom:14px;}
 .slogan{font-size:20px;font-weight:900;line-height:1.35;letter-spacing:0.01em;}
 .slogan em{font-style:normal;color:var(--gold);}
 .slogan-sub{font-size:12.5px;color:var(--gray);margin-top:8px;line-height:1.6;}
@@ -104,9 +128,9 @@ div[data-lang].active,p[data-lang].active{display:block;}
 .ref-card{min-width:100%;}
 .ref-inner{background:var(--dark2);border:1px solid rgba(212,165,55,0.25);border-radius:14px;padding:24px 20px;min-height:280px;}
 .ref-num{font-size:10.5px;letter-spacing:0.2em;color:var(--gold);font-weight:700;margin-bottom:10px;}
-.ref-title{font-size:17px;font-weight:900;margin-bottom:16px;line-height:1.4;}
+.ref-title{display:flex;align-items:center;gap:12px;font-size:17px;font-weight:900;margin-bottom:18px;line-height:1.4;}
 .ref-item{display:flex;gap:9px;margin-bottom:9px;font-size:12.5px;line-height:1.6;color:rgba(255,255,255,0.8);}
-.ref-check{color:var(--gold);font-size:11px;margin-top:2px;}
+.ref-check{color:var(--gold);width:14px;height:14px;margin-top:3px;stroke-width:2.5;}
 .ref-nav{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:16px;}
 .ref-btn{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,0.22);background:transparent;color:#fff;font-size:17px;cursor:pointer;line-height:1;}
 .ref-dots{display:flex;gap:6px;}
@@ -121,14 +145,13 @@ div[data-lang].active,p[data-lang].active{display:block;}
 .port-slide{min-width:100%;}
 .port-slide img{width:100%;display:block;border-radius:14px;aspect-ratio:4/5;object-fit:cover;background:#000;}
 .port-cap{font-size:12px;color:var(--gray);text-align:center;margin-top:10px;line-height:1.6;}
-.cta-order{display:block;margin-top:24px;background:var(--gold);color:#143c31;text-align:center;text-decoration:none;font-weight:900;font-size:15px;padding:17px;border-radius:12px;box-shadow:0 6px 20px rgba(212,165,55,0.3);}
-.cta-order span{display:none;}
-.cta-order span.active{display:inline;}
+.cta-order{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:24px;background:var(--gold);color:#143c31;text-align:center;text-decoration:none;font-weight:900;font-size:15px;padding:17px;border-radius:12px;box-shadow:0 6px 20px rgba(212,165,55,0.3);}
+
 
 /* ===== CAREER ===== */
-.career-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.08);}
+.career-item{display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.08);}
 .career-item:last-child{border-bottom:none;}
-.career-ico{font-size:20px;min-width:30px;}
+
 .career-t{font-size:14px;font-weight:900;margin-bottom:5px;}
 .career-d{font-size:12px;line-height:1.7;color:rgba(255,255,255,0.65);}
 
@@ -139,7 +162,7 @@ div[data-lang].active,p[data-lang].active{display:block;}
 .con-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 .con-item{display:flex;flex-direction:column;gap:3px;background:#fff;border-radius:10px;padding:13px 14px;text-decoration:none;color:var(--dark);box-shadow:0 1px 8px rgba(0,0,0,0.06);}
 .con-item-top{display:flex;align-items:center;gap:7px;}
-.con-icon{font-size:14px;}
+.con-icon{width:15px;height:15px;color:#a07c1e;}
 .con-label{font-size:9px;color:#888;font-weight:700;letter-spacing:0.05em;}
 .con-value{font-size:11.5px;font-weight:700;word-break:break-all;}
 
@@ -158,6 +181,8 @@ footer{background:var(--light);text-align:center;padding:28px 24px 40px;}
 .link-row { display:flex; justify-content:center; flex-wrap:wrap; gap:16px; margin:16px auto; max-width:288px; }
 .link-tile { display:block; line-height:0; border-radius:16px; overflow:hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.12); }
 .link-tile img, .link-tile svg { width:56px; height:56px; display:block; background:#fff; }
+.link-tile .tile-glyph { position:absolute; inset:0; margin:auto; width:30px; height:30px; background:none; color:#fff; }
+.link-tile { position:relative; }
 .link-tile:active { transform: scale(0.94); }
 .addr-line { display:flex; align-items:center; gap:10px; background:#fff; border-radius:12px; padding:12px 14px; text-decoration:none; border:1px solid rgba(0,0,0,0.05); }
 .addr-pin { font-size:18px; }
@@ -166,6 +191,28 @@ footer{background:var(--light);text-align:center;padding:28px 24px 40px;}
 </style>
 </head>
 <body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<symbol id="i-building" viewBox="0 0 24 24"><path d="M10 12h4"/> <path d="M10 8h4"/> <path d="M14 21v-3a2 2 0 0 0-4 0v3"/> <path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"/> <path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/> <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/> <path d="M2 12h20"/></symbol>
+<symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18"/> <path d="m19 8 3 8a5 5 0 0 1-6 0zV7"/> <path d="M3 7h1a17 17 0 0 0 8-2 17 17 0 0 0 8 2h1"/> <path d="m5 8 3 8a5 5 0 0 1-6 0zV7"/> <path d="M7 21h10"/></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 19v3"/> <path d="M19 10v2a7 7 0 0 1-14 0v-2"/> <rect x="9" y="2" width="6" height="13" rx="3"/></symbol>
+<symbol id="i-utensils" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/> <path d="M7 2v20"/> <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></symbol>
+<symbol id="i-handshake" viewBox="0 0 24 24"><path d="m11 17 2 2a1 1 0 1 0 3-3"/> <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/> <path d="m21 3 1 11h-2"/> <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/> <path d="M3 4h8"/></symbol>
+<symbol id="i-stethoscope" viewBox="0 0 24 24"><path d="M11 2v2"/> <path d="M5 2v2"/> <path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/> <path d="M8 15a6 6 0 0 0 12 0v-3"/> <circle cx="20" cy="10" r="2"/></symbol>
+<symbol id="i-chef" viewBox="0 0 24 24"><path d="M10 11v5"/> <path d="M14 11v5"/> <path d="M6 12.65c0-.457-.316-.844-.727-1.041A4 4 0 017.52 4.034a1.53 1.53 0 001.367-.547 4 4 0 016.225 0 1.53 1.53 0 001.367.547 4 4 0 012.248 7.575c-.411.197-.727.584-.727 1.04V19a2 2 0 01-2 2H8a2 2 0 01-2-2z"/> <path d="M6 16h12"/></symbol>
+<symbol id="i-wine" viewBox="0 0 24 24"><path d="M8 22h8"/> <path d="M7 10h10"/> <path d="M12 15v7"/> <path d="M12 15a5 5 0 0 0 5-5c0-2-.5-4-2-8H9c-1.5 4-2 6-2 8a5 5 0 0 0 5 5Z"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/> <path d="m21.854 2.147-10.94 10.939"/></symbol>
+<symbol id="i-user-plus" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/> <circle cx="9" cy="7" r="4"/> <line x1="19" x2="19" y1="8" y2="14"/> <line x1="22" x2="16" y1="11" y2="11"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M15 13a3 3 0 1 0-6 0"/> <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/> <circle cx="12" cy="8" r="2"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/> <path d="m12 5 7 7-7 7"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24"><path d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M5 21v-6"/> <path d="M12 21V3"/> <path d="M19 21V9"/></symbol>
+<symbol id="i-house" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/> <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="b-threads" viewBox="0 0 24 24"><path d="M18.263 11.097c-.03-3.486-1.92-5.586-5.111-5.586-2.13 0-3.922.963-4.863 2.499l2.062 1.438c.535-.843 1.272-1.543 2.628-1.543 1.528 0 2.318.85 2.544 2.431a15 15 0 0 0-2.236-.173c-4.125 0-6.068 1.867-6.068 4.336s1.943 3.99 4.804 3.99c3.139 0 5.013-2.115 5.781-4.735.798.361 1.348 1.204 1.348 2.47 0 3.387-3.907 5.232-7.22 5.232-4.885 0-8.077-3.207-8.077-8.424 0-6.392 4.223-10.487 9.9-10.487 3.808 0 5.69 1.671 6.97 3.914l2.108-1.475C21.44 2.078 18.331 0 13.663 0 6.227 0 1.168 5.277 1.168 12.934c0 7 4.953 11.066 10.856 11.066 4.878 0 9.809-2.846 9.809-7.716 0-2.545-1.46-4.231-3.569-5.187m-6.33 4.855c-1.077 0-2.026-.512-2.026-1.453 0-1.483 1.822-1.934 3.606-1.934.678 0 1.34.045 1.927.173-.422 1.927-1.671 3.215-3.508 3.214Z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="b-instagram" viewBox="0 0 24 24"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077" fill="currentColor" stroke="none"/></symbol>
+</svg>
 <div class="card">
 
   <!-- 언어 스위치 -->
@@ -178,8 +225,8 @@ footer{background:var(--light);text-align:center;padding:28px 24px 40px;}
   </div>
 
   <!-- HERO -->
-  <div class="hero">
-    <img src="hero.png" alt="송승훈">
+  <div class="hero" data-motion="">
+    <img src="hero.webp" alt="송승훈" width="981" height="1602" fetchpriority="high">
     <div class="hero-grad"></div>
     <div class="hero-txt">
       <div class="hero-co">T.M — TRANSITION MAKERS</div>
@@ -203,12 +250,12 @@ footer{background:var(--light);text-align:center;padding:28px 24px 40px;}
   <!-- 프로필 + 슬로건 -->
   <div class="profile-sec">
     <img src="profil.jpg" alt="송승훈 프로필" class="profile-img">
-    <div class="profile-tag">
-      <span data-lang="kr" class="active">⚡ One Size Never Fits All</span>
-      <span data-lang="en">⚡ One Size Never Fits All</span>
-      <span data-lang="jp">⚡ One Size Never Fits All</span>
-      <span data-lang="cn">⚡ One Size Never Fits All</span>
-        <span data-lang="hi">⚡ One Size Never Fits All</span>
+    <div class="profile-tag"><svg class="ico" aria-hidden="true"><use href="#i-zap"/></svg>
+      <span data-lang="kr" class="active">One Size Never Fits All</span>
+      <span data-lang="en">One Size Never Fits All</span>
+      <span data-lang="jp">One Size Never Fits All</span>
+      <span data-lang="cn">One Size Never Fits All</span>
+        <span data-lang="hi">One Size Never Fits All</span>
     </div>
     <div class="slogan">
       <span data-lang="kr" class="active">"모든 사람에게<br><em>같은 답</em>은 통하지 않는다."</span>
@@ -240,14 +287,14 @@ footer{background:var(--light);text-align:center;padding:28px 24px 40px;}
         <span data-lang="hi">बदलाव लाने वाला व्यक्ति,<br>Transition Maker</span>
     </div>
     <p class="about-txt">
-      <span data-lang="kr" class="active">비즈홈으로, 스쳐 가는 인연이 관리되는 자산으로, 언어의 장벽이 비즈니스 기회로. T.M은 아날로그에서 디지털로 넘어가는 그 '전환'을 설계합니다. BizHome(비즈홈)ㅡAutoDiCA(디지털 명함) — CardBook(카드북) — MANDU(번역 메신저)로 이어지는 하나의 연결 생태계를 만듭니다.</span>
+      <span data-lang="kr" class="active">비즈홈으로, 스쳐 가는 인연이 관리되는 자산으로, 언어의 장벽이 비즈니스 기회로. T.M은 아날로그에서 디지털로 넘어가는 그 '전환'을 설계합니다. BizHome(비즈홈) — AutoDiCA(디지털 명함) — CardBook(카드북) — MANDU(번역 메신저)로 이어지는 하나의 연결 생태계를 만듭니다.</span>
       <span data-lang="en">With BizHome, fleeting connections become managed assets, and language barriers become business opportunities. T.M designs that 'transition' from analog to digital. We create a connected ecosystem: BizHome—AutoDiCA (Digital Business Card)—CardBook (Business Card Book)—MANDU (Translation Messenger).</span>
       <span data-lang="jp">BizHomeで、一瞬の縁が管理できる資産に、言語の壁がビジネスチャンスに。T.Mはアナログからデジタルへの『転換』を設計します。BizHome(ビズホーム)ーAutoDiCA(デジタル名刺)ーCardBook(名刺帳)ーMANDU(翻訳メッセンジャー)へと続く、ひとつの連結エコシステムを構築します。</span>
-      <span data-lang="cn">通过 BizHome，转瞬即逝的缘分变成可管理的资产，语言障碍转化为商机。T.M 设计从模拟向数字转变的那一刻。BizHome(비즈홈)ㅡAutoDiCA(数字名片) — CardBook(名片集) — MANDU(翻译通讯)形成一个连接的生态系统。</span>
-        <span data-lang="hi">BizHome के साथ, क्षणिक संबंध प्रबंधित संपत्ति में बदल जाते हैं, भाषा की बाधा व्यावसायिक अवसर में। T.M एनालॉग से डिजिटल में वह 'रूपांतरण' डिजाइन करता है। BizHome(बिजहोम)ㅡAutoDiCA(डिजिटल नामपत्र) — CardBook(नामपत्र संग्रह) — MANDU(अनुवाद दूत) से जुड़ा एक संपूर्ण कनेक्टेड इकोसिस्टम बनाता है।</span>
+      <span data-lang="cn">通过 BizHome，转瞬即逝的缘分变成可管理的资产，语言障碍转化为商机。T.M 设计从模拟向数字转变的那一刻。BizHome(비즈홈) — AutoDiCA(数字名片) — CardBook(名片集) — MANDU(翻译通讯)形成一个连接的生态系统。</span>
+        <span data-lang="hi">BizHome के साथ, क्षणिक संबंध प्रबंधित संपत्ति में बदल जाते हैं, भाषा की बाधा व्यावसायिक अवसर में। T.M एनालॉग से डिजिटल में वह 'रूपांतरण' डिजाइन करता है। BizHome(बिजहोम) — AutoDiCA(डिजिटल नामपत्र) — CardBook(नामपत्र संग्रह) — MANDU(अनुवाद दूत) से जुड़ा एक संपूर्ण कनेक्टेड इकोसिस्टम बनाता है।</span>
     </p>
     <div class="kw-wrap">
-      <span class="kw-tag hot"><span data-lang="kr" class="active">비즈홈 , Auto DiCA</span><span data-lang="en">BizHome, Auto DiCA</span><span data-lang="jp">BizHome、Auto DiCA</span><span data-lang="cn">BizHome，Auto DiCA</span>
+      <span class="kw-tag hot"><span data-lang="kr" class="active">비즈홈 · Auto DiCA</span><span data-lang="en">BizHome, Auto DiCA</span><span data-lang="jp">BizHome、Auto DiCA</span><span data-lang="cn">BizHome，Auto DiCA</span>
         <span data-lang="hi">BizHome , Auto DiCA</span></span>
       <span class="kw-tag"><span data-lang="kr" class="active">카드북 CardBook</span><span data-lang="en">Card Wallet CardBook</span><span data-lang="jp">名刺帳 CardBook</span><span data-lang="cn">名片夹 CardBook</span>
         <span data-lang="hi">कार्ड कलेक्शन CardBook</span></span>
@@ -444,103 +491,93 @@ footer{background:var(--light);text-align:center;padding:28px 24px 40px;}
 
         <div class="ref-card"><div class="ref-inner">
           <div class="ref-num">REFERRAL 01</div>
-          <div class="ref-title">
-            <span data-lang="kr" class="active">🏢 중소·중견기업 CEO / 대표</span>
-            <span data-lang="en">🏢 SME & Mid-Size Company CEOs</span>
-            <span data-lang="jp">🏢 中小・中堅企業のCEO / 代表</span>
-            <span data-lang="cn">🏢 中小·中坚企业CEO / 代表</span>
-        <span data-lang="hi">🏢 छोटी-मंझोली कंपनियों के CEO / निदेशक</span>
-          </div>
+          <div class="ref-title"><span class="ico-chip"><svg class="ico" aria-hidden="true"><use href="#i-building"/></svg></span><span><span data-lang="kr" class="active">중소·중견기업 CEO / 대표</span>
+            <span data-lang="en">SME & Mid-Size Company CEOs</span>
+            <span data-lang="jp">中小・中堅企業のCEO / 代表</span>
+            <span data-lang="cn">中小·中坚企业CEO / 代表</span>
+        <span data-lang="hi">छोटी-मंझोली कंपनियों के CEO / निदेशक</span></span></div>
           <div class="ref-items">
-            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">회사의 첫인상을 중요하게 생각하는 대표님</span><span data-lang="en">CEOs who value their company's first impression</span><span data-lang="jp">会社の第一印象を大切にする代表</span><span data-lang="cn">重视公司第一印象的代表</span>
+            <div class="ref-item"><svg class="ico ref-check" aria-hidden="true"><use href="#i-check"/></svg><span data-lang="kr" class="active">회사의 첫인상을 중요하게 생각하는 대표님</span><span data-lang="en">CEOs who value their company's first impression</span><span data-lang="jp">会社の第一印象を大切にする代表</span><span data-lang="cn">重视公司第一印象的代表</span>
         <span data-lang="hi">जो कंपनी की पहली छाप को अहमियत देते हैं</span></div>
-            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">박람회 · 투자(IR) · 정부사업 · 미팅이 많은 분</span><span data-lang="en">Frequent expos, IR, government projects, meetings</span><span data-lang="jp">展示会・投資（IR）・政府事業・ミーティングが多い方</span><span data-lang="cn">经常参加博览会·投资(IR)·政府项目·会议的人</span>
+            <div class="ref-item"><svg class="ico ref-check" aria-hidden="true"><use href="#i-check"/></svg><span data-lang="kr" class="active">박람회 · 투자(IR) · 정부사업 · 미팅이 많은 분</span><span data-lang="en">Frequent expos, IR, government projects, meetings</span><span data-lang="jp">展示会・投資（IR）・政府事業・ミーティングが多い方</span><span data-lang="cn">经常参加博览会·投资(IR)·政府项目·会议的人</span>
         <span data-lang="hi">प्रदर्शनी · निवेश (IR) · सरकारी परियोजना · मीटिंग ज़्यादा करने वाले</span></div>
-            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">홈페이지는 있지만 대표 개인 브랜딩이 약한 회사</span><span data-lang="en">Has a website but weak personal branding for the CEO</span><span data-lang="jp">ホームページはあるが代表個人のブランディングが弱い会社</span><span data-lang="cn">有官网但代表个人品牌薄弱的公司</span>
+            <div class="ref-item"><svg class="ico ref-check" aria-hidden="true"><use href="#i-check"/></svg><span data-lang="kr" class="active">홈페이지는 있지만 대표 개인 브랜딩이 약한 회사</span><span data-lang="en">Has a website but weak personal branding for the CEO</span><span data-lang="jp">ホームページはあるが代表個人のブランディングが弱い会社</span><span data-lang="cn">有官网但代表个人品牌薄弱的公司</span>
         <span data-lang="hi">जिनकी वेबसाइट तो है पर निजी ब्रांडिंग कमज़ोर है</span></div>
-            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">비즈홈보다 '브랜드'를 보여주고 싶은 분</span><span data-lang="en">Wants to show a brand, not just a card</span><span data-lang="jp">名刺より「ブランド」を見せたい方</span><span data-lang="cn">想展示"品牌"而非名片的人</span>
+            <div class="ref-item"><svg class="ico ref-check" aria-hidden="true"><use href="#i-check"/></svg><span data-lang="kr" class="active">비즈홈보다 '브랜드'를 보여주고 싶은 분</span><span data-lang="en">Wants to show a brand, not just a card</span><span data-lang="jp">名刺より「ブランド」を見せたい方</span><span data-lang="cn">想展示"品牌"而非名片的人</span>
         <span data-lang="hi">जो कार्ड से ज़्यादा अपना "ब्रांड" दिखाना चाहते हैं</span></div>
           </div>
         </div></div>
 
         <div class="ref-card"><div class="ref-inner">
           <div class="ref-num">REFERRAL 02</div>
-          <div class="ref-title">
-            <span data-lang="kr" class="active">🌏 해외 거래가 있는 기업</span>
-            <span data-lang="en">🌏 Companies with Overseas Business</span>
-            <span data-lang="jp">🌏 海外取引のある企業</span>
-            <span data-lang="cn">🌏 有海外业务的企业</span>
-        <span data-lang="hi">🌏 विदेशी व्यापार वाली कंपनियाँ</span>
-          </div>
+          <div class="ref-title"><span class="ico-chip"><svg class="ico" aria-hidden="true"><use href="#i-globe"/></svg></span><span><span data-lang="kr" class="active">해외 거래가 있는 기업</span>
+            <span data-lang="en">Companies with Overseas Business</span>
+            <span data-lang="jp">海外取引のある企業</span>
+            <span data-lang="cn">有海外业务的企业</span>
+        <span data-lang="hi">विदेशी व्यापार वाली कंपनियाँ</span></span></div>
           <div class="ref-items">
-            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">무역 · 제조 · 수출 기업</span><span data-lang="en">Trading, manufacturing, export companies</span><span data-lang="jp">貿易・製造・輸出企業</span><span data-lang="cn">贸易·制造·出口企业</span>
+            <div class="ref-item"><svg class="ico ref-check" aria-hidden="true"><use href="#i-check"/></svg><span data-lang="kr" class="active">무역 · 제조 · 수출 기업</span><span data-lang="en">Trading, manufacturing, export companies</span><span data-lang="jp">貿易・製造・輸出企業</span><span data-lang="cn">贸易·制造·出口企业</span>
         <span data-lang="hi">व्यापार · उत्पादन · निर्यात कंपनियाँ</span></div>
-            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">해외 구매대행 · 해외 바이어 상담</span><span data-lang="en">Overseas purchasing agents, buyer consultations</span><span data-lang="jp">海外購入代行・海外バイヤー商談</span><span data-lang="cn">海外代购·海外买家洽谈</span>
+            <div class="ref-item"><svg class="ico ref-check" aria-hidden="true"><use href="#i-check"/></svg><span data-lang="kr" class="active">해외 구매대행 · 해외 바이어 상담</span><span data-lang="en">Overseas purchasing agents, buyer consultations</span><span data-lang="jp">海外購入代行・海外バイヤー商談</span><span data-lang="cn">海外代购·海外买家洽谈</span>
         <span data-lang="hi">विदेशी खरीद एजेंट · विदेशी खरीदारों से बातचीत</span></div>
-            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">외국인 고객을 대상으로 하는 사업</span><span data-lang="en">Businesses serving foreign customers</span><span data-lang="jp">外国人顧客を対象とする事業</span><span data-lang="cn">面向外国客户的业务</span>
+            <div class="ref-item"><svg class="ico ref-check" aria-hidden="true"><use href="#i-check"/></svg><span data-lang="kr" class="active">외국인 고객을 대상으로 하는 사업</span><span data-lang="en">Businesses serving foreign customers</span><span data-lang="jp">外国人顧客を対象とする事業</span><span data-lang="cn">面向外国客户的业务</span>
         <span data-lang="hi">विदेशी ग्राहकों को लक्षित व्यवसाय</span></div>
-            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">4개국어 비즈홈 + 번역 메신저 MANDU가 무기가 됩니다</span><span data-lang="en">4-Language Business Card + Translation Messenger MANDU is your weapon</span><span data-lang="jp">4言語名刺＋翻訳メッセンジャー MANDUが武器になります</span><span data-lang="cn">四种语言名片 + 翻译信使 MANDU 成为您的利器</span>
+            <div class="ref-item"><svg class="ico ref-check" aria-hidden="true"><use href="#i-check"/></svg><span data-lang="kr" class="active">4개국어 비즈홈 + 번역 메신저 MANDU가 무기가 됩니다</span><span data-lang="en">4-Language Business Card + Translation Messenger MANDU is your weapon</span><span data-lang="jp">4言語名刺＋翻訳メッセンジャー MANDUが武器になります</span><span data-lang="cn">四种语言名片 + 翻译信使 MANDU 成为您的利器</span>
         <span data-lang="hi">4 भाषा कार्ड + अनुवाद मैसेंजर MANDU आपका हथियार है</span></div>
           </div>
         </div></div>
 
         <div class="ref-card"><div class="ref-inner">
           <div class="ref-num">REFERRAL 03</div>
-          <div class="ref-title">
-            <span data-lang="kr" class="active">⚖️ 전문직 대표님</span>
-            <span data-lang="en">⚖️ Professional Practice Owners</span>
-            <span data-lang="jp">⚖️ 専門職の代表</span>
-            <span data-lang="cn">⚖️ 专业人士代表</span>
-        <span data-lang="hi">⚖️ पेशेवर सेवा प्रदाता</span>
-          </div>
+          <div class="ref-title"><span class="ico-chip"><svg class="ico" aria-hidden="true"><use href="#i-scale"/></svg></span><span><span data-lang="kr" class="active">전문직 대표님</span>
+            <span data-lang="en">Professional Practice Owners</span>
+            <span data-lang="jp">専門職の代表</span>
+            <span data-lang="cn">专业人士代表</span>
+        <span data-lang="hi">पेशेवर सेवा प्रदाता</span></span></div>
           <div class="ref-items">
-            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">변호사 · 세무사 · 회계사 · 법무사 · 노무사</span><span data-lang="en">Lawyers, tax accountants, CPAs, judicial scriveners, labor attorneys</span><span data-lang="jp">弁護士・税理士・会計士・司法書士・労務士</span><span data-lang="cn">律师·税务师·会计师·法务师·劳务师</span>
+            <div class="ref-item"><svg class="ico ref-check" aria-hidden="true"><use href="#i-check"/></svg><span data-lang="kr" class="active">변호사 · 세무사 · 회계사 · 법무사 · 노무사</span><span data-lang="en">Lawyers, tax accountants, CPAs, judicial scriveners, labor attorneys</span><span data-lang="jp">弁護士・税理士・会計士・司法書士・労務士</span><span data-lang="cn">律师·税务师·会计师·法务师·劳务师</span>
         <span data-lang="hi">वकील · टैक्स सलाहकार · अकाउंटेंट · लीगल सलाहकार · लेबर सलाहकार</span></div>
-            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">병원장 · 건축사</span><span data-lang="en">Hospital directors, architects</span><span data-lang="jp">病院長・建築士</span><span data-lang="cn">医院院长·建筑师</span>
+            <div class="ref-item"><svg class="ico ref-check" aria-hidden="true"><use href="#i-check"/></svg><span data-lang="kr" class="active">병원장 · 건축사</span><span data-lang="en">Hospital directors, architects</span><span data-lang="jp">病院長・建築士</span><span data-lang="cn">医院院长·建筑师</span>
         <span data-lang="hi">अस्पताल निदेशक · आर्किटेक्ट</span></div>
-            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">보험설계사 · 헬스 · 뷰티 · 네트워크 사업자</span><span data-lang="en">Insurance planners, health, beauty, network business owners</span><span data-lang="jp">保険設計士・ヘルス・ビューティー・ネットワーク事業者</span><span data-lang="cn">保险规划师·健康·美容·网络事业者</span>
+            <div class="ref-item"><svg class="ico ref-check" aria-hidden="true"><use href="#i-check"/></svg><span data-lang="kr" class="active">보험설계사 · 헬스 · 뷰티 · 네트워크 사업자</span><span data-lang="en">Insurance planners, health, beauty, network business owners</span><span data-lang="jp">保険設計士・ヘルス・ビューティー・ネットワーク事業者</span><span data-lang="cn">保险规划师·健康·美容·网络事业者</span>
         <span data-lang="hi">इंश्योरेंस एजेंट · हेल्थ · ब्यूटी · नेटवर्क बिज़नेस</span></div>
-            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">신뢰가 곧 매출인 분들에게 브랜딩은 필수입니다</span><span data-lang="en">When trust equals revenue, branding is essential</span><span data-lang="jp">信頼がそのまま売上になる方にブランディングは必須です</span><span data-lang="cn">对于信任即营收的人，品牌打造必不可少</span>
+            <div class="ref-item"><svg class="ico ref-check" aria-hidden="true"><use href="#i-check"/></svg><span data-lang="kr" class="active">신뢰가 곧 매출인 분들에게 브랜딩은 필수입니다</span><span data-lang="en">When trust equals revenue, branding is essential</span><span data-lang="jp">信頼がそのまま売上になる方にブランディングは必須です</span><span data-lang="cn">对于信任即营收的人，品牌打造必不可少</span>
         <span data-lang="hi">जहाँ भरोसा ही बिक्री है, वहाँ ब्रांडिंग ज़रूरी है</span></div>
           </div>
         </div></div>
 
         <div class="ref-card"><div class="ref-inner">
           <div class="ref-num">REFERRAL 04</div>
-          <div class="ref-title">
-            <span data-lang="kr" class="active">🎤 강사 · 컨설턴트</span>
-            <span data-lang="en">🎤 Lecturers & Consultants</span>
-            <span data-lang="jp">🎤 講師・コンサルタント</span>
-            <span data-lang="cn">🎤 讲师·顾问</span>
-        <span data-lang="hi">🎤 वक्ता · कंसल्टेंट</span>
-          </div>
+          <div class="ref-title"><span class="ico-chip"><svg class="ico" aria-hidden="true"><use href="#i-mic"/></svg></span><span><span data-lang="kr" class="active">강사 · 컨설턴트</span>
+            <span data-lang="en">Lecturers & Consultants</span>
+            <span data-lang="jp">講師・コンサルタント</span>
+            <span data-lang="cn">讲师·顾问</span>
+        <span data-lang="hi">वक्ता · कंसल्टेंट</span></span></div>
           <div class="ref-items">
-            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">퍼스널 브랜딩의 ROI가 가장 높은 직군</span><span data-lang="en">The profession with the highest personal-branding ROI</span><span data-lang="jp">パーソナルブランディングのROIが最も高い職種</span><span data-lang="cn">个人品牌投资回报率最高的职业</span>
+            <div class="ref-item"><svg class="ico ref-check" aria-hidden="true"><use href="#i-check"/></svg><span data-lang="kr" class="active">퍼스널 브랜딩의 ROI가 가장 높은 직군</span><span data-lang="en">The profession with the highest personal-branding ROI</span><span data-lang="jp">パーソナルブランディングのROIが最も高い職種</span><span data-lang="cn">个人品牌投资回报率最高的职业</span>
         <span data-lang="hi">पर्सनल ब्रांडिंग का सबसे ज़्यादा फ़ायदा पाने वाला पेशा</span></div>
-            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">강의 영상 · 유튜브 · 블로그를 운영하는 분</span><span data-lang="en">Running lecture videos, YouTube, or blogs</span><span data-lang="jp">講義動画・YouTube・ブログを運営する方</span><span data-lang="cn">运营讲课视频·YouTube·博客的人</span>
+            <div class="ref-item"><svg class="ico ref-check" aria-hidden="true"><use href="#i-check"/></svg><span data-lang="kr" class="active">강의 영상 · 유튜브 · 블로그를 운영하는 분</span><span data-lang="en">Running lecture videos, YouTube, or blogs</span><span data-lang="jp">講義動画・YouTube・ブログを運営する方</span><span data-lang="cn">运营讲课视频·YouTube·博客的人</span>
         <span data-lang="hi">जो लेक्चर वीडियो · यूट्यूब · ब्लॉग चलाते हैं</span></div>
-            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">책 · 후기 등 쌓아온 콘텐츠가 많은 분</span><span data-lang="en">With accumulated content — books, reviews, and more</span><span data-lang="jp">本・レビューなど積み上げたコンテンツが多い方</span><span data-lang="cn">拥有书籍·评价等大量积累内容的人</span>
+            <div class="ref-item"><svg class="ico ref-check" aria-hidden="true"><use href="#i-check"/></svg><span data-lang="kr" class="active">책 · 후기 등 쌓아온 콘텐츠가 많은 분</span><span data-lang="en">With accumulated content — books, reviews, and more</span><span data-lang="jp">本・レビューなど積み上げたコンテンツが多い方</span><span data-lang="cn">拥有书籍·评价等大量积累内容的人</span>
         <span data-lang="hi">जिनके पास किताबें · रिव्यू जैसा भरपूर कंटेंट है</span></div>
-            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">흩어진 콘텐츠를 비즈홈 한 장에 모아 드립니다</span><span data-lang="en">I gather scattered content into one single card</span><span data-lang="jp">散らばったコンテンツを名刺1枚にまとめます</span><span data-lang="cn">把分散的内容汇集到一张名片里</span>
+            <div class="ref-item"><svg class="ico ref-check" aria-hidden="true"><use href="#i-check"/></svg><span data-lang="kr" class="active">흩어진 콘텐츠를 비즈홈 한 장에 모아 드립니다</span><span data-lang="en">I gather scattered content into one single card</span><span data-lang="jp">散らばったコンテンツを名刺1枚にまとめます</span><span data-lang="cn">把分散的内容汇集到一张名片里</span>
         <span data-lang="hi">बिखरे हुए कंटेंट को एक कार्ड में समेट दिया जाता है</span></div>
           </div>
         </div></div>
 
         <div class="ref-card"><div class="ref-inner">
           <div class="ref-num">REFERRAL 05</div>
-          <div class="ref-title">
-            <span data-lang="kr" class="active">🍽️ 프랜차이즈 · 외식업 대표</span>
-            <span data-lang="en">🍽️ Franchise & F&B Owners</span>
-            <span data-lang="jp">🍽️ フランチャイズ・外食業の代表</span>
-            <span data-lang="cn">🍽️ 连锁·餐饮业代表</span>
-        <span data-lang="hi">🍽️ फ़्रैंचाइज़ी · रेस्टोरेंट बिज़नेस के मालिक</span>
-          </div>
+          <div class="ref-title"><span class="ico-chip"><svg class="ico" aria-hidden="true"><use href="#i-utensils"/></svg></span><span><span data-lang="kr" class="active">프랜차이즈 · 외식업 대표</span>
+            <span data-lang="en">Franchise & F&B Owners</span>
+            <span data-lang="jp">フランチャイズ・外食業の代表</span>
+            <span data-lang="cn">连锁·餐饮业代表</span>
+        <span data-lang="hi">फ़्रैंचाइज़ी · रेस्टोरेंट बिज़नेस के मालिक</span></span></div>
           <div class="ref-items">
-            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">메뉴 · 예약 · 길찾기를 한 번에 담고 싶은 매장</span><span data-lang="en">Stores wanting menu, reservations, directions in one place</span><span data-lang="jp">メニュー・予約・道案内を一度に収めたい店舗</span><span data-lang="cn">想把菜单·预约·导航整合在一起的店铺</span>
+            <div class="ref-item"><svg class="ico ref-check" aria-hidden="true"><use href="#i-check"/></svg><span data-lang="kr" class="active">메뉴 · 예약 · 길찾기를 한 번에 담고 싶은 매장</span><span data-lang="en">Stores wanting menu, reservations, directions in one place</span><span data-lang="jp">メニュー・予約・道案内を一度に収めたい店舗</span><span data-lang="cn">想把菜单·预约·导航整合在一起的店铺</span>
         <span data-lang="hi">मेन्यू · बुकिंग · रास्ता एक साथ दिखाना चाहने वाली दुकान</span></div>
-            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">리뷰 · SNS 채널을 키우고 싶은 대표님</span><span data-lang="en">Owners growing reviews and SNS channels</span><span data-lang="jp">レビュー・SNSチャンネルを育てたい代表</span><span data-lang="cn">想壮大评价·社交媒体渠道的代表</span>
+            <div class="ref-item"><svg class="ico ref-check" aria-hidden="true"><use href="#i-check"/></svg><span data-lang="kr" class="active">리뷰 · SNS 채널을 키우고 싶은 대표님</span><span data-lang="en">Owners growing reviews and SNS channels</span><span data-lang="jp">レビュー・SNSチャンネルを育てたい代表</span><span data-lang="cn">想壮大评价·社交媒体渠道的代表</span>
         <span data-lang="hi">रिव्यू · सोशल मीडिया चैनल बढ़ाना चाहने वाले मालिक</span></div>
-            <div class="ref-item"><span class="ref-check">✔</span><span data-lang="kr" class="active">10년 요식업 경영자였던 제가 그 마음을 가장 잘 압니다</span><span data-lang="en">As a 10-year F&B operator myself, I know exactly how you feel</span><span data-lang="jp">10年外食業を経営した私が、その気持ちを一番よく分かります</span><span data-lang="cn">经营餐饮业10年的我，最懂您的心情</span>
+            <div class="ref-item"><svg class="ico ref-check" aria-hidden="true"><use href="#i-check"/></svg><span data-lang="kr" class="active">10년 요식업 경영자였던 제가 그 마음을 가장 잘 압니다</span><span data-lang="en">As a 10-year F&B operator myself, I know exactly how you feel</span><span data-lang="jp">10年外食業を経営した私が、その気持ちを一番よく分かります</span><span data-lang="cn">经营餐饮业10年的我，最懂您的心情</span>
         <span data-lang="hi">10 साल रेस्टोरेंट बिज़नेस चलाने वाला मैं, यह भावना सबसे अच्छे से समझता हूँ</span></div>
           </div>
         </div></div>
@@ -598,11 +635,12 @@ footer{background:var(--light);text-align:center;padding:28px 24px 40px;}
     </p>
 
     <a href="https://jinjjabg-hub.github.io/T.M-LINK/" target="_blank" class="cta-order">
-      <span data-lang="kr" class="active">🚀 나만의 디지털 비즈홈 주문하기</span>
-      <span data-lang="en">🚀 Order My Own Digital Card</span>
-      <span data-lang="jp">🚀 自分だけのデジタル名刺を注文する</span>
-      <span data-lang="cn">🚀 订购我的专属数字名片</span>
-        <span data-lang="hi">🚀 अपना डिजिटल कार्ड ऑर्डर करें</span>
+      <span data-lang="kr" class="active">나만의 디지털 비즈홈 주문하기</span>
+      <span data-lang="en">Order My Own Digital Card</span>
+      <span data-lang="jp">自分だけのデジタル名刺を注文する</span>
+      <span data-lang="cn">订购我的专属数字名片</span>
+        <span data-lang="hi">अपना डिजिटल कार्ड ऑर्डर करें</span>
+      <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>
     </a>
   </div>
 
@@ -618,11 +656,11 @@ footer{background:var(--light);text-align:center;padding:28px 24px 40px;}
     </div>
 
     <div class="career-item">
-      <div class="career-ico">🤝</div>
+      <span class="ico-chip"><svg class="ico" aria-hidden="true"><use href="#i-handshake"/></svg></span>
       <div>
         <div class="career-t">BNI</div>
         <div class="career-d">
-          <span data-lang="kr" class="active">파이오니어 챕터 5년차 — 의장 1년 · 멘토링 코디네이터 · 비지터호스트 리더 · ST · 멤버십위원 ·121마스터. 3스타 그린클럽<br>자이언츠 챕터 — 앰버서더 2년차</span>
+          <span data-lang="kr" class="active">파이오니어 챕터 5년차 — 의장 1년 · 멘토링 코디네이터 · 비지터호스트 리더 · ST · 멤버십위원 · 121마스터. 3스타 그린클럽<br>자이언츠 챕터 — 앰버서더 2년차</span>
           <span data-lang="en">Pioneer Chapter 5 Years — Chair 1 Year · Mentoring Coordinator · Visitor Host Leader · ST · Membership Committee · 121 Master. 3-Star Green Club<br>Giants Chapter — Ambassador 2 Years</span>
           <span data-lang="jp">パイオニア チャプター5年目 — 議長1年・メンタリングコーディネーター・ビジターホストリーダー・ST・メンバーシップ委員・121マスター。3スタージーンクラブ<br>ジャイアンツ チャプター — アンバサダー2年目</span>
           <span data-lang="cn">Pioneer 分会五年资深 — 主席一年·辅导协调员·访客接待领导·ST·会员委员·121大师。三星绿卡俱乐部<br>Giants 分会 — 大使二年</span>
@@ -632,7 +670,7 @@ footer{background:var(--light);text-align:center;padding:28px 24px 40px;}
     </div>
 
     <div class="career-item">
-      <div class="career-ico">🩺</div>
+      <span class="ico-chip"><svg class="ico" aria-hidden="true"><use href="#i-stethoscope"/></svg></span>
       <div>
         <div class="career-t">
           <span data-lang="kr" class="active">물리치료사 15년</span>
@@ -652,7 +690,7 @@ footer{background:var(--light);text-align:center;padding:28px 24px 40px;}
     </div>
 
     <div class="career-item">
-      <div class="career-ico">🍳</div>
+      <span class="ico-chip"><svg class="ico" aria-hidden="true"><use href="#i-chef"/></svg></span>
       <div>
         <div class="career-t">
           <span data-lang="kr" class="active">F&B 경영 10년</span>
@@ -672,7 +710,7 @@ footer{background:var(--light);text-align:center;padding:28px 24px 40px;}
     </div>
 
     <div class="career-item">
-      <div class="career-ico">🍷</div>
+      <span class="ico-chip"><svg class="ico" aria-hidden="true"><use href="#i-wine"/></svg></span>
       <div>
         <div class="career-t">
           <span data-lang="kr" class="active">네트워크</span>
@@ -704,7 +742,7 @@ footer{background:var(--light);text-align:center;padding:28px 24px 40px;}
     </div>
     <div class="con-grid">
     <a href="tel:010-5334-2544" class="con-item" style="grid-column:1/-1;">
-        <div class="con-item-top"><span class="con-icon">📞</span><span class="con-label">PHONE</span></div>
+        <div class="con-item-top"><svg class="ico con-icon" aria-hidden="true"><use href="#i-phone"/></svg><span class="con-label">PHONE</span></div>
         <div class="con-value">010-5334-2544</div>
       </a>
   </div>
@@ -713,34 +751,34 @@ footer{background:var(--light);text-align:center;padding:28px 24px 40px;}
       <img src="https://cardbook.bizmy.net/mandu-icon.png" alt="MANDU" width="56" height="56">
     </a>
     <a class="link-tile" href="https://www.instagram.com/t.m_link/" target="_blank" rel="noopener" aria-label="Instagram">
-      <svg viewBox="0 0 64 64" aria-hidden="true"><defs><radialGradient id="igGrad" cx="0.3" cy="1.07" r="1.2"><stop offset="0" stop-color="#FFD776"/><stop offset="0.25" stop-color="#F3A554"/><stop offset="0.45" stop-color="#E1306C"/><stop offset="0.75" stop-color="#C13584"/><stop offset="1" stop-color="#5851DB"/></radialGradient></defs><rect width="64" height="64" rx="16" fill="url(#igGrad)"/><rect x="14" y="14" width="36" height="36" rx="11" fill="none" stroke="#fff" stroke-width="4.5"/><circle cx="32" cy="32" r="8.5" fill="none" stroke="#fff" stroke-width="4.5"/><circle cx="43" cy="21" r="2.8" fill="#fff"/></svg>
+      <svg viewBox="0 0 64 64" aria-hidden="true"><defs><radialGradient id="igGrad" cx="0.3" cy="1.07" r="1.2"><stop offset="0" stop-color="#FFD776"/><stop offset="0.25" stop-color="#F3A554"/><stop offset="0.45" stop-color="#E1306C"/><stop offset="0.75" stop-color="#C13584"/><stop offset="1" stop-color="#5851DB"/></radialGradient></defs><rect width="64" height="64" fill="url(#igGrad)"/></svg><svg class="tile-glyph" aria-hidden="true"><use href="#b-instagram"/></svg>
     </a>
     <a class="link-tile" href="https://www.threads.com/@pioneer_bni" target="_blank" rel="noopener" aria-label="Threads">
-      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#000"/><text x="32" y="44" text-anchor="middle" font-family="Arial,sans-serif" font-size="36" font-weight="700" fill="#fff">@</text></svg>
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" fill="#000"/></svg><svg class="tile-glyph" aria-hidden="true"><use href="#b-threads"/></svg>
     </a>
     <a class="link-tile" href="https://jinjjabg-hub.github.io/T.M-LINK/" target="_blank" rel="noopener" aria-label="Homepage">
-      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#0d1b3e"/><path d="M32 15 13 31h5.5v17h10V37h7v11h10V31H51z" fill="#fff"/></svg>
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" fill="#276152"/></svg><svg class="ico tile-glyph" aria-hidden="true"><use href="#i-house"/></svg>
     </a>
   </div>
   </div>
 
   <!-- 액션버튼 -->
   <div class="actions-wrap">
-    <button class="btn btn-red" onclick="shareCard()">📤
+    <button class="btn btn-red" onclick="shareCard()"><svg class="ico" aria-hidden="true"><use href="#i-send"/></svg>
       <span data-lang="kr" class="active">비즈홈 전달하기</span>
       <span data-lang="en">Share this Biz Home</span>
       <span data-lang="jp">ビズホームを共有</span>
       <span data-lang="cn">分享商务主页</span>
         <span data-lang="hi">बिज़ होम शेयर करें</span>
     </button>
-    <button class="btn btn-out" onclick="saveContact()">📞
+    <button class="btn btn-out" onclick="saveContact()"><svg class="ico" aria-hidden="true"><use href="#i-user-plus"/></svg>
       <span data-lang="kr" class="active">연락처 저장</span>
       <span data-lang="en">Save Contact</span>
       <span data-lang="jp">連絡先を保存</span>
       <span data-lang="cn">保存联系方式</span>
         <span data-lang="hi">संपर्क सेव करें</span>
     </button>
-    <button class="btn btn-out" onclick="saveToCardbook({name:'송승훈',company:'T.M (Transition Makers)',title:'대표·CEO',phone:'010-5334-2544',url:'https://bizhome.bizmy.net/songsh/'})">🗂️
+    <button class="btn btn-out" onclick="saveToCardbook({name:'송승훈',company:'T.M (Transition Makers)',title:'대표·CEO',phone:'010-5334-2544',url:'https://bizhome.bizmy.net/songsh/'})"><svg class="ico" aria-hidden="true"><use href="#i-book"/></svg>
       <span data-lang="kr" class="active">카드북에 저장</span>
       <span data-lang="en">Save to CardBook</span>
       <span data-lang="jp">カードブックに保存</span>
@@ -750,9 +788,9 @@ footer{background:var(--light);text-align:center;padding:28px 24px 40px;}
   </div>
 
   
-  <div style="padding:14px 20px 4px;text-align:center;">
-    <button id="mandu-activate-btn" onclick="activateMandu()" style="background:none;border:1px solid rgba(0,0,0,0.15);color:#888;font-size:10.5px;padding:7px 14px;border-radius:20px;cursor:pointer;">
-      💬 본인 비즈홈이신가요? 만두 연결하기 (1회)
+  <div style="padding:14px 20px 4px;text-align:center;background:var(--light);">
+    <button id="mandu-activate-btn" onclick="activateMandu()" style="background:none;border:1px solid rgba(0,0,0,0.15);color:#777;font-size:10.5px;padding:7px 14px;border-radius:20px;cursor:pointer;font-family:inherit;">
+      본인 비즈홈이신가요? 만두 연결하기 (1회)
     </button>
     <div id="mandu-activate-done" style="display:none;font-size:10.5px;color:#888;padding:7px 0;">
       ✅ 만두 연결 완료 — 이제 이 카드로 DM을 받을 수 있어요
@@ -868,6 +906,25 @@ END:VCARD`;
 }
 
 
+/* ===== 히어로 모션 (선택) =====
+   <div class="hero" data-motion="hero.mp4"> 처럼 파일명을 넣으면 1회 재생 후 사진으로 돌아갑니다.
+   영상 마지막 장면 = hero.webp 와 같은 구도여야 이음매가 안 보입니다. 비어 있으면 CSS 등장 모션만. */
+(function(){
+  var hero=document.querySelector('.hero'), src=hero&&hero.getAttribute('data-motion');
+  if(!src) return;
+  var conn=navigator.connection||{};
+  if(conn.saveData || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  hero.classList.add('has-motion');
+  var v=document.createElement('video');
+  v.muted=true; v.playsInline=true; v.setAttribute('playsinline',''); v.setAttribute('muted','');
+  v.preload='auto'; v.src=src;
+  v.addEventListener('playing',function(){v.classList.add('on');},{once:true});
+  v.addEventListener('ended',function(){v.classList.remove('on');setTimeout(function(){v.remove();},700);});
+  v.addEventListener('error',function(){hero.classList.remove('has-motion');v.remove();});
+  hero.insertBefore(v,hero.querySelector('.hero-grad'));
+  var p=v.play(); if(p&&p.catch) p.catch(function(){hero.classList.remove('has-motion');v.remove();});
+})();
+
 /* ===== 초기화 ===== */
 initSlider('ref-dots', refTotal, goRef); goRef(0); goPort(0);
 initSlider('port-dots', portTotal, goPort);
@@ -916,7 +973,7 @@ async function activateMandu() {
   if (btn) { btn.disabled = true; btn.textContent = '연결 중...'; }
   const ready = await _manduWaitFirebase();
   if (!ready) {
-    if (btn) { btn.disabled = false; btn.textContent = '💬 본인 비즈홈이신가요? 만두 연결하기 (1회)'; }
+    if (btn) { btn.disabled = false; btn.textContent = '본인 비즈홈이신가요? 만두 연결하기 (1회)'; }
     alert('연결 실패. 잠시 후 다시 시도해주세요.');
     return;
   }
@@ -934,7 +991,7 @@ async function activateMandu() {
     await _manduFinishActivate(result.user);
   } catch (e) {
     console.error('만두 연결 실패:', e);
-    if (btn) { btn.disabled = false; btn.textContent = '💬 본인 비즈홈이신가요? 만두 연결하기 (1회)'; }
+    if (btn) { btn.disabled = false; btn.textContent = '본인 비즈홈이신가요? 만두 연결하기 (1회)'; }
     alert('연결 중 오류가 발생했어요.');
   }
 }
@@ -959,15 +1016,15 @@ async function activateMandu() {
   dicaLog('view');
 
   document.addEventListener('DOMContentLoaded', function(){
-    var saveBtn = document.querySelector('.btn-primary');
+    var saveBtn = document.querySelector('.btn[onclick^="saveContact"]');
     var cardBtn = document.querySelector('.btn-secondary');
     if (saveBtn) saveBtn.addEventListener('click', function(){ dicaLog('save_vcard'); });
     // 카드북 저장은 누른 순간이 아니라 실제로 저장에 성공했을 때만 센다
     window.addEventListener('cardbook:saved', function(){ dicaLog('save_cardbook'); });
 
     var statBtn = document.createElement('div');
-    statBtn.textContent = '📊 카드 현황 보기';
-    statBtn.style.cssText = 'position:fixed;bottom:16px;right:16px;background:rgba(0,0,0,0.65);color:#fff;padding:8px 14px;border-radius:20px;font-size:12px;cursor:pointer;z-index:9999;font-family:sans-serif;box-shadow:0 2px 10px rgba(0,0,0,0.3);';
+    statBtn.innerHTML = '<svg class="ico" aria-hidden="true"><use href="#i-chart"/></svg> 카드 현황 보기';
+    statBtn.style.cssText = 'position:fixed;bottom:16px;right:16px;background:rgba(0,0,0,0.65);color:#fff;padding:8px 14px;border-radius:20px;font-size:12px;cursor:pointer;z-index:9999;font-family:inherit;display:flex;align-items:center;gap:6px;box-shadow:0 2px 10px rgba(0,0,0,0.3);';
     statBtn.onclick = function(){
       statBtn.style.cursor = 'default';
       statBtn.textContent = '불러오는 중...';
