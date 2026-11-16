@@ -62,7 +62,8 @@ div[data-lang].active,p[data-lang].active{display:block;}
   .hero-co{animation-delay:1.0s;}
   .hero-name{animation-delay:1.15s;}
   .hero-role{animation-delay:1.3s;}
-  .hero.has-motion img{animation:none;}
+  .hero.has-motion img{animation:none;opacity:0;}
+  .hero.has-motion.motion-done img{opacity:1;}
   .hero.has-motion .hero-co{animation-delay:.3s;}
   .hero.has-motion .hero-name{animation-delay:.45s;}
   .hero.has-motion .hero-role{animation-delay:.6s;}
@@ -225,7 +226,7 @@ footer{background:var(--light);text-align:center;padding:28px 24px 40px;}
   </div>
 
   <!-- HERO -->
-  <div class="hero" data-motion="">
+  <div class="hero" data-motion="hero.mp4">
     <img src="hero.webp" alt="송승훈" width="981" height="1602" fetchpriority="high">
     <div class="hero-grad"></div>
     <div class="hero-txt">
@@ -915,14 +916,16 @@ END:VCARD`;
   var conn=navigator.connection||{};
   if(conn.saveData || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   hero.classList.add('has-motion');
-  var v=document.createElement('video');
+  var v=document.createElement('video'), started=false;
+  function fail(){ hero.classList.remove('has-motion'); v.remove(); }
   v.muted=true; v.playsInline=true; v.setAttribute('playsinline',''); v.setAttribute('muted','');
   v.preload='auto'; v.src=src;
-  v.addEventListener('playing',function(){v.classList.add('on');},{once:true});
-  v.addEventListener('ended',function(){v.classList.remove('on');setTimeout(function(){v.remove();},700);});
-  v.addEventListener('error',function(){hero.classList.remove('has-motion');v.remove();});
+  v.addEventListener('playing',function(){started=true;v.classList.add('on');},{once:true});
+  v.addEventListener('ended',function(){hero.classList.add('motion-done');v.classList.remove('on');setTimeout(function(){v.remove();},700);});
+  v.addEventListener('error',fail);
   hero.insertBefore(v,hero.querySelector('.hero-grad'));
-  var p=v.play(); if(p&&p.catch) p.catch(function(){hero.classList.remove('has-motion');v.remove();});
+  var p=v.play(); if(p&&p.catch) p.catch(fail);
+  setTimeout(function(){ if(!started) fail(); },4000);
 })();
 
 /* ===== 초기화 ===== */
