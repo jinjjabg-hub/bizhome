@@ -1,59 +1,10 @@
 {
   "version": 1,
   "maxVisible": 10,
+  "_order": "sort=manual → 아래 items 순서 그대로 보여줌. slide=tap → 배너를 누르면 다음 소식, \"자세히 보기\"로 상세 열기",
+  "sort": "manual",
+  "slide": "tap",
   "items": [
-    {
-      "id": "autocard-launch",
-      "type": "product",
-      "date": "2026-10-03",
-      "pinned": true,
-      "images": [
-        "news/autocard.webp"
-      ],
-      "price": {
-        "kr": "5,900원부터 · 월 요금 없음",
-        "en": "From ₩5,900 · no monthly fee",
-        "jp": "5,900ウォンから · 月額料金なし",
-        "cn": "5,900韩元起 · 无月费",
-        "hi": "₩5,900 से · कोई मासिक शुल्क नहीं"
-      },
-      "title": {
-        "kr": "명함 사진 한 장, 5분이면 완성 — 오토명함",
-        "en": "One card photo, done in 5 minutes — AutoCard",
-        "jp": "名刺写真 1 枚、5 分で完成 — オート名刺",
-        "cn": "一张名片照片，5 分钟完成 — 自动名片",
-        "hi": "एक कार्ड फ़ोटो, 5 मिनट में तैयार — AutoCard"
-      },
-      "desc": {
-        "kr": "종이 명함 사진만 올리면 AI가 초안을 만들어 드립니다. 템플릿 6종 중 골라 바로 발행하고, 받은 사람은 카드북에 바로 저장해요.\n\"주고 끝나는 명함 말고, 저장되는 명함.\"",
-        "en": "Upload a photo of your paper card and AI drafts it for you. Pick from 6 templates and publish — recipients save it straight to CardBook.\n\"Not a card that's forgotten — a card that gets saved.\"",
-        "jp": "紙の名刺の写真を上げるだけで AI が下書きを作成。6 種のテンプレートから選んですぐ発行、受け取った人はカードブックにすぐ保存できます。\n「渡して終わる名刺ではなく、保存される名刺。」",
-        "cn": "只需上传纸质名片照片，AI 即可生成初稿。从 6 种模板中选择即刻发布，对方可直接存入名片册。\n“不是递出就结束的名片，而是会被保存的名片。”",
-        "hi": "अपने पेपर कार्ड की फ़ोटो अपलोड करें और AI ड्राफ़्ट बना देगा। 6 टेम्पलेट में से चुनें और तुरंत प्रकाशित करें — प्राप्तकर्ता इसे सीधे CardBook में सेव कर सकते हैं।"
-      },
-      "button": {
-        "url": "https://jinjjabg-hub.github.io/autocard/",
-        "label": {
-          "kr": "오토명함 만들기",
-          "en": "Make an AutoCard",
-          "jp": "オート名刺を作る",
-          "cn": "制作自动名片",
-          "hi": "AutoCard बनाएं"
-        }
-      },
-      "links": [
-        {
-          "url": "https://jinjjabg-hub.github.io/T.M-LINK/#app-autocard",
-          "label": {
-            "kr": "오토명함 자세히 보기 (TM LINK)",
-            "en": "More about AutoCard (TM LINK)",
-            "jp": "オート名刺の詳細（TM LINK）",
-            "cn": "了解自动名片（TM LINK）",
-            "hi": "AutoCard के बारे में (TM LINK)"
-          }
-        }
-      ]
-    },
     {
       "id": "mandu-messenger",
       "type": "product",
@@ -152,6 +103,57 @@
             "jp": "カードブックの詳細（TM LINK）",
             "cn": "了解名片册（TM LINK）",
             "hi": "CardBook के बारे में (TM LINK)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "autocard-launch",
+      "type": "product",
+      "date": "2026-10-03",
+      "images": [
+        "news/autocard.webp"
+      ],
+      "price": {
+        "kr": "5,900원부터 · 월 요금 없음",
+        "en": "From ₩5,900 · no monthly fee",
+        "jp": "5,900ウォンから · 月額料金なし",
+        "cn": "5,900韩元起 · 无月费",
+        "hi": "₩5,900 से · कोई मासिक शुल्क नहीं"
+      },
+      "title": {
+        "kr": "명함 사진 한 장, 5분이면 완성 — 오토명함",
+        "en": "One card photo, done in 5 minutes — AutoCard",
+        "jp": "名刺写真 1 枚、5 分で完成 — オート名刺",
+        "cn": "一张名片照片，5 分钟完成 — 自动名片",
+        "hi": "एक कार्ड फ़ोटो, 5 मिनट में तैयार — AutoCard"
+      },
+      "desc": {
+        "kr": "종이 명함 사진만 올리면 AI가 초안을 만들어 드립니다. 템플릿 6종 중 골라 바로 발행하고, 받은 사람은 카드북에 바로 저장해요.\n\"주고 끝나는 명함 말고, 저장되는 명함.\"",
+        "en": "Upload a photo of your paper card and AI drafts it for you. Pick from 6 templates and publish — recipients save it straight to CardBook.\n\"Not a card that's forgotten — a card that gets saved.\"",
+        "jp": "紙の名刺の写真を上げるだけで AI が下書きを作成。6 種のテンプレートから選んですぐ発行、受け取った人はカードブックにすぐ保存できます。\n「渡して終わる名刺ではなく、保存される名刺。」",
+        "cn": "只需上传纸质名片照片，AI 即可生成初稿。从 6 种模板中选择即刻发布，对方可直接存入名片册。\n“不是递出就结束的名片，而是会被保存的名片。”",
+        "hi": "अपने पेपर कार्ड की फ़ोटो अपलोड करें और AI ड्राफ़्ट बना देगा। 6 टेम्पलेट में से चुनें और तुरंत प्रकाशित करें — प्राप्तकर्ता इसे सीधे CardBook में सेव कर सकते हैं।"
+      },
+      "button": {
+        "url": "https://jinjjabg-hub.github.io/autocard/",
+        "label": {
+          "kr": "오토명함 만들기",
+          "en": "Make an AutoCard",
+          "jp": "オート名刺を作る",
+          "cn": "制作自动名片",
+          "hi": "AutoCard बनाएं"
+        }
+      },
+      "links": [
+        {
+          "url": "https://jinjjabg-hub.github.io/T.M-LINK/#app-autocard",
+          "label": {
+            "kr": "오토명함 자세히 보기 (TM LINK)",
+            "en": "More about AutoCard (TM LINK)",
+            "jp": "オート名刺の詳細（TM LINK）",
+            "cn": "了解自动名片（TM LINK）",
+            "hi": "AutoCard के बारे में (TM LINK)"
           }
         }
       ]
