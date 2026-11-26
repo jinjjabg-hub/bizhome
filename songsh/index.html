@@ -157,11 +157,15 @@ div[data-lang].active,p[data-lang].active{display:block;}
 .career-d{font-size:12px;line-height:1.7;color:rgba(255,255,255,0.65);}
 
 /* ===== CONTACT ===== */
-/* ===== 파이오니어 멤버 (목록은 bnich.bizmy.net/pioneer/members.js 한 곳에서 관리) ===== */
+/* ===== 믿고 소개하는 BNI 멤버 (목록은 스크립트 PARTNERS) ===== */
 .mem .sec-title{margin-bottom:8px;}
 .mem-sub{font-size:12.5px;line-height:1.7;color:rgba(255,255,255,0.65);margin-bottom:16px;}
 .mem-toggle{width:100%;min-height:48px;padding:13px;border-radius:12px;border:1px solid rgba(212,165,55,0.45);background:rgba(255,255,255,0.05);color:#fff;font:inherit;font-size:14px;font-weight:700;cursor:pointer;}
-.mem-box{margin-top:14px;}
+.mem-box{margin-top:6px;}
+.mem-cat{font-size:13px;font-weight:900;color:var(--gold-soft);margin:18px 0 8px;}
+.mem-cat small{font-size:11px;font-weight:700;color:rgba(255,255,255,0.45);margin-left:4px;}
+.mem-ch{font-size:10.5px;color:rgba(255,255,255,0.5);margin-top:-4px;}
+.mem-tag.ask{color:rgba(255,255,255,0.6);padding-left:0;padding-right:0;}
 .mem-list{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 .mem-item{display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;gap:8px;min-height:84px;padding:12px;border-radius:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#fff;text-decoration:none;}
 .mem-item:active{transform:scale(0.97);}
@@ -169,9 +173,6 @@ div[data-lang].active,p[data-lang].active{display:block;}
 .mem-tag{font-size:11px;font-weight:700;padding:5px 10px;border-radius:12px;white-space:nowrap;}
 .mem-tag.home{background:var(--gold);color:#143c31;}
 .mem-tag.img{border:1px solid rgba(255,255,255,0.35);color:rgba(255,255,255,0.8);}
-.mem-more{margin-top:12px;padding:14px;border-radius:12px;background:rgba(255,255,255,0.05);font-size:12px;line-height:1.9;color:rgba(255,255,255,0.7);}
-.mem-more b{display:block;font-size:11px;letter-spacing:0.06em;color:var(--gold-soft);margin-bottom:4px;}
-.mem-chapter{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:12px;min-height:48px;border-radius:12px;background:var(--gold);color:#143c31;font-size:14px;font-weight:900;text-decoration:none;}
 .mem-pop{display:none;position:fixed;inset:0;z-index:300;background:rgba(10,10,10,0.88);align-items:center;justify-content:center;padding:16px;}
 .mem-pop.on{display:flex;}
 .mem-pop-box{width:100%;max-width:430px;display:flex;flex-direction:column;gap:12px;}
@@ -754,36 +755,25 @@ footer{background:var(--light);text-align:center;padding:28px 24px 40px;}
     </div>
   </div>
 
-  <!-- PIONEER MEMBERS : 목록은 파이오니어 챕터 비즈홈의 members.js 를 그대로 불러옴 -->
-  <div class="sec mem" id="pioneerMembers" hidden>
-    <div class="sec-label">PIONEER MEMBERS</div>
+  <!-- REFERRAL NETWORK : 내가 소개해 줄 수 있는 BNI 멤버 (목록은 아래 스크립트 PARTNERS 에서 관리) -->
+  <div class="sec mem" id="partners">
+    <div class="sec-label">REFERRAL NETWORK</div>
     <div class="sec-title">
-      <span data-lang="kr" class="active">파이오니어 멤버</span>
-      <span data-lang="en">Pioneer Members</span>
-      <span data-lang="jp">パイオニアのメンバー</span>
-      <span data-lang="cn">先锋分会成员</span>
-      <span data-lang="hi">पायनियर सदस्य</span>
+      <span data-lang="kr" class="active">믿고 소개해 드리는 분들</span>
+      <span data-lang="en">People I Can Refer You To</span>
+      <span data-lang="jp">安心してご紹介できる方々</span>
+      <span data-lang="cn">我可以放心推荐的人</span>
+      <span data-lang="hi">जिन्हें मैं भरोसे से रेफ़र करता हूँ</span>
     </div>
     <p class="mem-sub">
-      <span data-lang="kr" class="active">제가 함께하는 BNI 파이오니어 챕터의 멤버들입니다. 업종별로 한 명씩 — 필요한 분야가 있으면 눌러서 바로 연결하세요.</span>
-      <span data-lang="en">Fellow members of my BNI Pioneer Chapter — one per profession. Tap a field you need to connect right away.</span>
-      <span data-lang="jp">私が所属するBNIパイオニアチャプターのメンバーです。1業種1名 — 必要な分野をタップしてすぐつながってください。</span>
-      <span data-lang="cn">这是我所在的BNI先锋分会成员，每个行业一位 — 点击您需要的领域即可直接联系。</span>
-      <span data-lang="hi">मेरे BNI पायनियर चैप्टर के सदस्य — हर पेशे से एक। जिस क्षेत्र की ज़रूरत हो, टैप करके तुरंत जुड़ें।</span>
+      <span data-lang="kr" class="active">BNI 파이오니어·자이언츠 챕터에서 함께하며 일하는 방식을 직접 확인한 분들입니다. 필요한 분야가 있으면 눌러서 연결하시거나, 저에게 말씀해 주시면 직접 소개해 드립니다.</span>
+      <span data-lang="en">Members of BNI Pioneer & Giants chapters whose work I know firsthand. Tap a field to connect, or ask me and I'll introduce you personally.</span>
+      <span data-lang="jp">BNIパイオニア・ジャイアンツチャプターで共に活動し、仕事ぶりを直接確かめた方々です。必要な分野をタップするか、私に声をかけていただければ直接ご紹介します。</span>
+      <span data-lang="cn">这些是我在BNI先锋·巨人分会中共事、亲自了解其工作方式的成员。点击所需领域即可联系，或告诉我，由我亲自为您介绍。</span>
+      <span data-lang="hi">BNI पायनियर व जायंट्स चैप्टर के सदस्य, जिनका काम मैंने खुद देखा है। ज़रूरी क्षेत्र पर टैप करें या मुझसे कहें, मैं खुद परिचय कराऊँगा।</span>
     </p>
     <button type="button" class="mem-toggle" id="memToggle" aria-expanded="false" aria-controls="memBox"></button>
-    <div class="mem-box" id="memBox" hidden>
-      <div class="mem-list" id="memList"></div>
-      <div class="mem-more" id="memMore" hidden></div>
-    </div>
-    <a class="mem-chapter" href="https://bnich.bizmy.net/pioneer/">
-      <span data-lang="kr" class="active">파이오니어 챕터 비즈홈 보기</span>
-      <span data-lang="en">Visit the Pioneer Chapter Biz Home</span>
-      <span data-lang="jp">パイオニアチャプターのビズホームを見る</span>
-      <span data-lang="cn">查看先锋分会商务主页</span>
-      <span data-lang="hi">पायनियर चैप्टर बिज़होम देखें</span>
-      <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>
-    </a>
+    <div class="mem-box" id="memBox" hidden></div>
   </div>
   <div class="mem-pop" id="memPop" role="dialog" aria-modal="true">
     <div class="mem-pop-box">
@@ -796,7 +786,7 @@ footer{background:var(--light);text-align:center;padding:28px 24px 40px;}
   </div>
 
   <!-- CONTACT -->
-  <div class="sec contact">
+  <div class="sec contact" id="contact">
     <div class="sec-label">CONTACT</div>
     <div class="sec-title">
       <span data-lang="kr" class="active">연결되어 있겠습니다</span>
@@ -1106,66 +1096,98 @@ async function activateMandu() {
 })();
 </script>
 <script>
-/* ===== 파이오니어 멤버 섹션 =====
-   목록 원본: 파이오니어 챕터 비즈홈의 members.js (멤버가 바뀌면 그 파일만 고치면 여기도 자동 반영)
-   members.js 의 주소는 pioneer/ 폴더 기준 상대경로라서 BASE 로 절대주소로 바꿔 씀. 내 비즈홈(SELF)은 목록에서 뺌. */
+/* ===== 믿고 소개하는 BNI 멤버 =====
+   n = 이름(관리용, 화면에는 업종만), ch = 챕터(P 파이오니어 · G 자이언츠), cat = 업종 묶음(CATS),
+   home = 비즈홈/카드 주소, card = 이미지명함(누르면 팝업), tel = 팝업 전화번호. 링크가 없으면 업종만 보임.
+   순서 = 화면 순서. 사람을 넣고 빼려면 이 목록만 고치면 됩니다. */
+var PARTNERS = [
+  { n:'이채홍', ch:'P', cat:'law', job:{kr:'법무사(형사사건 전문)', en:'Judicial scrivener (criminal cases)', jp:'司法書士（刑事事件専門）', cn:'法务师（专攻刑事案件）', hi:'न्यायिक लेखक (आपराधिक मामले)'}, home:'https://bnich.bizmy.net/이채홍/' },
+  { n:'김여련', ch:'P', cat:'law', job:{kr:'변호사', en:'Attorney', jp:'弁護士', cn:'律师', hi:'वकील'}, card:'https://bnich.bizmy.net/pioneer/cards/lawyer.jpg', tel:'010-4758-5457' },
+  { n:'정율채', ch:'G', cat:'law', job:{kr:'외국인 비자 행정사', en:'Immigration & visa agent', jp:'外国人ビザ行政書士', cn:'外国人签证行政师', hi:'विदेशी वीज़ा एजेंट'}, home:'https://jinjjabg-hub.github.io/bni-giants/정율채/' },
+  { n:'박지형', ch:'P', cat:'law', job:{kr:'세무', en:'Tax services', jp:'税務', cn:'税务', hi:'टैक्स सेवाएँ'}, card:'https://bnich.bizmy.net/pioneer/cards/tax.jpg', tel:'010-8759-9115' },
+  { n:'장재영', ch:'G', cat:'law', job:{kr:'세무사(세무기장)', en:'Tax accountant (bookkeeping)', jp:'税理士（記帳代行）', cn:'税务师（记账）', hi:'टैक्स अकाउंटेंट (बहीखाता)'} },
+  { n:'심학봉', ch:'P', cat:'law', job:{kr:'손해보험', en:'Property & casualty insurance', jp:'損害保険', cn:'财产保险', hi:'संपत्ति व दुर्घटना बीमा'}, card:'https://bnich.bizmy.net/pioneer/cards/pc-insurance.jpg', tel:'010-5535-4004' },
+  { n:'정상현', ch:'P', cat:'law', job:{kr:'해외보험금융', en:'Overseas insurance & finance', jp:'海外保険金融', cn:'海外保险金融', hi:'विदेशी बीमा व वित्त'}, home:'https://bnich.bizmy.net/정상현/' },
+  { n:'박미성', ch:'P', cat:'biz', job:{kr:'경영컨설팅', en:'Management consulting', jp:'経営コンサルティング', cn:'经营咨询', hi:'प्रबंधन परामर्श'}, home:'https://bnich.bizmy.net/박미성/' },
+  { n:'김지현', ch:'P', cat:'biz', job:{kr:'숙박업 컨설팅', en:'Lodging business consulting', jp:'宿泊業コンサルティング', cn:'住宿业咨询', hi:'होटल व्यवसाय परामर्श'}, home:'https://bnich.bizmy.net/김지현/' },
+  { n:'박진성', ch:'P', cat:'biz', job:{kr:'부동산 중개·컨설팅', en:'Real estate brokerage & consulting', jp:'不動産仲介・コンサルティング', cn:'房地产中介·咨询', hi:'रियल एस्टेट ब्रोकरेज व परामर्श'}, home:'https://bnich.bizmy.net/박진성/' },
+  { n:'김준래', ch:'G', cat:'space', job:{kr:'실내 인테리어', en:'Interior design & remodeling', jp:'室内インテリア', cn:'室内装修', hi:'इंटीरियर डिज़ाइन'}, home:'https://jinjjabg-hub.github.io/bni-giants/김준래/' },
+  { n:'최현민', ch:'G', cat:'space', job:{kr:'상업공간 설계·시공(병원·호텔·카페)', en:'Commercial interiors (clinics, hotels, cafés)', jp:'商業空間の設計・施工（病院・ホテル・カフェ）', cn:'商业空间设计施工（医院·酒店·咖啡厅）', hi:'व्यावसायिक इंटीरियर (क्लिनिक, होटल, कैफ़े)'}, home:'https://jinjjabg-hub.github.io/bni-giants/최현민/' },
+  { n:'정래권', ch:'G', cat:'space', job:{kr:'조명(설계·제조·시공·AS)', en:'Lighting (design, manufacturing, installation, A/S)', jp:'照明（設計・製造・施工・AS）', cn:'照明（设计·制造·施工·售后）', hi:'लाइटिंग (डिज़ाइन, निर्माण, इंस्टॉलेशन, सर्विस)'}, home:'https://gochfl.github.io/namecard/' },
+  { n:'조은영', ch:'P', cat:'space', job:{kr:'냉동공조·실내공기정화 솔루션', en:'Refrigeration, HVAC & indoor air purification', jp:'冷凍空調・室内空気清浄ソリューション', cn:'冷冻空调·室内空气净化方案', hi:'रेफ्रिजरेशन, HVAC व इनडोर वायु शुद्धिकरण'}, home:'https://bnich.bizmy.net/조은영/' },
+  { n:'정명수', ch:'P', cat:'space', job:{kr:'에어컨 설치·관리', en:'A/C installation & maintenance', jp:'エアコン設置・管理', cn:'空调安装·维护', hi:'एसी इंस्टॉलेशन व रखरखाव'}, card:'https://bnich.bizmy.net/pioneer/cards/aircon.jpg', tel:'010-7287-8707' },
+  { n:'박선영', ch:'P', cat:'space', job:{kr:'안전용품(작업화·작업복·실리콘)', en:'Safety gear (work shoes, workwear, silicone)', jp:'安全用品（作業靴・作業服・シリコン）', cn:'安全用品（工作鞋·工作服·硅胶）', hi:'सुरक्षा उपकरण (वर्क शूज़, वर्कवियर, सिलिकॉन)'}, home:'https://bnich.bizmy.net/박선영/' },
+  { n:'김근우', ch:'P', cat:'media', job:{kr:'인쇄·디자인', en:'Printing & design', jp:'印刷・デザイン', cn:'印刷·设计', hi:'प्रिंटिंग व डिज़ाइन'}, home:'https://bnich.bizmy.net/김근우/' },
+  { n:'박영심', ch:'G', cat:'media', job:{kr:'서비스 디자인', en:'Service design', jp:'サービスデザイン', cn:'服务设计', hi:'सर्विस डिज़ाइन'}, home:'https://jinjjabg-hub.github.io/bni-giants/박영심/' },
+  { n:'박성준', ch:'G', cat:'media', job:{kr:'방송장비·전광판', en:'Broadcast equipment & LED displays', jp:'放送機材・電光掲示板', cn:'广播设备·电子屏', hi:'ब्रॉडकास्ट उपकरण व LED डिस्प्ले'}, home:'https://jinjjabg-hub.github.io/bni-giants/박성준/' },
+  { n:'김정훈', ch:'G', cat:'media', job:{kr:'상패·트로피 제작', en:'Plaques & trophies', jp:'記念盾・トロフィー製作', cn:'奖牌·奖杯制作', hi:'पट्टिका व ट्रॉफ़ी निर्माण'} },
+  { n:'박진호', ch:'G', cat:'media', job:{kr:'기업 인터넷·보안', en:'Business internet & security', jp:'企業向けインターネット・セキュリティ', cn:'企业网络·安防', hi:'बिज़नेस इंटरनेट व सुरक्षा'}, home:'https://jinjjabg-hub.github.io/bni-giants/박진호/' },
+  { n:'김태원', ch:'G', cat:'media', job:{kr:'데이터 복구', en:'Data recovery', jp:'データ復旧', cn:'数据恢复', hi:'डेटा रिकवरी'} },
+  { n:'고영래', ch:'G', cat:'health', job:{kr:'피부과(스킨부스터)', en:'Dermatology (skin boosters)', jp:'皮膚科（スキンブースター）', cn:'皮肤科（水光注射）', hi:'त्वचा रोग क्लिनिक (स्किन बूस्टर)'}, home:'https://jinjjabg-hub.github.io/bni-giants/고영래/' },
+  { n:'우완용', ch:'G', cat:'health', job:{kr:'한의원(공진단·보약)', en:'Korean medicine clinic', jp:'韓方医院（漢方薬）', cn:'韩医院（补药）', hi:'कोरियाई पारंपरिक चिकित्सा'}, home:'https://jinjjabg-hub.github.io/bni-giants/우완용/' },
+  { n:'이화춘', ch:'P', cat:'health', job:{kr:'반영구 뷰티', en:'Semi-permanent makeup', jp:'アートメイク', cn:'半永久化妆', hi:'सेमी-परमानेंट मेकअप'}, home:'https://bnich.bizmy.net/이화춘/' },
+  { n:'윤민수', ch:'P', cat:'health', job:{kr:'태닝', en:'Tanning salon', jp:'日焼けサロン', cn:'美黑', hi:'टैनिंग सैलून'}, home:'https://bnich.bizmy.net/윤민수/' },
+  { n:'강라감', ch:'G', cat:'life', job:{kr:'횟집(광안리, 단체 100명)', en:'Seafood restaurant (Gwangalli, groups up to 100)', jp:'刺身店（広安里・団体100名）', cn:'生鱼片餐厅（广安里，可容纳100人）', hi:'सीफ़ूड रेस्टोरेंट (ग्वांगअल्ली, 100 लोग तक)'}, home:'https://jinjjabg-hub.github.io/bni-giants/강라감/' },
+  { n:'문성우', ch:'P', cat:'life', job:{kr:'요식업(고기구이)', en:'Restaurant (grilled meat)', jp:'飲食業（焼肉）', cn:'餐饮（烤肉）', hi:'रेस्टोरेंट (ग्रिल्ड मीट)'}, card:'https://bnich.bizmy.net/pioneer/cards/bbq.jpg', tel:'010-6695-9659' },
+  { n:'임춘식', ch:'P', cat:'life', job:{kr:'꽃·화환 유통', en:'Flowers & wreath distribution', jp:'花・花輪の流通', cn:'鲜花·花环流通', hi:'फूल व पुष्पमाला वितरण'}, home:'https://bnich.bizmy.net/임춘식/' },
+  { n:'마루이', ch:'P', cat:'life', job:{kr:'맞춤 수제 양복', en:'Custom tailored suits', jp:'オーダーメイドスーツ', cn:'定制手工西装', hi:'कस्टम सिले सूट'}, card:'https://bnich.bizmy.net/pioneer/cards/suit.jpg', tel:'010-4097-4854' },
+  { n:'김경태', ch:'P', cat:'life', job:{kr:'상조서비스', en:'Funeral services', jp:'葬儀サービス', cn:'殡葬服务', hi:'अंतिम संस्कार सेवाएँ'}, home:'https://bnich.bizmy.net/김경태/' },
+  { n:'홍정택', ch:'P', cat:'life', job:{kr:'경호', en:'Bodyguard & security services', jp:'警護', cn:'安保护卫', hi:'बॉडीगार्ड व सुरक्षा सेवाएँ'}, card:'https://bnich.bizmy.net/pioneer/cards/security.jpg', tel:'010-5551-8096' },
+];
+var CATS = [
+  { id:'law',    t:{kr:'법률·세무·보험', en:'Legal, tax & insurance', jp:'法律・税務・保険', cn:'法律·税务·保险', hi:'कानून, टैक्स व बीमा'} },
+  { id:'biz',    t:{kr:'경영·숙박·부동산', en:'Business, lodging & real estate', jp:'経営・宿泊・不動産', cn:'经营·住宿·房地产', hi:'व्यवसाय, होटल व रियल एस्टेट'} },
+  { id:'space',  t:{kr:'인테리어·설비·조명', en:'Interiors, facilities & lighting', jp:'インテリア・設備・照明', cn:'装修·设备·照明', hi:'इंटीरियर, सुविधाएँ व लाइटिंग'} },
+  { id:'media',  t:{kr:'디자인·광고·IT', en:'Design, advertising & IT', jp:'デザイン・広告・IT', cn:'设计·广告·IT', hi:'डिज़ाइन, विज्ञापन व IT'} },
+  { id:'health', t:{kr:'의료·뷰티', en:'Medical & beauty', jp:'医療・美容', cn:'医疗·美容', hi:'चिकित्सा व सौंदर्य'} },
+  { id:'life',   t:{kr:'음식·생활·행사', en:'Food, lifestyle & events', jp:'飲食・生活・イベント', cn:'餐饮·生活·活动', hi:'भोजन, जीवनशैली व आयोजन'} }
+];
 (function(){
-  var BASE = 'https://bnich.bizmy.net/pioneer/';
-  var SELF = '송승훈';
   var LANGS = ['kr','en','jp','cn','hi'];
   var TX = {
-    open:  {kr:'멤버 업종 {n}개 보기 ▾', en:'See all {n} member professions ▾', jp:'メンバー{n}業種を見る ▾', cn:'查看全部{n}个成员行业 ▾', hi:'सभी {n} सदस्य पेशे देखें ▾'},
+    open:  {kr:'업종 {n}개 보기 ▾', en:'See all {n} professions ▾', jp:'{n}業種を見る ▾', cn:'查看全部{n}个行业 ▾', hi:'सभी {n} पेशे देखें ▾'},
     close: {kr:'접기 ▴', en:'Hide ▴', jp:'閉じる ▴', cn:'收起 ▴', hi:'छिपाएँ ▴'},
     home:  {kr:'비즈홈 →', en:'Biz Home →', jp:'ビズホーム →', cn:'商务主页 →', hi:'बिज़होम →'},
     card:  {kr:'이미지명함 →', en:'Image card →', jp:'画像名刺 →', cn:'图片名片 →', hi:'इमेज कार्ड →'},
-    more:  {kr:'함께하는 업종 (비즈홈 준비 중)', en:'Also in the chapter (Biz Home coming soon)', jp:'その他の業種（ビズホーム準備中）', cn:'其他行业（商务主页准备中）', hi:'चैप्टर में और भी (बिज़होम जल्द)'},
+    ask:   {kr:'저에게 문의', en:'Ask me', jp:'私にご相談', cn:'请联系我', hi:'मुझसे पूछें'},
+    P:     {kr:'파이오니어', en:'Pioneer', jp:'パイオニア', cn:'先锋', hi:'पायनियर'},
+    G:     {kr:'자이언츠', en:'Giants', jp:'ジャイアンツ', cn:'巨人', hi:'जायंट्स'},
     call:  {kr:'전화하기', en:'Call', jp:'電話する', cn:'拨打电话', hi:'कॉल करें'},
     shut:  {kr:'닫기', en:'Close', jp:'閉じる', cn:'关闭', hi:'बंद करें'}
   };
   function lang(){ var b=document.querySelector('.lang-btn.on'); var l=b?b.textContent.trim().toLowerCase():'kr'; return LANGS.indexOf(l)>-1?l:'kr'; }
   function esc(t){ return String(t==null?'':t).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
-  function ml(t){ var cur=lang(); return LANGS.map(function(l){ return '<span data-lang="'+l+'"'+(l===cur?' class="active"':'')+'>'+esc(t[l]||t.kr)+'</span>'; }).join(''); }
-  function abs(u){ try{ return new URL(u, BASE).href; }catch(e){ return u; } }
+  function ml(t,f){ var cur=lang(); return LANGS.map(function(l){ var v=t[l]||t.kr; return '<span data-lang="'+l+'"'+(l===cur?' class="active"':'')+'>'+esc(f?f(v):v)+'</span>'; }).join(''); }
 
-  var members = [];
   var box = document.getElementById('memBox'), tog = document.getElementById('memToggle');
   function togText(){
-    var t = box.hidden ? TX.open : TX.close;
-    var n = members.length;
-    var cur = lang();
-    tog.innerHTML = LANGS.map(function(l){ return '<span data-lang="'+l+'"'+(l===cur?' class="active"':'')+'>'+esc(t[l].replace('{n}', n))+'</span>'; }).join('');
+    tog.innerHTML = ml(box.hidden ? TX.open : TX.close, function(v){ return v.replace('{n}', PARTNERS.length); });
     tog.setAttribute('aria-expanded', String(!box.hidden));
   }
   tog.addEventListener('click', function(){ box.hidden = !box.hidden; togText(); });
 
-  function render(){
-    members = (window.PIONEER_MEMBERS || []).filter(function(m){ return m.name !== SELF; });
-    if (!members.length) return;
-    var items = [];
-    members.forEach(function(m, i){
-      if (m.home) items.push('<a class="mem-item" href="'+esc(abs(m.home))+'"><div class="mem-name">'+ml(m.job)+'</div><span class="mem-tag home">'+ml(TX.home)+'</span></a>');
-      else if (m.card) items.push('<a class="mem-item" href="'+esc(abs(m.card))+'" data-i="'+i+'"><div class="mem-name">'+ml(m.job)+'</div><span class="mem-tag img">'+ml(TX.card)+'</span></a>');
+  var h = '';
+  CATS.forEach(function(c){
+    var list = PARTNERS.filter(function(m){ return m.cat === c.id; });
+    if (!list.length) return;
+    h += '<div class="mem-cat">' + ml(c.t) + ' <small>' + list.length + '</small></div><div class="mem-list">';
+    list.forEach(function(m){
+      var i = PARTNERS.indexOf(m);
+      var top = '<div class="mem-name">' + ml(m.job) + '</div><span class="mem-ch">' + ml(TX[m.ch]) + '</span>';
+      if (m.home) h += '<a class="mem-item" href="' + esc(m.home) + '">' + top + '<span class="mem-tag home">' + ml(TX.home) + '</span></a>';
+      else if (m.card) h += '<a class="mem-item" href="' + esc(m.card) + '" data-i="' + i + '">' + top + '<span class="mem-tag img">' + ml(TX.card) + '</span></a>';
+      else h += '<a class="mem-item plain" href="#contact">' + top + '<span class="mem-tag ask">' + ml(TX.ask) + '</span></a>';
     });
-    document.getElementById('memList').innerHTML = items.join('');
-    var rest = members.filter(function(m){ return !m.home && !m.card; });
-    var more = document.getElementById('memMore');
-    if (rest.length){
-      var cur = lang();
-      more.innerHTML = '<b>'+ml(TX.more)+'</b>' + LANGS.map(function(l){ return '<span data-lang="'+l+'"'+(l===cur?' class="active"':'')+'>'+esc(rest.map(function(m){ return m.job[l]||m.job.kr; }).join(' · '))+'</span>'; }).join('');
-      more.hidden = false;
-    }
-    [].forEach.call(document.querySelectorAll('#memList [data-i]'), function(a){
-      a.addEventListener('click', function(e){ e.preventDefault(); openCard(members[+a.getAttribute('data-i')]); });
-    });
-    togText();
-    document.getElementById('pioneerMembers').hidden = false;
-  }
+    h += '</div>';
+  });
+  box.innerHTML = h;
+  togText();
 
   var pop = document.getElementById('memPop');
   function openCard(m){
     var cur = lang();
     var img = document.getElementById('memPopImg');
-    img.src = abs(m.card); img.alt = m.job[cur] || m.job.kr;
+    img.src = m.card; img.alt = m.job[cur] || m.job.kr;
     var call = document.getElementById('memPopCall');
     call.style.display = m.tel ? '' : 'none';
     if (m.tel){ call.href = 'tel:' + m.tel.replace(/[^0-9]/g,''); call.querySelector('span').textContent = TX.call[cur]; }
@@ -1173,15 +1195,12 @@ async function activateMandu() {
     pop.classList.add('on'); document.body.style.overflow = 'hidden';
   }
   function closeCard(){ pop.classList.remove('on'); document.body.style.overflow = ''; }
+  [].forEach.call(box.querySelectorAll('[data-i]'), function(a){
+    a.addEventListener('click', function(e){ e.preventDefault(); openCard(PARTNERS[+a.getAttribute('data-i')]); });
+  });
   document.getElementById('memPopClose').addEventListener('click', closeCard);
   pop.addEventListener('click', function(e){ if (e.target === pop) closeCard(); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeCard(); });
-
-  // 목록 불러오기 (불러오지 못하면 섹션은 숨긴 채로 둠)
-  var sc = document.createElement('script');
-  sc.src = BASE + 'members.js';
-  sc.onload = render;
-  document.body.appendChild(sc);
 })();
 </script>
 <script src="../news-board.js" data-src="news.json" data-log="https://script.google.com/macros/s/AKfycbz5VDYuWaAQiE9jxZ9r4dew_DgOyMuB_lj1P0K9YCtY1APweG-iKg7T5IZHqylLojbE/exec" defer></script>
