@@ -157,6 +157,29 @@ div[data-lang].active,p[data-lang].active{display:block;}
 .career-d{font-size:12px;line-height:1.7;color:rgba(255,255,255,0.65);}
 
 /* ===== CONTACT ===== */
+/* ===== 파이오니어 멤버 (목록은 bnich.bizmy.net/pioneer/members.js 한 곳에서 관리) ===== */
+.mem .sec-title{margin-bottom:8px;}
+.mem-sub{font-size:12.5px;line-height:1.7;color:rgba(255,255,255,0.65);margin-bottom:16px;}
+.mem-toggle{width:100%;min-height:48px;padding:13px;border-radius:12px;border:1px solid rgba(212,165,55,0.45);background:rgba(255,255,255,0.05);color:#fff;font:inherit;font-size:14px;font-weight:700;cursor:pointer;}
+.mem-box{margin-top:14px;}
+.mem-list{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.mem-item{display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;gap:8px;min-height:84px;padding:12px;border-radius:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#fff;text-decoration:none;}
+.mem-item:active{transform:scale(0.97);}
+.mem-name{font-size:13px;font-weight:700;line-height:1.4;}
+.mem-tag{font-size:11px;font-weight:700;padding:5px 10px;border-radius:12px;white-space:nowrap;}
+.mem-tag.home{background:var(--gold);color:#143c31;}
+.mem-tag.img{border:1px solid rgba(255,255,255,0.35);color:rgba(255,255,255,0.8);}
+.mem-more{margin-top:12px;padding:14px;border-radius:12px;background:rgba(255,255,255,0.05);font-size:12px;line-height:1.9;color:rgba(255,255,255,0.7);}
+.mem-more b{display:block;font-size:11px;letter-spacing:0.06em;color:var(--gold-soft);margin-bottom:4px;}
+.mem-chapter{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:12px;min-height:48px;border-radius:12px;background:var(--gold);color:#143c31;font-size:14px;font-weight:900;text-decoration:none;}
+.mem-pop{display:none;position:fixed;inset:0;z-index:300;background:rgba(10,10,10,0.88);align-items:center;justify-content:center;padding:16px;}
+.mem-pop.on{display:flex;}
+.mem-pop-box{width:100%;max-width:430px;display:flex;flex-direction:column;gap:12px;}
+.mem-pop-box img{width:100%;max-height:72vh;object-fit:contain;border-radius:10px;background:#fff;}
+.mem-pop-btns{display:flex;gap:10px;}
+.mem-pop-btns a,.mem-pop-btns button{flex:1;min-height:48px;display:flex;align-items:center;justify-content:center;gap:6px;border-radius:12px;font:inherit;font-size:14px;font-weight:700;text-decoration:none;cursor:pointer;}
+.mem-pop-call{background:var(--gold);color:#143c31;border:0;}
+.mem-pop-close{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.4);}
 .contact{background:var(--light);color:var(--dark);}
 .contact .sec-label{color:#a07c1e;}
 .contact .sec-title{color:var(--dark);}
@@ -731,6 +754,47 @@ footer{background:var(--light);text-align:center;padding:28px 24px 40px;}
     </div>
   </div>
 
+  <!-- PIONEER MEMBERS : 목록은 파이오니어 챕터 비즈홈의 members.js 를 그대로 불러옴 -->
+  <div class="sec mem" id="pioneerMembers" hidden>
+    <div class="sec-label">PIONEER MEMBERS</div>
+    <div class="sec-title">
+      <span data-lang="kr" class="active">파이오니어 멤버</span>
+      <span data-lang="en">Pioneer Members</span>
+      <span data-lang="jp">パイオニアのメンバー</span>
+      <span data-lang="cn">先锋分会成员</span>
+      <span data-lang="hi">पायनियर सदस्य</span>
+    </div>
+    <p class="mem-sub">
+      <span data-lang="kr" class="active">제가 함께하는 BNI 파이오니어 챕터의 멤버들입니다. 업종별로 한 명씩 — 필요한 분야가 있으면 눌러서 바로 연결하세요.</span>
+      <span data-lang="en">Fellow members of my BNI Pioneer Chapter — one per profession. Tap a field you need to connect right away.</span>
+      <span data-lang="jp">私が所属するBNIパイオニアチャプターのメンバーです。1業種1名 — 必要な分野をタップしてすぐつながってください。</span>
+      <span data-lang="cn">这是我所在的BNI先锋分会成员，每个行业一位 — 点击您需要的领域即可直接联系。</span>
+      <span data-lang="hi">मेरे BNI पायनियर चैप्टर के सदस्य — हर पेशे से एक। जिस क्षेत्र की ज़रूरत हो, टैप करके तुरंत जुड़ें।</span>
+    </p>
+    <button type="button" class="mem-toggle" id="memToggle" aria-expanded="false" aria-controls="memBox"></button>
+    <div class="mem-box" id="memBox" hidden>
+      <div class="mem-list" id="memList"></div>
+      <div class="mem-more" id="memMore" hidden></div>
+    </div>
+    <a class="mem-chapter" href="https://bnich.bizmy.net/pioneer/">
+      <span data-lang="kr" class="active">파이오니어 챕터 비즈홈 보기</span>
+      <span data-lang="en">Visit the Pioneer Chapter Biz Home</span>
+      <span data-lang="jp">パイオニアチャプターのビズホームを見る</span>
+      <span data-lang="cn">查看先锋分会商务主页</span>
+      <span data-lang="hi">पायनियर चैप्टर बिज़होम देखें</span>
+      <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>
+    </a>
+  </div>
+  <div class="mem-pop" id="memPop" role="dialog" aria-modal="true">
+    <div class="mem-pop-box">
+      <img id="memPopImg" alt="">
+      <div class="mem-pop-btns">
+        <a class="mem-pop-call" id="memPopCall" href="#"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg><span></span></a>
+        <button type="button" class="mem-pop-close" id="memPopClose"></button>
+      </div>
+    </div>
+  </div>
+
   <!-- CONTACT -->
   <div class="sec contact">
     <div class="sec-label">CONTACT</div>
@@ -1039,6 +1103,85 @@ async function activateMandu() {
     };
     document.body.appendChild(statBtn);
   });
+})();
+</script>
+<script>
+/* ===== 파이오니어 멤버 섹션 =====
+   목록 원본: 파이오니어 챕터 비즈홈의 members.js (멤버가 바뀌면 그 파일만 고치면 여기도 자동 반영)
+   members.js 의 주소는 pioneer/ 폴더 기준 상대경로라서 BASE 로 절대주소로 바꿔 씀. 내 비즈홈(SELF)은 목록에서 뺌. */
+(function(){
+  var BASE = 'https://bnich.bizmy.net/pioneer/';
+  var SELF = '송승훈';
+  var LANGS = ['kr','en','jp','cn','hi'];
+  var TX = {
+    open:  {kr:'멤버 업종 {n}개 보기 ▾', en:'See all {n} member professions ▾', jp:'メンバー{n}業種を見る ▾', cn:'查看全部{n}个成员行业 ▾', hi:'सभी {n} सदस्य पेशे देखें ▾'},
+    close: {kr:'접기 ▴', en:'Hide ▴', jp:'閉じる ▴', cn:'收起 ▴', hi:'छिपाएँ ▴'},
+    home:  {kr:'비즈홈 →', en:'Biz Home →', jp:'ビズホーム →', cn:'商务主页 →', hi:'बिज़होम →'},
+    card:  {kr:'이미지명함 →', en:'Image card →', jp:'画像名刺 →', cn:'图片名片 →', hi:'इमेज कार्ड →'},
+    more:  {kr:'함께하는 업종 (비즈홈 준비 중)', en:'Also in the chapter (Biz Home coming soon)', jp:'その他の業種（ビズホーム準備中）', cn:'其他行业（商务主页准备中）', hi:'चैप्टर में और भी (बिज़होम जल्द)'},
+    call:  {kr:'전화하기', en:'Call', jp:'電話する', cn:'拨打电话', hi:'कॉल करें'},
+    shut:  {kr:'닫기', en:'Close', jp:'閉じる', cn:'关闭', hi:'बंद करें'}
+  };
+  function lang(){ var b=document.querySelector('.lang-btn.on'); var l=b?b.textContent.trim().toLowerCase():'kr'; return LANGS.indexOf(l)>-1?l:'kr'; }
+  function esc(t){ return String(t==null?'':t).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+  function ml(t){ var cur=lang(); return LANGS.map(function(l){ return '<span data-lang="'+l+'"'+(l===cur?' class="active"':'')+'>'+esc(t[l]||t.kr)+'</span>'; }).join(''); }
+  function abs(u){ try{ return new URL(u, BASE).href; }catch(e){ return u; } }
+
+  var members = [];
+  var box = document.getElementById('memBox'), tog = document.getElementById('memToggle');
+  function togText(){
+    var t = box.hidden ? TX.open : TX.close;
+    var n = members.length;
+    var cur = lang();
+    tog.innerHTML = LANGS.map(function(l){ return '<span data-lang="'+l+'"'+(l===cur?' class="active"':'')+'>'+esc(t[l].replace('{n}', n))+'</span>'; }).join('');
+    tog.setAttribute('aria-expanded', String(!box.hidden));
+  }
+  tog.addEventListener('click', function(){ box.hidden = !box.hidden; togText(); });
+
+  function render(){
+    members = (window.PIONEER_MEMBERS || []).filter(function(m){ return m.name !== SELF; });
+    if (!members.length) return;
+    var items = [];
+    members.forEach(function(m, i){
+      if (m.home) items.push('<a class="mem-item" href="'+esc(abs(m.home))+'"><div class="mem-name">'+ml(m.job)+'</div><span class="mem-tag home">'+ml(TX.home)+'</span></a>');
+      else if (m.card) items.push('<a class="mem-item" href="'+esc(abs(m.card))+'" data-i="'+i+'"><div class="mem-name">'+ml(m.job)+'</div><span class="mem-tag img">'+ml(TX.card)+'</span></a>');
+    });
+    document.getElementById('memList').innerHTML = items.join('');
+    var rest = members.filter(function(m){ return !m.home && !m.card; });
+    var more = document.getElementById('memMore');
+    if (rest.length){
+      var cur = lang();
+      more.innerHTML = '<b>'+ml(TX.more)+'</b>' + LANGS.map(function(l){ return '<span data-lang="'+l+'"'+(l===cur?' class="active"':'')+'>'+esc(rest.map(function(m){ return m.job[l]||m.job.kr; }).join(' · '))+'</span>'; }).join('');
+      more.hidden = false;
+    }
+    [].forEach.call(document.querySelectorAll('#memList [data-i]'), function(a){
+      a.addEventListener('click', function(e){ e.preventDefault(); openCard(members[+a.getAttribute('data-i')]); });
+    });
+    togText();
+    document.getElementById('pioneerMembers').hidden = false;
+  }
+
+  var pop = document.getElementById('memPop');
+  function openCard(m){
+    var cur = lang();
+    var img = document.getElementById('memPopImg');
+    img.src = abs(m.card); img.alt = m.job[cur] || m.job.kr;
+    var call = document.getElementById('memPopCall');
+    call.style.display = m.tel ? '' : 'none';
+    if (m.tel){ call.href = 'tel:' + m.tel.replace(/[^0-9]/g,''); call.querySelector('span').textContent = TX.call[cur]; }
+    document.getElementById('memPopClose').textContent = TX.shut[cur];
+    pop.classList.add('on'); document.body.style.overflow = 'hidden';
+  }
+  function closeCard(){ pop.classList.remove('on'); document.body.style.overflow = ''; }
+  document.getElementById('memPopClose').addEventListener('click', closeCard);
+  pop.addEventListener('click', function(e){ if (e.target === pop) closeCard(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeCard(); });
+
+  // 목록 불러오기 (불러오지 못하면 섹션은 숨긴 채로 둠)
+  var sc = document.createElement('script');
+  sc.src = BASE + 'members.js';
+  sc.onload = render;
+  document.body.appendChild(sc);
 })();
 </script>
 <script src="../news-board.js" data-src="news.json" data-log="https://script.google.com/macros/s/AKfycbz5VDYuWaAQiE9jxZ9r4dew_DgOyMuB_lj1P0K9YCtY1APweG-iKg7T5IZHqylLojbE/exec" defer></script>

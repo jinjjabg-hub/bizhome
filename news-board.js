@@ -11,6 +11,11 @@
  *
  * 부하 설계: 배너는 최대 3장, 첫 장만 즉시 로드·나머지 이미지는 지연 로드,
  *           동영상은 누르기 전까지 썸네일만, news.json 은 페이지 로드 후 1회만 요청.
+ *
+ * news.json 선택 옵션:
+ *   "sort": "manual"  → 고정·날짜 정렬 없이 items 에 적힌 순서 그대로 보여줌
+ *   "slide": "tap"    → 자동 넘김 없이, 배너를 누르면 다음 소식으로 넘어감(마지막 다음은 처음).
+ *                       상세는 배너 안 '자세히 보기' 버튼으로 엶. 밀어서 넘기기·점 누르기도 됨.
  */
 (function () {
   'use strict';
@@ -23,6 +28,8 @@
 
   var UI = {
     head:   { kr: '새 소식', en: 'News', jp: 'お知らせ', cn: '最新动态', hi: 'नई खबरें' },
+    more:   { kr: '자세히 보기', en: 'Details', jp: '詳しく見る', cn: '查看详情', hi: 'विवरण देखें' },
+    next:   { kr: '다음 소식', en: 'Next', jp: '次へ', cn: '下一条', hi: 'अगला' },
     all:    { kr: '전체 보기', en: 'See all', jp: 'すべて見る', cn: '查看全部', hi: 'सभी देखें' },
     close:  { kr: '닫기', en: 'Close', jp: '閉じる', cn: '关闭', hi: 'बंद करें' },
     play:   { kr: '영상 재생', en: 'Play video', jp: '動画を再生', cn: '播放视频', hi: 'वीडियो चलाएं' },
@@ -107,6 +114,14 @@
     '.nb-dots{display:flex;justify-content:center;gap:6px;margin-top:10px}',
     '.nb-dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);transition:all .25s}',
     '.nb-dots i.on{width:18px;border-radius:3px;background:var(--gold,#d4a537)}',
+    /* slide=tap : 한 장씩 꽉 차게, 누르면 다음 */
+    '.nb.tap .nb-card{flex-basis:100%;scroll-snap-align:start}',
+    '.nb.tap .nb-track{scroll-padding:0 24px}',
+    '.nb-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px}',
+    '.nb-more{min-height:40px;padding:9px 14px;border-radius:99px;border:1px solid rgba(212,165,55,.6);background:rgba(212,165,55,.12);color:var(--gold-soft,#e8c877);font:inherit;font-size:12.5px;font-weight:900;cursor:pointer}',
+    '.nb-nx{font-size:11.5px;font-weight:700;color:rgba(255,255,255,.6)}',
+    '.nb-dots.tap i{width:8px;height:8px;cursor:pointer}',
+    '.nb-dots.tap i.on{width:20px}',
     /* 시트 (dialog) */
     '.nb-sheet{border:0;padding:0;margin:auto auto 0;width:100%;max-width:430px;max-height:92vh;border-radius:22px 22px 0 0;background:#fbfaf7;color:#1c2b26;overflow:hidden}',
     '.nb-sheet::backdrop{background:rgba(0,0,0,.55)}',
@@ -150,10 +165,10 @@
       if (!data || !data.items) return;
       var today = new Date().toISOString().slice(0, 10);
       var items = data.items.filter(function (it) { return !it.hidden && (!it.until || it.until >= today); });
-      items.sort(function (a, b) { return (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) || String(b.date).localeCompare(String(a.date)); });
+      if (data.sort !== 'manual') items.sort(function (a, b) { return (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) || String(b.date).localeCompare(String(a.date)); });
       items = items.slice(0, data.maxVisible || 10);
       if (!items.length) return;
-      render(host, items);
+      render(host, items, data.slide === 'tap');
     }).catch(function () { /* 소식이 없으면 영역을 비워 둠 */ });
   }
 
@@ -163,9 +178,9 @@
     return h;
   }
 
-  function render(host, items) {
+  function render(host, items, tap) {
     var st = el('style'); st.textContent = CSS; document.head.appendChild(st);
-    var wrap = el('section', 'nb');
+    var wrap = el('section', tap ? 'nb tap' : 'nb');
     wrap.setAttribute('aria-label', 'News');
     var head = el('div', 'nb-head', '<span class="nb-title"><b></b>' + ml(UI.head) + '</span>');
     var allBtn = el('button', 'nb-all', ml(UI.all) + ' (' + items.length + ') ›');
@@ -174,20 +189,31 @@
     var track = el('div', 'nb-track');
     var banner = items.slice(0, BANNER_MAX);
     banner.forEach(function (it, i) {
-      var c = el('button', 'nb-card');
-      c.type = 'button';
+      var c = el(tap ? 'div' : 'button', 'nb-card');
+      if (tap) { c.setAttribute('role', 'button'); c.tabIndex = 0; c.setAttribute('aria-label', (i + 1) + ' / ' + banner.length); }
+      else c.type = 'button';
       var img = (it.images && it.images[0]) || (youtubeId(it.video) ? 'https://i.ytimg.com/vi/' + youtubeId(it.video) + '/hqdefault.jpg' : (it.poster || ''));
       c.innerHTML = (img ? '<img class="nb-img" src="' + esc(img) + '" alt="" width="400" height="210"' + (i ? ' loading="lazy"' : '') + ' decoding="async">' : '') +
         '<div class="nb-body"><div class="nb-chips">' + chips(it) + '</div><div class="nb-ct">' + ml(it.title) + '</div>' +
-        (it.price ? '<div class="nb-cp">' + ml(it.price) + '</div>' : '') + '</div>';
-      c.addEventListener('click', function () { openDetail(it); });
+        (it.price ? '<div class="nb-cp">' + ml(it.price) + '</div>' : '') +
+        (tap ? '<div class="nb-foot"><button type="button" class="nb-more">' + ml(UI.more) + ' ›</button>' +
+          (banner.length > 1 ? '<span class="nb-nx">' + (i + 1) + ' / ' + banner.length + ' · ' + ml(UI.next) + ' ›</span>' : '') + '</div>' : '') + '</div>';
+      if (tap) {
+        c.addEventListener('click', function (e) {
+          if (e.target.closest('.nb-more') || banner.length < 2) openDetail(it);
+          else goTo(i + 1);
+        });
+        c.addEventListener('keydown', function (e) {
+          if (e.target === c && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); goTo(i + 1); }
+        });
+      } else c.addEventListener('click', function () { openDetail(it); });
       track.appendChild(c);
     });
     wrap.appendChild(head);
     wrap.appendChild(track);
     var dots = null;
     if (banner.length > 1) {
-      dots = el('div', 'nb-dots', banner.map(function (_, i) { return '<i' + (i ? '' : ' class="on"') + '></i>'; }).join(''));
+      dots = el('div', tap ? 'nb-dots tap' : 'nb-dots', banner.map(function (_, i) { return '<i' + (i ? '' : ' class="on"') + '></i>'; }).join(''));
       wrap.appendChild(dots);
     }
     host.appendChild(wrap);
@@ -202,7 +228,12 @@
     ['pointerdown', 'touchstart', 'wheel'].forEach(function (ev) { track.addEventListener(ev, function () { userTouched = true; }, { passive: true }); });
     if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }).observe(track);
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (banner.length > 1 && !reduce) setInterval(function () {
+    function goTo(n) {
+      idx = (n + banner.length) % banner.length;
+      track.scrollTo({ left: idx * cardW(), behavior: reduce ? 'auto' : 'smooth' });
+    }
+    if (tap && dots) [].forEach.call(dots.children, function (d, i) { d.addEventListener('click', function () { goTo(i); }); });
+    if (banner.length > 1 && !reduce && !tap) setInterval(function () {
       if (userTouched || !visible || document.hidden || sheet.open) return;
       idx = (idx + 1) % banner.length;
       track.scrollTo({ left: idx * cardW(), behavior: 'smooth' });
