@@ -14,6 +14,7 @@
  *
  * news.json 선택 옵션:
  *   "sort": "manual"  → 고정·날짜 정렬 없이 items 에 적힌 순서 그대로 보여줌
+ *   "bannerMax": 4    → 배너에 보일 최대 장수 (기본 3, 최대 6). 나머지는 '전체 보기'에서
  *   "slide": "tap"    → 자동 넘김 없이, 배너를 누르면 다음 소식으로 넘어감(마지막 다음은 처음).
  *                       상세는 배너 안 '자세히 보기' 버튼으로 엶. 밀어서 넘기기·점 누르기도 됨.
  */
@@ -168,6 +169,8 @@
       if (data.sort !== 'manual') items.sort(function (a, b) { return (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) || String(b.date).localeCompare(String(a.date)); });
       items = items.slice(0, data.maxVisible || 10);
       if (!items.length) return;
+      var bm = +data.bannerMax;
+      if (bm >= 1) BANNER_MAX = Math.min(6, Math.floor(bm));
       render(host, items, data.slide === 'tap');
     }).catch(function () { /* 소식이 없으면 영역을 비워 둠 */ });
   }
