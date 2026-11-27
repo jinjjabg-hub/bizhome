@@ -1,9 +1,10 @@
 {
   "version": 1,
   "maxVisible": 10,
-  "_order": "sort=manual → 아래 items 순서 그대로 보여줌. slide=tap → 배너를 누르면 다음 소식, \"자세히 보기\"로 상세 열기",
+  "_order": "sort=manual → items 순서 그대로. slide=tap → 배너를 누르면 다음 소식, \"자세히 보기\"로 상세. bannerMax → 배너 최대 장수",
   "sort": "manual",
   "slide": "tap",
+  "bannerMax": 4,
   "items": [
     {
       "id": "mandu-messenger",
@@ -154,6 +155,68 @@
             "jp": "オート名刺の詳細（TM LINK）",
             "cn": "了解自动名片（TM LINK）",
             "hi": "AutoCard के बारे में (TM LINK)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "jujudosa",
+      "type": "product",
+      "date": "2026-11-26",
+      "images": [
+        "news/jujudosa-gwiin.webp",
+        "news/jujudosa.webp"
+      ],
+      "price": {
+        "kr": "무료로 시작 · 월 5,900원부터",
+        "en": "Free to start · from ₩5,900/month",
+        "jp": "無料で開始 · 月5,900ウォンから",
+        "cn": "免费开始 · 每月5,900韩元起",
+        "hi": "मुफ़्त शुरुआत · ₩5,900/माह से"
+      },
+      "title": {
+        "kr": "내 사주로 '언제'를 묻는 상담 — 주주도사",
+        "en": "Ask your saju \"when\" — JUJUDOSA",
+        "jp": "自分の四柱で「いつ」を相談 — 主主道士",
+        "cn": "用八字问“何时” — 主主道士",
+        "hi": "अपनी साजू से पूछें \"कब\" — JUJUDOSA"
+      },
+      "desc": {
+        "kr": "생년월일시를 넣으면 타고난 명식과 대운 흐름을 읽고 지금 시기에 맞는 조언을 드리는 사주 상담입니다.\n명식 계산은 코드가 정확히 하고, 해석은 AI 도사가 맡습니다. 재물·직업·연애·자녀·대운, 힘들 때까지 분야별 도사 7명이 상담해요.\n'귀인지도'에서는 생년월일만으로 주변 사람이 나에게 귀인인지 채찍인지 지도로 보여드립니다.\n\"운은 정해진 결말이 아니라 날씨입니다.\"",
+        "en": "Enter your birth date and time, and JUJUDOSA reads your natal chart and life cycles to give advice for this season of your life.\nThe chart is calculated precisely by code; an AI master interprets it. Seven masters cover wealth, career, love, children, life cycles — and hard times.\n'Gwiin Map' shows, from birth dates alone, who around you is a helper or a challenger.\n\"Fortune isn't a fixed ending — it's the weather.\"",
+        "jp": "生年月日と時刻を入れると、生まれ持った命式と大運の流れを読み、今の時期に合った助言をする四柱推命相談です。\n命式の計算はコードが正確に行い、解釈はAI道士が担当。財運・仕事・恋愛・子ども・大運、つらい時まで分野別の道士7人が相談に乗ります。\n「貴人マップ」では生年月日だけで、周りの人が貴人か試練の人かを地図で表示します。\n「運は決まった結末ではなく、天気です。」",
+        "cn": "输入出生日期和时辰，即可解读先天命盘与大运走势，给出适合当下时期的建议。\n命盘由程序精确计算，由AI道士负责解读。财运·事业·恋爱·子女·大运，乃至困难时期，共有7位分领域道士为您咨询。\n“贵人地图”只需生日，就能在地图上显示身边的人是贵人还是鞭策者。\n“运势不是注定的结局，而是天气。”",
+        "hi": "जन्म तिथि और समय डालें — JUJUDOSA आपकी जन्म कुंडली और जीवन-चक्र पढ़कर अभी के समय के लिए सलाह देता है।\nगणना कोड सटीक रूप से करता है, व्याख्या AI गुरु। धन, करियर, प्रेम, संतान, जीवन-चक्र और कठिन समय — 7 गुरु।\n\"भाग्य तय अंत नहीं, मौसम है।\""
+      },
+      "button": {
+        "url": "https://juju.bizmy.net/",
+        "label": {
+          "kr": "주주도사와 상담하기",
+          "en": "Talk to JUJUDOSA",
+          "jp": "主主道士に相談する",
+          "cn": "与主主道士咨询",
+          "hi": "JUJUDOSA से बात करें"
+        }
+      },
+      "links": [
+        {
+          "url": "https://juju.bizmy.net/gwiin.html",
+          "label": {
+            "kr": "내 귀인지도 보기",
+            "en": "See my Gwiin Map",
+            "jp": "自分の貴人マップを見る",
+            "cn": "查看我的贵人地图",
+            "hi": "मेरा ग्विइन मैप देखें"
+          }
+        },
+        {
+          "url": "https://juju.bizmy.net/pricing.html",
+          "label": {
+            "kr": "요금제 보기",
+            "en": "Pricing",
+            "jp": "料金プラン",
+            "cn": "价格方案",
+            "hi": "मूल्य योजनाएँ"
           }
         }
       ]
