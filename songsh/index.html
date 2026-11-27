@@ -1097,7 +1097,7 @@ async function activateMandu() {
 </script>
 <script>
 /* ===== 믿고 소개하는 BNI 멤버 =====
-   n = 이름(관리용, 화면에는 업종만), ch = 챕터(P 파이오니어 · G 자이언츠), cat = 업종 묶음(CATS),
+   n = 이름(관리용, 화면에는 업종만), ch = 챕터(P 파이오니어 · G 자이언츠 · 빈칸이면 표시 안 함), cat = 업종 묶음(CATS),
    home = 비즈홈/카드 주소, card = 이미지명함(누르면 팝업), tel = 팝업 전화번호. 링크가 없으면 업종만 보임.
    순서 = 화면 순서. 사람을 넣고 빼려면 이 목록만 고치면 됩니다. */
 var PARTNERS = [
@@ -1114,19 +1114,22 @@ var PARTNERS = [
   { n:'김준래', ch:'G', cat:'space', job:{kr:'실내 인테리어', en:'Interior design & remodeling', jp:'室内インテリア', cn:'室内装修', hi:'इंटीरियर डिज़ाइन'}, home:'https://jinjjabg-hub.github.io/bni-giants/김준래/' },
   { n:'최현민', ch:'G', cat:'space', job:{kr:'상업공간 설계·시공(병원·호텔·카페)', en:'Commercial interiors (clinics, hotels, cafés)', jp:'商業空間の設計・施工（病院・ホテル・カフェ）', cn:'商业空间设计施工（医院·酒店·咖啡厅）', hi:'व्यावसायिक इंटीरियर (क्लिनिक, होटल, कैफ़े)'}, home:'https://jinjjabg-hub.github.io/bni-giants/최현민/' },
   { n:'정래권', ch:'G', cat:'space', job:{kr:'조명(설계·제조·시공·AS)', en:'Lighting (design, manufacturing, installation, A/S)', jp:'照明（設計・製造・施工・AS）', cn:'照明（设计·制造·施工·售后）', hi:'लाइटिंग (डिज़ाइन, निर्माण, इंस्टॉलेशन, सर्विस)'}, home:'https://gochfl.github.io/namecard/' },
+  { n:'권두현', ch:'P', cat:'space', job:{kr:'현관 중문', en:'Entrance interior doors', jp:'玄関中扉', cn:'玄关中门', hi:'प्रवेश द्वार के अंदरूनी दरवाज़े'}, card:'partners/kwon-doohyun.jpg', tel:'010-9344-7250' },
   { n:'조은영', ch:'P', cat:'space', job:{kr:'냉동공조·실내공기정화 솔루션', en:'Refrigeration, HVAC & indoor air purification', jp:'冷凍空調・室内空気清浄ソリューション', cn:'冷冻空调·室内空气净化方案', hi:'रेफ्रिजरेशन, HVAC व इनडोर वायु शुद्धिकरण'}, home:'https://bnich.bizmy.net/조은영/' },
   { n:'정명수', ch:'P', cat:'space', job:{kr:'에어컨 설치·관리', en:'A/C installation & maintenance', jp:'エアコン設置・管理', cn:'空调安装·维护', hi:'एसी इंस्टॉलेशन व रखरखाव'}, card:'https://bnich.bizmy.net/pioneer/cards/aircon.jpg', tel:'010-7287-8707' },
   { n:'박선영', ch:'P', cat:'space', job:{kr:'안전용품(작업화·작업복·실리콘)', en:'Safety gear (work shoes, workwear, silicone)', jp:'安全用品（作業靴・作業服・シリコン）', cn:'安全用品（工作鞋·工作服·硅胶）', hi:'सुरक्षा उपकरण (वर्क शूज़, वर्कवियर, सिलिकॉन)'}, home:'https://bnich.bizmy.net/박선영/' },
   { n:'김근우', ch:'P', cat:'media', job:{kr:'인쇄·디자인', en:'Printing & design', jp:'印刷・デザイン', cn:'印刷·设计', hi:'प्रिंटिंग व डिज़ाइन'}, home:'https://bnich.bizmy.net/김근우/' },
   { n:'박영심', ch:'G', cat:'media', job:{kr:'서비스 디자인', en:'Service design', jp:'サービスデザイン', cn:'服务设计', hi:'सर्विस डिज़ाइन'}, home:'https://jinjjabg-hub.github.io/bni-giants/박영심/' },
   { n:'박성준', ch:'G', cat:'media', job:{kr:'방송장비·전광판', en:'Broadcast equipment & LED displays', jp:'放送機材・電光掲示板', cn:'广播设备·电子屏', hi:'ब्रॉडकास्ट उपकरण व LED डिस्प्ले'}, home:'https://jinjjabg-hub.github.io/bni-giants/박성준/' },
-  { n:'김정훈', ch:'G', cat:'media', job:{kr:'상패·트로피 제작', en:'Plaques & trophies', jp:'記念盾・トロフィー製作', cn:'奖牌·奖杯制作', hi:'पट्टिका व ट्रॉफ़ी निर्माण'} },
+  { n:'김정훈', ch:'G', cat:'media', job:{kr:'상패·트로피 제작', en:'Plaques & trophies', jp:'記念盾・トロフィー製作', cn:'奖牌·奖杯制作', hi:'पट्टिका व ट्रॉफ़ी निर्माण'}, card:'partners/kim-junghoon.jpg', tel:'010-3122-3749' },
   { n:'박진호', ch:'G', cat:'media', job:{kr:'기업 인터넷·보안', en:'Business internet & security', jp:'企業向けインターネット・セキュリティ', cn:'企业网络·安防', hi:'बिज़नेस इंटरनेट व सुरक्षा'}, home:'https://jinjjabg-hub.github.io/bni-giants/박진호/' },
-  { n:'김태원', ch:'G', cat:'media', job:{kr:'데이터 복구', en:'Data recovery', jp:'データ復旧', cn:'数据恢复', hi:'डेटा रिकवरी'} },
+  { n:'김태원', ch:'G', cat:'media', job:{kr:'데이터 복구', en:'Data recovery', jp:'データ復旧', cn:'数据恢复', hi:'डेटा रिकवरी'}, card:'partners/kim-taewon.jpg', tel:'010-4909-5287' },
   { n:'고영래', ch:'G', cat:'health', job:{kr:'피부과(스킨부스터)', en:'Dermatology (skin boosters)', jp:'皮膚科（スキンブースター）', cn:'皮肤科（水光注射）', hi:'त्वचा रोग क्लिनिक (स्किन बूस्टर)'}, home:'https://jinjjabg-hub.github.io/bni-giants/고영래/' },
   { n:'우완용', ch:'G', cat:'health', job:{kr:'한의원(공진단·보약)', en:'Korean medicine clinic', jp:'韓方医院（漢方薬）', cn:'韩医院（补药）', hi:'कोरियाई पारंपरिक चिकित्सा'}, home:'https://jinjjabg-hub.github.io/bni-giants/우완용/' },
   { n:'이화춘', ch:'P', cat:'health', job:{kr:'반영구 뷰티', en:'Semi-permanent makeup', jp:'アートメイク', cn:'半永久化妆', hi:'सेमी-परमानेंट मेकअप'}, home:'https://bnich.bizmy.net/이화춘/' },
   { n:'윤민수', ch:'P', cat:'health', job:{kr:'태닝', en:'Tanning salon', jp:'日焼けサロン', cn:'美黑', hi:'टैनिंग सैलून'}, home:'https://bnich.bizmy.net/윤민수/' },
+  { n:'김경현', ch:'', cat:'health', job:{kr:'암웨이', en:'Amway', jp:'アムウェイ', cn:'安利', hi:'Amway'} },
+  { n:'임동기', ch:'', cat:'health', job:{kr:'안경(18년 경력 안경사)', en:'Eyewear (optician, 18 years)', jp:'メガネ（眼鏡士歴18年）', cn:'眼镜（18年经验验光师）', hi:'चश्मा (18 साल अनुभवी ऑप्टिशियन)'}, home:'https://jinjjabg-hub.github.io/NAMECARD/임동기/' },
   { n:'강라감', ch:'G', cat:'life', job:{kr:'횟집(광안리, 단체 100명)', en:'Seafood restaurant (Gwangalli, groups up to 100)', jp:'刺身店（広安里・団体100名）', cn:'生鱼片餐厅（广安里，可容纳100人）', hi:'सीफ़ूड रेस्टोरेंट (ग्वांगअल्ली, 100 लोग तक)'}, home:'https://jinjjabg-hub.github.io/bni-giants/강라감/' },
   { n:'문성우', ch:'P', cat:'life', job:{kr:'요식업(고기구이)', en:'Restaurant (grilled meat)', jp:'飲食業（焼肉）', cn:'餐饮（烤肉）', hi:'रेस्टोरेंट (ग्रिल्ड मीट)'}, card:'https://bnich.bizmy.net/pioneer/cards/bbq.jpg', tel:'010-6695-9659' },
   { n:'임춘식', ch:'P', cat:'life', job:{kr:'꽃·화환 유통', en:'Flowers & wreath distribution', jp:'花・花輪の流通', cn:'鲜花·花环流通', hi:'फूल व पुष्पमाला वितरण'}, home:'https://bnich.bizmy.net/임춘식/' },
@@ -1139,7 +1142,7 @@ var CATS = [
   { id:'biz',    t:{kr:'경영·숙박·부동산', en:'Business, lodging & real estate', jp:'経営・宿泊・不動産', cn:'经营·住宿·房地产', hi:'व्यवसाय, होटल व रियल एस्टेट'} },
   { id:'space',  t:{kr:'인테리어·설비·조명', en:'Interiors, facilities & lighting', jp:'インテリア・設備・照明', cn:'装修·设备·照明', hi:'इंटीरियर, सुविधाएँ व लाइटिंग'} },
   { id:'media',  t:{kr:'디자인·광고·IT', en:'Design, advertising & IT', jp:'デザイン・広告・IT', cn:'设计·广告·IT', hi:'डिज़ाइन, विज्ञापन व IT'} },
-  { id:'health', t:{kr:'의료·뷰티', en:'Medical & beauty', jp:'医療・美容', cn:'医疗·美容', hi:'चिकित्सा व सौंदर्य'} },
+  { id:'health', t:{kr:'의료·뷰티·건강', en:'Medical, beauty & health', jp:'医療・美容・健康', cn:'医疗·美容·健康', hi:'चिकित्सा, सौंदर्य व स्वास्थ्य'} },
   { id:'life',   t:{kr:'음식·생활·행사', en:'Food, lifestyle & events', jp:'飲食・生活・イベント', cn:'餐饮·生活·活动', hi:'भोजन, जीवनशैली व आयोजन'} }
 ];
 (function(){
@@ -1173,7 +1176,7 @@ var CATS = [
     h += '<div class="mem-cat">' + ml(c.t) + ' <small>' + list.length + '</small></div><div class="mem-list">';
     list.forEach(function(m){
       var i = PARTNERS.indexOf(m);
-      var top = '<div class="mem-name">' + ml(m.job) + '</div><span class="mem-ch">' + ml(TX[m.ch]) + '</span>';
+      var top = '<div class="mem-name">' + ml(m.job) + '</div>' + (TX[m.ch] ? '<span class="mem-ch">' + ml(TX[m.ch]) + '</span>' : '');
       if (m.home) h += '<a class="mem-item" href="' + esc(m.home) + '">' + top + '<span class="mem-tag home">' + ml(TX.home) + '</span></a>';
       else if (m.card) h += '<a class="mem-item" href="' + esc(m.card) + '" data-i="' + i + '">' + top + '<span class="mem-tag img">' + ml(TX.card) + '</span></a>';
       else h += '<a class="mem-item plain" href="#contact">' + top + '<span class="mem-tag ask">' + ml(TX.ask) + '</span></a>';
