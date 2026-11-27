@@ -164,8 +164,8 @@
       "type": "product",
       "date": "2026-11-26",
       "images": [
-        "news/jujudosa.webp",
-        "news/jujudosa-gwiin.webp"
+        "news/jujudosa-gwiin.webp",
+        "news/jujudosa.webp"
       ],
       "price": {
         "kr": "무료로 시작 · 월 5,900원부터",
